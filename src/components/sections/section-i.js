@@ -9,7 +9,7 @@ const { TabPane } = Tabs
 
 export default ({ showDetail }) => {
   const { mds, handleChange } = useContext(MdsContext)
-  const { I0020, I0020B, I0100, I0200, I0300, I0400 } = mds
+  const { I0020, I0020B, I0100, I0200, I0300, I0400, I8000A } = mds
 
   return (
     <>
@@ -23,6 +23,7 @@ export default ({ showDetail }) => {
       <MdsField
         field="I0020B"
         value={I0020B}
+        type="search"
         setValue={value => handleChange("I0020B", value)}
         openModal={() => showDetail(true)}
         flags={[1,2,3]}
@@ -57,6 +58,14 @@ export default ({ showDetail }) => {
         openModal={() => showDetail(true)}
         flags={[1, 2, 3, 4]}
         flag
+      />
+      <MdsField
+        field="I8000A"
+        value={I8000A}
+        type="search"
+        setValue={value => handleChange("I8000A", value)}
+        openModal={() => showDetail(true)}
+        flags={[1,2,3]}
       />
     </>
   )

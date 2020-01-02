@@ -17,7 +17,7 @@ export default ({ showDetail }) => {
     <>
       <MdsField
         field="A2300"
-        date
+        type="date"
         value={A2300}
         setValue={value => handleChange("A2300", value)}
         openModal={() => showDetail(true)}

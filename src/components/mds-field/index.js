@@ -7,6 +7,7 @@ import {
   Drawer,
   Col,
   Icon,
+  Input,
   Select,
   Typography,
   Tooltip,
@@ -18,6 +19,7 @@ import {
 
 const { Option } = Select
 const { Title, Text } = Typography
+const { Search } = Input
 
 const QmSvg = () => (
   <svg
@@ -77,7 +79,7 @@ const ClinicalIcon = props => <Icon component={ClinicalSvg} {...props} />
 
 export default ({
   field,
-  date,
+  type,
   value,
   setValue,
   openModal,
@@ -175,6 +177,42 @@ export default ({
     </p>
   )
 
+  const InputType = () => {
+    console.log('input type: ', type)
+    switch (type) {
+      case "date":
+        return <DatePicker allowClear />
+      case "search":
+        return (
+        <Select
+          style={{ width: 240 }}
+          suffixIcon={<Icon type="search" />}
+          allowClear
+          showSearch
+          placeholder="Select a diagnosis"
+          optionFilterProp="children"
+        >
+          <Option value="A01.01">A01.01: Typhoid meningitis</Option>
+          <Option value="A01.02">A01.02: Typhoid fever with heart involvement</Option>
+          <Option value="A01.03">A01.03: Typhoid pneumonia</Option>
+        </Select>)
+      default:
+        return (
+          <Select
+            id={field}
+            name={field}
+            defaultValue="0"
+            onChange={setValue}
+            style={{ width: 240 }}
+          >
+            {responseOptions.map(response => (
+              <Option value={response.value}>{response.label}</Option>
+            ))}
+          </Select>
+        )
+    }
+  }
+
   return (
     <div>
       <Row gutter={[16, 16]}>
@@ -196,38 +234,24 @@ export default ({
               ) : flag ? (
                 <Button
                   type="danger"
-                  icon={showFlag ? <Icon type="close" /> : <Icon type="flag" />}
                   size="large"
                   shape="circle"
                   onClick={() => setShowFlag(!showFlag)}
                 >
-                  {showFlag ? <Icon type="close" /> : <Icon type="flag" style={{ fontSize: "36px" }} />}
+                  {showFlag ? (
+                    <Icon type="close" style={{ fontSize: "24px" }} />
+                  ) : (
+                    <Icon type="flag" style={{ fontSize: "24px" }} />
+                  )}
                 </Button>
               ) : (
-                <Button
-                  type="primary"
-                  size="large"
-                  shape="circle"
-                  icon="safety"
-                />
+                <Button type="primary" size="large" shape="circle">
+                  <Icon type="safety" style={{ fontSize: "28px" }} />
+                </Button>
               )}
             </Col>
             <Col span={8}>
-              {date ? (
-                <DatePicker allowClear />
-              ) : (
-                <Select
-                  id={field}
-                  name={field}
-                  defaultValue="0"
-                  onChange={setValue}
-                  style={{ width: 240 }}
-                >
-                  {responseOptions.map(response => (
-                    <Option value={response.value}>{response.label}</Option>
-                  ))}
-                </Select>
-              )}
+            <InputType />
             </Col>
             <Col span={12}>
               {flags.indexOf(1) >= 0 && (
