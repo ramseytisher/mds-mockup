@@ -218,7 +218,7 @@ export default ({
   }
 
   return (
-    <div style={{ padding: 8}}>
+    <div style={{ padding: 8 }}>
       <Row gutter={[16, 16]}>
         <Col span={20}>
           <Row>
@@ -354,7 +354,6 @@ export default ({
           )}
         </Col>
       </Row>
-      <Divider />
     </div>
   )
 }

@@ -35,10 +35,10 @@ const IndexPage = () => {
           background: "lightblue",
         }}
         extra={[
-          <Button>Import Section</Button>,
-          <Button>Previous Answer</Button>,
-          <Button>Validate Section</Button>,
-          <Button>RAI Manual</Button>,
+          <Button icon="vertical-align-bottom" />,
+          <Button icon="login" />,
+          <Button icon="like" />,
+          <Button icon="book" />,
         ]}
       />
       <SectionA showDetail={setShowDetail} />
@@ -50,10 +50,10 @@ const IndexPage = () => {
           background: "lightblue",
         }}
         extra={[
-          <Button>Import Section</Button>,
-          <Button>Previous Answer</Button>,
-          <Button>Validate Section</Button>,
-          <Button>RAI Manual</Button>,
+          <Button icon="vertical-align-bottom" />,
+          <Button icon="login" />,
+          <Button icon="like" />,
+          <Button icon="book" />,
         ]}
       />
       <SectionC showDetail={setShowDetail} />
@@ -65,10 +65,10 @@ const IndexPage = () => {
           background: "lightblue",
         }}
         extra={[
-          <Button>Import Section</Button>,
-          <Button>Previous Answer</Button>,
-          <Button>Validate Section</Button>,
-          <Button>RAI Manual</Button>,
+          <Button icon="vertical-align-bottom" />,
+          <Button icon="login" />,
+          <Button icon="like" />,
+          <Button icon="book" />,
         ]}
       />
       <SectionI showDetail={setShowDetail} />
@@ -80,10 +80,10 @@ const IndexPage = () => {
           background: "lightblue",
         }}
         extra={[
-          <Button>Import Section</Button>,
-          <Button>Previous Answer</Button>,
-          <Button>Validate Section</Button>,
-          <Button>RAI Manual</Button>,
+          <Button icon="vertical-align-bottom" />,
+          <Button icon="login" />,
+          <Button icon="like" />,
+          <Button icon="book" />,
         ]}
       />
       <SectionK showDetail={setShowDetail} />

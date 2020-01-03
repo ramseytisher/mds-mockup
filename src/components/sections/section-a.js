@@ -12,19 +12,13 @@ export default ({ showDetail }) => {
   const { A2300, A0310A, A0310B, A0310E, A0310F } = mds
 
   return (
-    <>
-      <MdsField
-        field="A2300"
-        type="date"
-        value={A2300}
-        setValue={value => handleChange("A2300", value)}
-        openModal={() => showDetail(true)}
-        flags={[3]}
-      />
-      <Timeline>
+    <div style={{ padding: 10 }}>
+      <Divider orientation="left">
         <Text style={{ fontSize: 18, fontWeight: "bold" }}>
           A0310. Type of Assessment
         </Text>
+      </Divider>
+      <Timeline style={{ padding: 10 }}>
         <Timeline.Item>
           <MdsField
             field="A0310A"
@@ -63,6 +57,19 @@ export default ({ showDetail }) => {
           />
         </Timeline.Item>
       </Timeline>
-    </>
+      <Divider orientation="left">
+        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+          A2300. Assessment Reference Date
+        </Text>
+      </Divider>
+      <MdsField
+        field="A2300"
+        type="date"
+        value={A2300}
+        setValue={value => handleChange("A2300", value)}
+        openModal={() => showDetail(true)}
+        flags={[3]}
+      />
+    </div>
   )
 }
