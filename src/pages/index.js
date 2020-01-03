@@ -18,6 +18,7 @@ import {
   Divider,
   Typography,
   Card,
+  Icon,
   Tag,
 } from "antd"
 const { Title } = Typography
@@ -125,20 +126,20 @@ const IndexPage = () => {
           </p>
         </Card>
         <Tabs defaultActiveKey="1" onChange={e => console.log(e)}>
-          <TabPane tab="Source Data" key="1">
+          <TabPane tab={<span><Icon type="vertical-align-bottom" />Source Data</span>} key="1">
             <ImportDetails />
           </TabPane>
-          <TabPane tab="Finanical Impact" key="2">
-            Content of Tab 4
+          <TabPane tab={<span><Icon type="dollar" />Financial Impact</span>} key="2">
+            Content of Financial
           </TabPane>
-          <TabPane tab="Clinical Impact" key="3">
-            Content of Tab 4
+          <TabPane tab={<span>(QM) Quality Measures</span>} key="3">
+            Content of Quality Measures
           </TabPane>
-          <TabPane tab="Quality Measures" key="4">
-            Content of Tab 3
+          <TabPane tab={<span>(N) Clinical Impact</span>} key="4">
+            Content of Clinical Impact
           </TabPane>
-          <TabPane tab="Field History/Notes" key="5">
-            Content of Tab 1
+          <TabPane tab={<span><Icon type="file" />Notes</span>} key="5">
+            Content of Notes
           </TabPane>
         </Tabs>
       </Drawer>

@@ -226,15 +226,14 @@ export default ({
           >
             <Text
               style={{
-                fontSize: 16,
-                fontWeight: "bold",
+                fontSize: 14,
               }}
             >
               {field}
             </Text>
             <Text
               style={{
-                fontSize: 16,
+                fontSize: 14,
               }}
             >
               {`: ${question[0].node.itm_shrt_label}`}
@@ -246,7 +245,6 @@ export default ({
             {loading ? (
               <Button
                 shape="circle"
-                size="large"
                 loading={loading}
                 tabindex="-1"
               />

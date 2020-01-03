@@ -34,7 +34,7 @@ export default ({ showDetail }) => {
   return (
     <div style={{ padding: 10 }}>
       <Divider orientation="left">
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
           GG0130A. Eating
         </Text>
       </Divider>
@@ -65,7 +65,7 @@ export default ({ showDetail }) => {
       />
 
       <Divider orientation="left">
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
           GG0130B. Oral hygiene
         </Text>
       </Divider>
@@ -92,7 +92,7 @@ export default ({ showDetail }) => {
         skip
       />
       <Divider orientation="left">
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
           GG0130C. Toileting hygiene
         </Text>
       </Divider>
