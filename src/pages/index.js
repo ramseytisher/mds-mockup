@@ -6,6 +6,7 @@ import SectionA from "../components/sections/section-a"
 import SectionC from "../components/sections/section-c"
 import SectionI from "../components/sections/section-i"
 import SectionK from "../components/sections/section-k"
+import SectionGG from "../components/sections/section-gg"
 
 import ImportDetails from "../components/import-details"
 
@@ -33,6 +34,7 @@ const IndexPage = () => {
         style={{
           border: "1px solid rgb(235, 237, 240)",
           background: "lightblue",
+          padding: "6px",
         }}
         extra={[
           <Button icon="vertical-align-bottom" />,
@@ -44,10 +46,11 @@ const IndexPage = () => {
       <SectionA showDetail={setShowDetail} />
       <PageHeader
         title="Section C"
-        subTitle="Identification Information"
+        subTitle="Cognitive Patterns"
         style={{
           border: "1px solid rgb(235, 237, 240)",
           background: "lightblue",
+          padding: "6px",
         }}
         extra={[
           <Button icon="vertical-align-bottom" />,
@@ -58,11 +61,28 @@ const IndexPage = () => {
       />
       <SectionC showDetail={setShowDetail} />
       <PageHeader
+        title="Section GG"
+        subTitle="Functional Abilities and Goals"
+        style={{
+          border: "1px solid rgb(235, 237, 240)",
+          background: "lightblue",
+          padding: "6px",
+        }}
+        extra={[
+          <Button icon="vertical-align-bottom" />,
+          <Button icon="login" />,
+          <Button icon="like" />,
+          <Button icon="book" />,
+        ]}
+      />
+      <SectionGG showDetail={setShowDetail} />
+      <PageHeader
         title="Section I"
         subTitle="Active Diagnosis"
         style={{
           border: "1px solid rgb(235, 237, 240)",
           background: "lightblue",
+          padding: "6px",
         }}
         extra={[
           <Button icon="vertical-align-bottom" />,
@@ -78,6 +98,7 @@ const IndexPage = () => {
         style={{
           border: "1px solid rgb(235, 237, 240)",
           background: "lightblue",
+          padding: "6px",
         }}
         extra={[
           <Button icon="vertical-align-bottom" />,

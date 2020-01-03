@@ -56,6 +56,7 @@ export default () => {
             dataSource={data}
             size="small"
             pagination={false}
+            style={{ fontSize: 12 }}
           />
         </Card>
         <Card title={`PowerChart Diagnosis`} size="small">

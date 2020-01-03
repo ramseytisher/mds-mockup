@@ -4,7 +4,7 @@ export const MdsContext = createContext()
 
 const initialMdsState = {
   A2300: "",
-  A0310A: "",
+  A0310A: "-",
   A0310B: "",
   A0310E: "",
   A0310F: "",
@@ -21,6 +21,15 @@ const initialMdsState = {
   C0500: "99",
   C0700: "-",
   C1000: "-",
+  GG0130A1: "-",
+  GG0130A2: "-",
+  GG0130A3: "-",
+  GG0130B1: "-",
+  GG0130B2: "-",
+  GG0130B3: "-",
+  GG0130C1: "-",
+  GG0130C2: "-",
+  GG0130C3: "-",
   I0020: "-",
   I0020B: "",
   I0100: "-",
@@ -38,7 +47,7 @@ const initialMdsState = {
   K0300: "-",
   K0310: "-",
   K0510A1: "-",
-  K0510A2: "-"
+  K0510A2: "-",
 }
 
 export const MdsProvider = ({ children }) => {

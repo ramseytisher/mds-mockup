@@ -4,15 +4,30 @@ import { MdsContext } from "../../context/mds-context"
 import ImportDetails from "../../components/import-details"
 import { Drawer, Tabs, Divider, Typography, Card, Tag } from "antd"
 
-const { Title } = Typography
+const { Title, Text } = Typography
 const { TabPane } = Tabs
 
 export default ({ showDetail }) => {
   const { mds, handleChange } = useContext(MdsContext)
-  const { C0100, C0200, C0300A, C0300B, C0300C, C0400A, C0400B, C0400C, C0500 } = mds
+  const {
+    C0100,
+    C0200,
+    C0300A,
+    C0300B,
+    C0300C,
+    C0400A,
+    C0400B,
+    C0400C,
+    C0500,
+  } = mds
 
   return (
     <>
+      <Divider orientation="left">
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          C0100. Should Brief Interview for Mental Status (C0200 - C0500) be Conducted?
+        </Text>
+      </Divider>
       <MdsField
         field="C0100"
         value={C0100}
@@ -20,6 +35,11 @@ export default ({ showDetail }) => {
         openModal={() => showDetail(true)}
         flags={[3]}
       />
+      <Divider orientation="left">
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          C0200. Repetition of Three Words
+        </Text>
+      </Divider>
       <MdsField
         field="C0200"
         value={C0200}
@@ -28,6 +48,11 @@ export default ({ showDetail }) => {
         flags={[1, 2, 3, 4]}
         loading
       />
+      <Divider orientation="left">
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          C0300. Temporal Orientation (orientation to year, month, and day)
+        </Text>
+      </Divider>
       <MdsField
         field="C0300A"
         value={C0300A}
@@ -51,6 +76,11 @@ export default ({ showDetail }) => {
         openModal={() => showDetail(true)}
         flags={[1, 2, 3, 4]}
       />
+      <Divider orientation="left">
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          C0400. Recall
+        </Text>
+      </Divider>
       <MdsField
         field="C0400A"
         value={C0400A}

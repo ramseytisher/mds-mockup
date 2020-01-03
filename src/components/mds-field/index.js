@@ -181,11 +181,11 @@ export default ({
   const InputType = () => {
     switch (type) {
       case "date":
-        return <DatePicker allowClear />
+        return <DatePicker allowClear style={{ width: "30vw" }} />
       case "search":
         return (
           <Select
-            style={{ width: 240 }}
+            style={{ maxWidth: "30vw" }}
             suffixIcon={<Icon type="search" />}
             allowClear
             showSearch
@@ -205,9 +205,8 @@ export default ({
             id={field}
             name={field}
             defaultValue="0"
-            onChange={setValue}
-            style={{ width: 240 }}
             disabled={skip}
+            style={{ minWidth: "20vw" }}
           >
             {responseOptions.map(response => (
               <Option value={response.value}>{response.label}</Option>
@@ -218,142 +217,139 @@ export default ({
   }
 
   return (
-    <div style={{ padding: 8 }}>
-      <Row gutter={[16, 16]}>
-        <Col span={20}>
-          <Row>
-            <Tooltip
-              title="Vice photo booth iceland id dolor direct trade, ullamco before they sold out franzen 3 wolf moon cloud bread seitan lomo craft beer. La croix photo booth velit whatever trust fund tumeric. Freegan eiusmod succulents jean shorts, banh mi ethical velit dreamcatcher occupy. Chicharrones bitters humblebrag disrupt cliche actually fixie. Keytar schlitz poutine semiotics."
-              placement="left"
+    <Row gutter={[16, 16]} style={{ paddingLeft: 40}}>
+      <Col>
+        <Row>
+          <Tooltip
+            title="Vice photo booth iceland id dolor direct trade, ullamco before they sold out franzen 3 wolf moon cloud bread seitan lomo craft beer. La croix photo booth velit whatever trust fund tumeric. Freegan eiusmod succulents jean shorts, banh mi ethical velit dreamcatcher occupy. Chicharrones bitters humblebrag disrupt cliche actually fixie. Keytar schlitz poutine semiotics."
+            placement="left"
+          >
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "bold",
+              }}
             >
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: 'bold'
-                }}
+              {field}
+            </Text>
+            <Text
+              style={{
+                fontSize: 16,
+              }}
+            >
+              {`: ${question[0].node.itm_shrt_label}`}
+            </Text>
+          </Tooltip>
+        </Row>
+        <Row align="middle" type="flex" gutter={8} style={{ padding: 2 }}>
+          <Col>
+            {loading ? (
+              <Button
+                shape="circle"
+                size="large"
+                loading={loading}
+                tabindex="-1"
+              />
+            ) : flag ? (
+              <Button
+                type="danger"
+                size="large"
+                shape="circle"
+                onClick={() => setShowFlag(!showFlag)}
+                tabindex="-1"
               >
-                {field}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 16,
-                }}
+                {showFlag ? (
+                  <Icon type="close" style={{ fontSize: "22px" }} />
+                ) : (
+                  <Icon type="flag" style={{ fontSize: "22px" }} />
+                )}
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                shape="circle"
+                tabindex="-1"
+                disabled={skip}
               >
-                {`: ${question[0].node.itm_shrt_label}`}
-              </Text>
-            </Tooltip>
-          </Row>
-          <Row align="middle" type="flex">
-            <Col span={2}>
-              {loading ? (
+                {skip ? (
+                  <Icon type="thunderbolt" style={{ fontSize: "22px" }} />
+                ) : (
+                  <Icon type="safety" style={{ fontSize: "22px" }} />
+                )}
+              </Button>
+            )}
+          </Col>
+          <Col>
+            <InputType />
+          </Col>
+          <Col>
+            {flags.indexOf(1) >= 0 && (
+              <Tooltip title={<ImportTip />} placement="bottom">
                 <Button
+                  type="dashed"
+                  icon="vertical-align-bottom"
                   shape="circle"
-                  size="large"
-                  loading={loading}
+                  onClick={openModal}
                   tabindex="-1"
                 />
-              ) : flag ? (
+              </Tooltip>
+            )}
+            {flags.indexOf(2) >= 0 && (
+              <Tooltip title={<FinancialTip />} placement="bottom">
                 <Button
-                  type="danger"
-                  size="large"
+                  type="dashed"
+                  icon="dollar"
                   shape="circle"
-                  onClick={() => setShowFlag(!showFlag)}
+                  onClick={openModal}
+                  tabindex="-1"
+                />
+              </Tooltip>
+            )}
+            {flags.indexOf(3) >= 0 && (
+              <Tooltip title={<QualityTip />} placement="bottom">
+                <Button
+                  type="dashed"
+                  shape="circle"
+                  onClick={openModal}
                   tabindex="-1"
                 >
-                  {showFlag ? (
-                    <Icon type="close" style={{ fontSize: "24px" }} />
-                  ) : (
-                    <Icon type="flag" style={{ fontSize: "24px" }} />
-                  )}
+                  QM
                 </Button>
-              ) : (
+              </Tooltip>
+            )}
+            {flags.indexOf(4) >= 0 && (
+              <Tooltip title={<ClinicalTip />} placement="bottom">
                 <Button
-                  type="primary"
-                  size="large"
+                  type="dashed"
+                  shape="circle"
+                  onClick={openModal}
+                  tabindex="-1"
+                >
+                  <ClinicalIcon />
+                </Button>
+              </Tooltip>
+            )}
+            {flags.indexOf(5) >= 0 && (
+              <Tooltip title={<NoteTip />} placement="bottom">
+                <Button
+                  type="dashed"
+                  icon="file"
                   shape="circle"
                   tabindex="-1"
-                  disabled={skip}
-                >
-                  { skip ? (
-                    <Icon type="thunderbolt" style={{ fontSize: "28px" }} />
-
-                  ): (
-                    <Icon type="safety" style={{ fontSize: "28px" }} />
-                  )}
-                </Button>
-              )}
-            </Col>
-            <Col span={8}>
-              <InputType />
-            </Col>
-            <Col span={12}>
-              {flags.indexOf(1) >= 0 && (
-                <Tooltip title={<ImportTip />} placement="bottom">
-                  <Button
-                    type="dashed"
-                    icon="vertical-align-bottom"
-                    shape="circle"
-                    onClick={openModal}
-                    tabindex="-1"
-                  />
-                </Tooltip>
-              )}
-              {flags.indexOf(2) >= 0 && (
-                <Tooltip title={<FinancialTip />} placement="bottom">
-                  <Button
-                    type="dashed"
-                    icon="dollar"
-                    shape="circle"
-                    onClick={openModal}
-                    tabindex="-1"
-                  />
-                </Tooltip>
-              )}
-              {flags.indexOf(3) >= 0 && (
-                <Tooltip title={<QualityTip />} placement="bottom">
-                  <Button
-                    type="dashed"
-                    shape="circle"
-                    onClick={openModal}
-                    tabindex="-1"
-                  >
-                    QM
-                  </Button>
-                </Tooltip>
-              )}
-              {flags.indexOf(4) >= 0 && (
-                <Tooltip title={<ClinicalTip />} placement="bottom">
-                  <Button
-                    type="dashed"
-                    shape="circle"
-                    onClick={openModal}
-                    tabindex="-1"
-                  >
-                    <ClinicalIcon />
-                  </Button>
-                </Tooltip>
-              )}
-              {flags.indexOf(5) >= 0 && (
-                <Tooltip title={<NoteTip />} placement="bottom" tabindex="-1">
-                  <Button
-                    type="dashed"
-                    icon="file"
-                    shape="circle"
-                    onClick={openModal}
-                  />
-                </Tooltip>
-              )}
-            </Col>
+                  onClick={openModal}
+                />
+              </Tooltip>
+            )}
+          </Col>
+        </Row>
+        {flag && showFlag && (
+          <Row style={{ padding: "4px" }}>
+            <Card title={`Flag Information`} size="small">
+              <p>asdfasdfsadasdfsad</p>
+            </Card>
           </Row>
-          {flag && showFlag && (
-            <Row style={{ padding: "4px" }}>
-              <Card title={`Flag Information`} size="small">
-                <p>asdfasdfsadasdfsad</p>
-              </Card>
-            </Row>
-          )}
-        </Col>
-      </Row>
-    </div>
+        )}
+      </Col>
+    </Row>
   )
 }

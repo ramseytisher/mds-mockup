@@ -14,51 +14,45 @@ export default ({ showDetail }) => {
   return (
     <div style={{ padding: 10 }}>
       <Divider orientation="left">
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
           A0310. Type of Assessment
         </Text>
       </Divider>
-      <Timeline style={{ padding: 10 }}>
-        <Timeline.Item>
-          <MdsField
-            field="A0310A"
-            value={A0310A}
-            setValue={value => handleChange("A0310A", value)}
-            openModal={() => showDetail(true)}
-            flags={[3]}
-          />
-        </Timeline.Item>
-        <Timeline.Item>
-          <MdsField
-            field="A0310B"
-            value={A0310B}
-            setValue={value => handleChange("A0310B", value)}
-            openModal={() => showDetail(true)}
-            flags={[3]}
-          />
-        </Timeline.Item>
-        <Timeline.Item>
-          <MdsField
-            field="A0310E"
-            value={A0310E}
-            setValue={value => handleChange("A0310E", value)}
-            openModal={() => showDetail(true)}
-            flags={[3]}
-            skip
-          />
-        </Timeline.Item>
-        <Timeline.Item>
-          <MdsField
-            field="A0310F"
-            value={A0310F}
-            setValue={value => handleChange("A0310F", value)}
-            openModal={() => showDetail(true)}
-            flags={[3]}
-          />
-        </Timeline.Item>
-      </Timeline>
+
+      <MdsField
+        field="A0310A"
+        value={A0310A}
+        setValue={value => handleChange("A0310A", value)}
+        openModal={() => showDetail(true)}
+        flags={[3]}
+      />
+
+      <MdsField
+        field="A0310B"
+        value={A0310B}
+        setValue={value => handleChange("A0310B", value)}
+        openModal={() => showDetail(true)}
+        flags={[3]}
+      />
+
+      <MdsField
+        field="A0310E"
+        value={A0310E}
+        setValue={value => handleChange("A0310E", value)}
+        openModal={() => showDetail(true)}
+        flags={[3]}
+        skip
+      />
+
+      <MdsField
+        field="A0310F"
+        value={A0310F}
+        setValue={value => handleChange("A0310F", value)}
+        openModal={() => showDetail(true)}
+        flags={[3]}
+      />
       <Divider orientation="left">
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
           A2300. Assessment Reference Date
         </Text>
       </Divider>
