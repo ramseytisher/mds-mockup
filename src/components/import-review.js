@@ -91,7 +91,7 @@ export default () => {
 
   return (
     <>
-      <Button type="primary" onClick={() => setOpen(true)}>
+      <Button onClick={() => setOpen(true)}>
         Import
       </Button>
       <Modal
