@@ -9,7 +9,16 @@ import SectionK from "../components/sections/section-k"
 
 import ImportDetails from "../components/import-details"
 
-import { Drawer, Tabs, Divider, Typography, Card, Tag } from "antd"
+import {
+  PageHeader,
+  Button,
+  Drawer,
+  Tabs,
+  Divider,
+  Typography,
+  Card,
+  Tag,
+} from "antd"
 const { Title } = Typography
 const { TabPane } = Tabs
 
@@ -18,21 +27,65 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <Divider orientation="left">
-        <Title>Section A: Identification Information</Title>
-      </Divider>
+      <PageHeader
+        title="Section A"
+        subTitle="Identification Information"
+        style={{
+          border: "1px solid rgb(235, 237, 240)",
+          background: "lightblue",
+        }}
+        extra={[
+          <Button>Import Section</Button>,
+          <Button>Previous Answer</Button>,
+          <Button>Validate Section</Button>,
+          <Button>RAI Manual</Button>,
+        ]}
+      />
       <SectionA showDetail={setShowDetail} />
-      <Divider orientation="left">
-        <Title>Section C: Cognitive Patterns</Title>
-      </Divider>
+      <PageHeader
+        title="Section C"
+        subTitle="Identification Information"
+        style={{
+          border: "1px solid rgb(235, 237, 240)",
+          background: "lightblue",
+        }}
+        extra={[
+          <Button>Import Section</Button>,
+          <Button>Previous Answer</Button>,
+          <Button>Validate Section</Button>,
+          <Button>RAI Manual</Button>,
+        ]}
+      />
       <SectionC showDetail={setShowDetail} />
-      <Divider orientation="left">
-        <Title>Section I: Active Diagnosis</Title>
-      </Divider>
+      <PageHeader
+        title="Section I"
+        subTitle="Active Diagnosis"
+        style={{
+          border: "1px solid rgb(235, 237, 240)",
+          background: "lightblue",
+        }}
+        extra={[
+          <Button>Import Section</Button>,
+          <Button>Previous Answer</Button>,
+          <Button>Validate Section</Button>,
+          <Button>RAI Manual</Button>,
+        ]}
+      />
       <SectionI showDetail={setShowDetail} />
-      <Divider orientation="left">
-        <Title>Section K: Swalling/Nutritional Status</Title>
-      </Divider>
+      <PageHeader
+        title="Section K"
+        subTitle="Swallowing/Nutritional Status"
+        style={{
+          border: "1px solid rgb(235, 237, 240)",
+          background: "lightblue",
+        }}
+        extra={[
+          <Button>Import Section</Button>,
+          <Button>Previous Answer</Button>,
+          <Button>Validate Section</Button>,
+          <Button>RAI Manual</Button>,
+        ]}
+      />
       <SectionK showDetail={setShowDetail} />
       <Drawer
         title="Details for [MDS Field]"

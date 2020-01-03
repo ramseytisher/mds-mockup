@@ -4,6 +4,10 @@ export const MdsContext = createContext()
 
 const initialMdsState = {
   A2300: "",
+  A0310A: "",
+  A0310B: "",
+  A0310E: "",
+  A0310F: "",
   B0100: "-",
   B0700: "-",
   C0100: "-",

@@ -80,6 +80,7 @@ const ClinicalIcon = props => <Icon component={ClinicalSvg} {...props} />
 export default ({
   field,
   type,
+  skip,
   value,
   setValue,
   openModal,
@@ -178,7 +179,6 @@ export default ({
   )
 
   const InputType = () => {
-    console.log("input type: ", type)
     switch (type) {
       case "date":
         return <DatePicker allowClear />
@@ -207,6 +207,7 @@ export default ({
             defaultValue="0"
             onChange={setValue}
             style={{ width: 240 }}
+            disabled={skip}
           >
             {responseOptions.map(response => (
               <Option value={response.value}>{response.label}</Option>
@@ -217,7 +218,7 @@ export default ({
   }
 
   return (
-    <div>
+    <div style={{ padding: 8}}>
       <Row gutter={[16, 16]}>
         <Col span={20}>
           <Row>
@@ -225,9 +226,21 @@ export default ({
               title="Vice photo booth iceland id dolor direct trade, ullamco before they sold out franzen 3 wolf moon cloud bread seitan lomo craft beer. La croix photo booth velit whatever trust fund tumeric. Freegan eiusmod succulents jean shorts, banh mi ethical velit dreamcatcher occupy. Chicharrones bitters humblebrag disrupt cliche actually fixie. Keytar schlitz poutine semiotics."
               placement="left"
             >
-              <Title level={4}>
-                {`${field}: ${question[0].node.itm_shrt_label}`}
-              </Title>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: 'bold'
+                }}
+              >
+                {field}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                }}
+              >
+                {`: ${question[0].node.itm_shrt_label}`}
+              </Text>
             </Tooltip>
           </Row>
           <Row align="middle" type="flex">
@@ -259,8 +272,14 @@ export default ({
                   size="large"
                   shape="circle"
                   tabindex="-1"
+                  disabled={skip}
                 >
-                  <Icon type="safety" style={{ fontSize: "28px" }} />
+                  { skip ? (
+                    <Icon type="thunderbolt" style={{ fontSize: "28px" }} />
+
+                  ): (
+                    <Icon type="safety" style={{ fontSize: "28px" }} />
+                  )}
                 </Button>
               )}
             </Col>
