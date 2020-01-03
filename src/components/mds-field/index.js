@@ -178,24 +178,27 @@ export default ({
   )
 
   const InputType = () => {
-    console.log('input type: ', type)
+    console.log("input type: ", type)
     switch (type) {
       case "date":
         return <DatePicker allowClear />
       case "search":
         return (
-        <Select
-          style={{ width: 240 }}
-          suffixIcon={<Icon type="search" />}
-          allowClear
-          showSearch
-          placeholder="Select a diagnosis"
-          optionFilterProp="children"
-        >
-          <Option value="A01.01">A01.01: Typhoid meningitis</Option>
-          <Option value="A01.02">A01.02: Typhoid fever with heart involvement</Option>
-          <Option value="A01.03">A01.03: Typhoid pneumonia</Option>
-        </Select>)
+          <Select
+            style={{ width: 240 }}
+            suffixIcon={<Icon type="search" />}
+            allowClear
+            showSearch
+            placeholder="Select a diagnosis"
+            optionFilterProp="children"
+          >
+            <Option value="A01.01">A01.01: Typhoid meningitis</Option>
+            <Option value="A01.02">
+              A01.02: Typhoid fever with heart involvement
+            </Option>
+            <Option value="A01.03">A01.03: Typhoid pneumonia</Option>
+          </Select>
+        )
       default:
         return (
           <Select
@@ -230,13 +233,19 @@ export default ({
           <Row align="middle" type="flex">
             <Col span={2}>
               {loading ? (
-                <Button shape="circle" size="large" loading={loading} />
+                <Button
+                  shape="circle"
+                  size="large"
+                  loading={loading}
+                  tabindex="-1"
+                />
               ) : flag ? (
                 <Button
                   type="danger"
                   size="large"
                   shape="circle"
                   onClick={() => setShowFlag(!showFlag)}
+                  tabindex="-1"
                 >
                   {showFlag ? (
                     <Icon type="close" style={{ fontSize: "24px" }} />
@@ -245,13 +254,18 @@ export default ({
                   )}
                 </Button>
               ) : (
-                <Button type="primary" size="large" shape="circle">
+                <Button
+                  type="primary"
+                  size="large"
+                  shape="circle"
+                  tabindex="-1"
+                >
                   <Icon type="safety" style={{ fontSize: "28px" }} />
                 </Button>
               )}
             </Col>
             <Col span={8}>
-            <InputType />
+              <InputType />
             </Col>
             <Col span={12}>
               {flags.indexOf(1) >= 0 && (
@@ -261,6 +275,7 @@ export default ({
                     icon="vertical-align-bottom"
                     shape="circle"
                     onClick={openModal}
+                    tabindex="-1"
                   />
                 </Tooltip>
               )}
@@ -271,25 +286,36 @@ export default ({
                     icon="dollar"
                     shape="circle"
                     onClick={openModal}
+                    tabindex="-1"
                   />
                 </Tooltip>
               )}
               {flags.indexOf(3) >= 0 && (
                 <Tooltip title={<QualityTip />} placement="bottom">
-                  <Button type="dashed" shape="circle" onClick={openModal}>
+                  <Button
+                    type="dashed"
+                    shape="circle"
+                    onClick={openModal}
+                    tabindex="-1"
+                  >
                     QM
                   </Button>
                 </Tooltip>
               )}
               {flags.indexOf(4) >= 0 && (
                 <Tooltip title={<ClinicalTip />} placement="bottom">
-                  <Button type="dashed" shape="circle" onClick={openModal}>
+                  <Button
+                    type="dashed"
+                    shape="circle"
+                    onClick={openModal}
+                    tabindex="-1"
+                  >
                     <ClinicalIcon />
                   </Button>
                 </Tooltip>
               )}
               {flags.indexOf(5) >= 0 && (
-                <Tooltip title={<NoteTip />} placement="bottom">
+                <Tooltip title={<NoteTip />} placement="bottom" tabindex="-1">
                   <Button
                     type="dashed"
                     icon="file"
