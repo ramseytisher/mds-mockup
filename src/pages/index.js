@@ -32,6 +32,7 @@ const { TabPane } = Tabs
 
 const IndexPage = () => {
   const [showDetail, setShowDetail] = useState(false)
+  const [activeKey, setActiveKey] = useState(1)
 
   return (
     <Layout>
@@ -123,7 +124,7 @@ const IndexPage = () => {
         width="70vw"
       >
         <FieldDetails closeDetail={() => setShowDetail(false)} />
-        <Tabs defaultActiveKey="1" onChange={e => console.log(e)}>
+        <Tabs defaultActiveKey={activeKey} onChange={e => console.log(e)}>
           <TabPane tab={<span><Icon type="vertical-align-bottom" />Source Data</span>} key="1">
             <SourceDetails />
           </TabPane>
