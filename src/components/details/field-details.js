@@ -5,10 +5,8 @@ const { Title, Text } = Typography
 
 export default ({ closeDetail }) => (
   <>
-    <Descriptions title="Field Info" bordered>
-      <Descriptions.Item label="Current Value">
-        0. None of the Above
-      </Descriptions.Item>
+    <Descriptions bordered title="C0300A. Able to report correct year">
+      <Descriptions.Item label="Current Value">3. Correct</Descriptions.Item>
       <Descriptions.Item label="Completed By">John Smith</Descriptions.Item>
       <Descriptions.Item label="Date/Time">
         10/30/2019 12:15PM
@@ -16,7 +14,7 @@ export default ({ closeDetail }) => (
       <Descriptions.Item
         label={
           <>
-            <Text>Calculated Value</Text>
+            <Text>Calculated Response</Text>
             <br />
             <Button type="primary" size="small" onClick={closeDetail}>
               Import Response
@@ -25,7 +23,7 @@ export default ({ closeDetail }) => (
         }
         span={3}
       >
-        <Text>1. The first option in the list</Text>
+        <Text mark>1. Missed by 2-5 years</Text>
       </Descriptions.Item>
     </Descriptions>
   </>

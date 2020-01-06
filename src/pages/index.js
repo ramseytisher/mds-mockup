@@ -116,7 +116,6 @@ const IndexPage = () => {
       />
       <SectionK showDetail={setShowDetail} />
       <Drawer
-        title="Details for [MDS Field]"
         placement="right"
         closable={false}
         onClose={() => setShowDetail(false)}
