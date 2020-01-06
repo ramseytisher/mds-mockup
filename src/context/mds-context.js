@@ -52,7 +52,7 @@ const initialMdsState = {
 
 export const MdsProvider = ({ children }) => {
   const [mds, setMds] = useState(initialMdsState)
-  const [openDetail, setOpenDetail] = useState(false)
+  const [activeKey, setActiveKey] = useState(0)
 
   function handleChange(field, value) {
     setMds({
@@ -62,7 +62,7 @@ export const MdsProvider = ({ children }) => {
   }
 
   return (
-    <MdsContext.Provider value={{ mds, handleChange }}>
+    <MdsContext.Provider value={{ mds, handleChange, activeKey, setActiveKey }}>
       {children}
     </MdsContext.Provider>
   )

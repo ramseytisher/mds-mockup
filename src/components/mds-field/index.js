@@ -1,5 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+
+import { MdsContext } from "../../context/mds-context"
 
 import {
   Button,
@@ -115,6 +117,7 @@ export default ({
   `)
 
   const [showFlag, setShowFlag] = useState(false)
+  const { setActiveKey } = useContext(MdsContext)
 
   const question = data.allCmsItemMstrCsv.edges.filter(item => {
     return item.node.itm_id === field
@@ -287,7 +290,7 @@ export default ({
                   type="dashed"
                   icon="vertical-align-bottom"
                   shape="circle"
-                  onClick={openModal}
+                  onClick={() => setActiveKey("1")}
                   tabindex="-1"
                 />
               </Tooltip>
@@ -298,7 +301,7 @@ export default ({
                   type="dashed"
                   icon="dollar"
                   shape="circle"
-                  onClick={openModal}
+                  onClick={() => setActiveKey("2")}
                   tabindex="-1"
                 />
               </Tooltip>
@@ -308,7 +311,7 @@ export default ({
                 <Button
                   type="dashed"
                   shape="circle"
-                  onClick={openModal}
+                  onClick={() => setActiveKey("3")}
                   tabindex="-1"
                 >
                   QM
@@ -320,7 +323,7 @@ export default ({
                 <Button
                   type="dashed"
                   shape="circle"
-                  onClick={openModal}
+                  onClick={() => setActiveKey("4")}
                   tabindex="-1"
                 >
                   <ClinicalIcon />
@@ -334,7 +337,7 @@ export default ({
                   icon="file"
                   shape="circle"
                   tabindex="-1"
-                  onClick={openModal}
+                  onClick={() => setActiveKey("6")}
                 />
               </Tooltip>
             )}

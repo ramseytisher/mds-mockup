@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 
 import Layout from "../components/layout"
+import { MdsContext } from "../context/mds-context"
 
 import SectionA from "../components/sections/section-a"
 import SectionC from "../components/sections/section-c"
@@ -32,7 +33,8 @@ const { TabPane } = Tabs
 
 const IndexPage = () => {
   const [showDetail, setShowDetail] = useState(false)
-  const [activeKey, setActiveKey] = useState(1)
+
+  const { activeKey, setActiveKey } = useContext(MdsContext)
 
   return (
     <Layout>
@@ -119,12 +121,12 @@ const IndexPage = () => {
       <Drawer
         placement="right"
         closable={false}
-        onClose={() => setShowDetail(false)}
-        visible={showDetail}
+        onClose={() => setActiveKey(0)}
+        visible={activeKey > 0}
         width="70vw"
       >
-        <FieldDetails closeDetail={() => setShowDetail(false)} />
-        <Tabs defaultActiveKey={activeKey} onChange={e => console.log(e)}>
+        <FieldDetails closeDetail={() => setActiveKey(0)} />
+        <Tabs activeKey={activeKey} onChange={e => setActiveKey(e)}>
           <TabPane tab={<span><Icon type="vertical-align-bottom" />Source Data</span>} key="1">
             <SourceDetails />
           </TabPane>
@@ -137,10 +139,10 @@ const IndexPage = () => {
           <TabPane tab={<span>(N) Clinical Impact</span>} key="4">
             <ClinicalDetails />
           </TabPane>
-          <TabPane tab={<span><Icon type="history" />Field History</span>} key="2">
+          <TabPane tab={<span><Icon type="history" />Field History</span>} key="5">
             <FieldHistory />
           </TabPane>
-          <TabPane tab={<span><Icon type="file" />Notes</span>} key="5">
+          <TabPane tab={<span><Icon type="file" />Notes</span>} key="6">
             <Notes />
           </TabPane>
         </Tabs>
