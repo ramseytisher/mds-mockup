@@ -8,6 +8,16 @@ export default () => (
     <Timeline.Item>
       <Descriptions title="1/1/2020">
         <Descriptions.Item label="Response Change">
+          <Text code>1. Yes</Text>
+          {" > "}
+          <Text code>0. No</Text>
+        </Descriptions.Item>
+        <Descriptions.Item label="User">John Smith</Descriptions.Item>
+      </Descriptions>
+    </Timeline.Item>
+    <Timeline.Item>
+      <Descriptions title="12/15/2020">
+        <Descriptions.Item label="Response Change">
           <Text code>0. No</Text>
           {" > "}
           <Text code>1. Yes</Text>
