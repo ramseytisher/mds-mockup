@@ -8,7 +8,13 @@ import SectionI from "../components/sections/section-i"
 import SectionK from "../components/sections/section-k"
 import SectionGG from "../components/sections/section-gg"
 
-import ImportDetails from "../components/import-details"
+import FieldDetails from "../components/details/field-details"
+import SourceDetails from "../components/details/source-details"
+import FinancialDetails from "../components/details/financial-details"
+import ClinicalDetails from "../components/details/clinical-details"
+import QualityDetails from "../components/details/quality-details"
+import FieldHistory from "../components/details/field-history"
+import Notes from "../components/details/notes"
 
 import {
   PageHeader,
@@ -117,29 +123,25 @@ const IndexPage = () => {
         visible={showDetail}
         width="70vw"
       >
-        <Card title="Description: The Question Text would go here">
-          <p>
-            Current Value: <Tag color="#2db7f5">0. No</Tag>
-          </p>
-          <p>
-            Completed By: <Tag color="#2db7f5">Robin Miller</Tag>
-          </p>
-        </Card>
+        <FieldDetails closeDetail={() => setShowDetail(false)} />
         <Tabs defaultActiveKey="1" onChange={e => console.log(e)}>
           <TabPane tab={<span><Icon type="vertical-align-bottom" />Source Data</span>} key="1">
-            <ImportDetails />
+            <SourceDetails />
           </TabPane>
           <TabPane tab={<span><Icon type="dollar" />Financial Impact</span>} key="2">
-            Content of Financial
+            <FinancialDetails />
           </TabPane>
           <TabPane tab={<span>(QM) Quality Measures</span>} key="3">
-            Content of Quality Measures
+            <QualityDetails />
           </TabPane>
           <TabPane tab={<span>(N) Clinical Impact</span>} key="4">
-            Content of Clinical Impact
+            <ClinicalDetails />
+          </TabPane>
+          <TabPane tab={<span><Icon type="history" />Field History</span>} key="2">
+            <FieldHistory />
           </TabPane>
           <TabPane tab={<span><Icon type="file" />Notes</span>} key="5">
-            Content of Notes
+            <Notes />
           </TabPane>
         </Tabs>
       </Drawer>

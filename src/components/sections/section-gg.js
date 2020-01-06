@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react"
 import MdsField from "../../components/mds-field"
 import { MdsContext } from "../../context/mds-context"
-import ImportDetails from "../../components/import-details"
 import {
   Drawer,
   Timeline,

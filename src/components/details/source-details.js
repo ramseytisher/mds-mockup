@@ -42,11 +42,7 @@ const data = [
 export default () => {
   return (
     <>
-      <Card title="Import Source Data 1">
-        <p>
-          The following data was used to determine the calculated value upon
-          import
-        </p>
+      <Card>     
         <Card
           title={`PowerChart Results "Repetition of Three Words"`}
           size="small"
