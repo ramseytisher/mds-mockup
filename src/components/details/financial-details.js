@@ -1,21 +1,22 @@
 import React from "react"
 
-import { Typography, Card } from "antd"
+import { Typography, Collapse } from "antd"
 const { Title, Text } = Typography
+const { Panel } = Collapse
 
 export default () => (
-  <Text>
-    Lorem ipsum dolor amet yuccie try-hard magna adipisicing yr banh mi.
-    Fingerstache scenester brunch, tattooed glossier pariatur celiac thundercats
-    polaroid. Man bun pinterest post-ironic 90's, chia veniam green juice
-    flannel tote bag. Semiotics tofu leggings, fugiat dolor deserunt aute
-    mixtape air plant flexitarian. Gluten-free consectetur street art minim
-    mollit next level chambray hammock. Live-edge mlkshk XOXO cred pour-over
-    excepteur freegan veniam officia taiyaki truffaut anim squid af. Lyft nisi
-    schlitz, hell of cornhole squid aliquip. Yr dolore fixie, squid sartorial
-    deep v neutra hell of shabby chic lo-fi paleo celiac messenger bag palo
-    santo. Quinoa pug dolore excepteur offal cray normcore af mixtape succulents
-    occaecat keytar tumblr mustache direct trade. Consequat cillum mumblecore
-    pok pok poutine, flannel voluptate.
-  </Text>
+  <>
+    <Text>
+      The following information describes how this field specifically impacts
+      financial outcomes.
+    </Text>
+    <Collapse style={{ margin: 10}}>
+      <Panel header="PDPM Group: PT/OT">
+        This would be how this field impacts the PT/OT Grouper
+      </Panel>
+      <Panel header="PDPM Group: Nursing">
+        This would be how this field impacts the Nursing Grouper
+      </Panel>
+    </Collapse>
+  </>
 )
