@@ -81,6 +81,7 @@ const ClinicalIcon = props => <Icon component={ClinicalSvg} {...props} />
 
 export default ({
   field,
+  valueFrom,
   type,
   skip,
   value,
@@ -188,7 +189,7 @@ export default ({
       case "search":
         return (
           <Select
-            style={{ maxWidth: "30vw" }}
+            style={{ width: "30vw" }}
             suffixIcon={<Icon type="search" />}
             allowClear
             showSearch
@@ -209,6 +210,7 @@ export default ({
             name={field}
             defaultValue="0"
             disabled={skip}
+            prefixIcon={<Icon type="user" />}
             style={{ minWidth: "20vw" }}
           >
             {responseOptions.map(response => (
@@ -220,7 +222,7 @@ export default ({
   }
 
   return (
-    <Row gutter={[16, 16]} style={{ paddingLeft: 40}}>
+    <Row gutter={[16, 16]} style={{ paddingLeft: 40 }}>
       <Col>
         <Row>
           <Tooltip
@@ -246,11 +248,7 @@ export default ({
         <Row align="middle" type="flex" gutter={8} style={{ padding: 2 }}>
           <Col>
             {loading ? (
-              <Button
-                shape="circle"
-                loading={loading}
-                tabindex="-1"
-              />
+              <Button shape="circle" loading={loading} tabindex="-1" />
             ) : flag ? (
               <Button
                 type="danger"
@@ -273,7 +271,7 @@ export default ({
                 disabled={skip}
               >
                 {skip ? (
-                  <Icon type="thunderbolt" style={{ fontSize: "22px" }} />
+                  <Icon type="arrow-down" style={{ fontSize: "22px" }} />
                 ) : (
                   <Icon type="safety" style={{ fontSize: "22px" }} />
                 )}
@@ -282,13 +280,18 @@ export default ({
           </Col>
           <Col>
             <InputType />
+            {valueFrom === "import" ? (
+              skip ? null : <Icon type="vertical-align-bottom" style={{ color: "gray" }} />
+            ) : (
+              skip ? null : <Icon type="user" style={{ color: "gray" }} />
+            )}
           </Col>
           <Col>
             {flags.indexOf(1) >= 0 && (
               <Tooltip title={<ImportTip />} placement="bottom">
                 <Button
                   type="dashed"
-                  icon="vertical-align-bottom"
+                  icon="monitor"
                   shape="circle"
                   onClick={() => setActiveKey("1")}
                   tabindex="-1"

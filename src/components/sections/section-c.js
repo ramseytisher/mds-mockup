@@ -24,11 +24,13 @@ export default ({ showDetail }) => {
     <>
       <Divider orientation="left">
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          C0100. Should Brief Interview for Mental Status (C0200 - C0500) be Conducted?
+          C0100. Should Brief Interview for Mental Status (C0200 - C0500) be
+          Conducted?
         </Text>
       </Divider>
       <MdsField
         field="C0100"
+        valueFrom="import"
         value={C0100}
         setValue={value => handleChange("C0100", value)}
         openModal={() => showDetail(true)}
@@ -41,6 +43,7 @@ export default ({ showDetail }) => {
       </Divider>
       <MdsField
         field="C0200"
+        valueFrom="import"
         value={C0200}
         setValue={value => handleChange("C0200", value)}
         openModal={() => showDetail(true)}
@@ -55,6 +58,7 @@ export default ({ showDetail }) => {
       <MdsField
         field="C0300A"
         value={C0300A}
+        valueFrom="import"
         setValue={value => handleChange("C0300A", value)}
         openModal={() => showDetail(true)}
         flags={[1, 2, 3, 4, 5]}
@@ -71,14 +75,13 @@ export default ({ showDetail }) => {
       <MdsField
         field="C0300C"
         value={C0300C}
+        valueFrom="import"
         setValue={value => handleChange("C0300C", value)}
         openModal={() => showDetail(true)}
         flags={[1, 2, 3, 4]}
       />
       <Divider orientation="left">
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          C0400. Recall
-        </Text>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>C0400. Recall</Text>
       </Divider>
       <MdsField
         field="C0400A"

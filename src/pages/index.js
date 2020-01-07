@@ -136,7 +136,7 @@ const IndexPage = () => {
           <TabPane tab={<span>(QM) Quality Measures</span>} key="3">
             <QualityDetails />
           </TabPane>
-          <TabPane tab={<span>(N) Clinical Impact</span>} key="4">
+          <TabPane tab={<span>(N) CAA Triggers</span>} key="4">
             <ClinicalDetails />
           </TabPane>
           <TabPane tab={<span><Icon type="history" />Field History</span>} key="5">

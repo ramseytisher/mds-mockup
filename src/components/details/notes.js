@@ -1,21 +1,54 @@
-import React from "react"
+import React, { useState } from "react"
 
-import { Typography, Card } from "antd"
+import { Typography, Card, Input, Button } from "antd"
 const { Title, Text } = Typography
+const { TextArea } = Input
 
-export default () => (
-  <Text>
-    Lorem ipsum dolor amet yuccie try-hard magna adipisicing yr banh mi.
-    Fingerstache scenester brunch, tattooed glossier pariatur celiac thundercats
-    polaroid. Man bun pinterest post-ironic 90's, chia veniam green juice
-    flannel tote bag. Semiotics tofu leggings, fugiat dolor deserunt aute
-    mixtape air plant flexitarian. Gluten-free consectetur street art minim
-    mollit next level chambray hammock. Live-edge mlkshk XOXO cred pour-over
-    excepteur freegan veniam officia taiyaki truffaut anim squid af. Lyft nisi
-    schlitz, hell of cornhole squid aliquip. Yr dolore fixie, squid sartorial
-    deep v neutra hell of shabby chic lo-fi paleo celiac messenger bag palo
-    santo. Quinoa pug dolore excepteur offal cray normcore af mixtape succulents
-    occaecat keytar tumblr mustache direct trade. Consequat cillum mumblecore
-    pok pok poutine, flannel voluptate.
-  </Text>
-)
+const initialNotes = [
+  {
+    key: 1,
+    user: "user",
+    dateTime: "date/time",
+    note: "asdfasdfasdfasdfasdfas asdfas fas df asdf asdf",
+  },
+  {
+    key: 2,
+    user: "user2",
+    dateTime: "date/time",
+    note: "asdfasdfasdfasdfasdfas asdfas fas df asdf asdf",
+  },
+  {
+    key: 3,
+    user: "user3",
+    dateTime: "date/time",
+    note: "asdfasdfasdfasdfasdfas asdfas fas df asdf asdf",
+  },
+]
+
+export default () => {
+  const [notes, setNotes] = useState(initialNotes)
+  const [currentNote, setCurrentNote] = useState("")
+
+  const saveNote = () => {
+    const item = notes.length+1
+    const newNote = {
+      key: 4,
+      user: "Current User",
+      dateTime: "Current Date/Time",
+      note: currentNote,
+    }
+
+    setNotes({ ...notes, item : newNote })
+    setCurrentNote("")
+  }
+
+  return (
+    <>
+      <TextArea onChange={e => setCurrentNote(e.target.value)} />
+      <Button type="primary" onClick={saveNote}>
+        Add Note
+      </Button>
+      <pre>{JSON.stringify(notes, null, 2)}</pre>
+    </>
+  )
+}
