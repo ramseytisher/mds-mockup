@@ -1,21 +1,35 @@
 import React from "react"
 
-import { Typography, Card } from "antd"
+import { Typography, Card, Tag, Collapse, Tree } from "antd"
 const { Title, Text } = Typography
+const { Panel } = Collapse
+const { TreeNode } = Tree
 
 export default () => (
-  <Text>
-    Lorem ipsum dolor amet yuccie try-hard magna adipisicing yr banh mi.
-    Fingerstache scenester brunch, tattooed glossier pariatur celiac thundercats
-    polaroid. Man bun pinterest post-ironic 90's, chia veniam green juice
-    flannel tote bag. Semiotics tofu leggings, fugiat dolor deserunt aute
-    mixtape air plant flexitarian. Gluten-free consectetur street art minim
-    mollit next level chambray hammock. Live-edge mlkshk XOXO cred pour-over
-    excepteur freegan veniam officia taiyaki truffaut anim squid af. Lyft nisi
-    schlitz, hell of cornhole squid aliquip. Yr dolore fixie, squid sartorial
-    deep v neutra hell of shabby chic lo-fi paleo celiac messenger bag palo
-    santo. Quinoa pug dolore excepteur offal cray normcore af mixtape succulents
-    occaecat keytar tumblr mustache direct trade. Consequat cillum mumblecore
-    pok pok poutine, flannel voluptate.
-  </Text>
+  <>
+    <Collapse>
+      <Panel header="Independent" key="1">
+        <Tree defaultExpandAll>
+          <TreeNode title="CAA 5: ADL Functional/Rehabilitation Potential" />
+        </Tree>
+      </Panel>
+      <Panel header="Modified independence" key="2">
+        <Tree defaultExpandAll>
+          <TreeNode title="CAA 2: Cognitive Loss/Dementia" />
+          <TreeNode title="CAA 5: ADL Functional/Rehabilitation Potential" />
+        </Tree>
+      </Panel>
+      <Panel header="Moderately impaired" key="3">
+        <Tree defaultExpandAll>
+          <TreeNode title="CAA 2: Cognitive Loss/Dementia" />
+          <TreeNode title="CAA 5: ADL Functional/Rehabilitation Potential" />
+        </Tree>
+      </Panel>
+      <Panel header="Severely impaired" key="4">
+        <Tree defaultExpandAll>
+          <TreeNode title="CAA 2: Cognitive Loss/Dementia" />
+        </Tree>
+      </Panel>
+    </Collapse>
+  </>
 )
