@@ -1,8 +1,19 @@
 import React, { useState } from "react"
 
-import { Modal, Button, Collapse, Table, Typography } from "antd"
+import {
+  Modal,
+  Button,
+  Collapse,
+  Table,
+  Typography,
+  Select,
+  Switch,
+  Row,
+  Col,
+} from "antd"
 const { Panel } = Collapse
 const { Text } = Typography
+const { Option } = Select
 
 const columns = [
   {
@@ -91,9 +102,7 @@ export default () => {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>
-        Import
-      </Button>
+      <Button onClick={() => setOpen(true)}>Import</Button>
       <Modal
         title="Import Review"
         visible={open}
@@ -109,6 +118,36 @@ export default () => {
           </Button>,
         ]}
       >
+        <div style={{ paddingBottom: 10 }}>
+          <Row type="flex" justify="space-between" gutter={[16, 16]}>
+            <Col span={8}>
+              <Text>Filter by Section</Text>
+              <br />
+              <Select
+                mode="multiple"
+                style={{ width: "100%" }}
+                placeholder="Select section(s) to filter by"
+              >
+                <Option key="a">Section A</Option>
+                <Option key="b">Section B</Option>
+                <Option key="c">Section C</Option>
+                <Option key="d">Section D</Option>
+                <Option key="e">Section E</Option>
+                <Option key="f">Section F</Option>
+                <Option key="g">Section G</Option>
+              </Select>
+            </Col>
+            <Col span={8}>
+              <Text>Show Only Changes</Text>
+              <br />
+              <Switch />
+            </Col>
+            <Col span={6}>
+              <Button>Save As My Filter</Button>{" "}
+              <Button type="primary">Apply My Filter</Button>
+            </Col>
+          </Row>
+        </div>
         <Collapse>
           <Panel header="Section A: Identification Information" key="1">
             Section A Stuff

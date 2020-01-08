@@ -17,6 +17,7 @@ import {
   DatePicker,
   Divider,
   Card,
+  Badge,
 } from "antd"
 
 const { Option } = Select
@@ -271,7 +272,7 @@ export default ({
                 disabled={skip}
               >
                 {skip ? (
-                  <Icon type="arrow-down" style={{ fontSize: "22px" }} />
+                  <Icon type="stop" style={{ fontSize: "22px" }} />
                 ) : (
                   <Icon type="safety" style={{ fontSize: "22px" }} />
                 )}
@@ -280,22 +281,17 @@ export default ({
           </Col>
           <Col>
             <InputType />
-            {valueFrom === "import" ? (
-              skip ? null : <Icon type="vertical-align-bottom" style={{ color: "gray" }} />
-            ) : (
-              skip ? null : <Icon type="user" style={{ color: "gray" }} />
-            )}
           </Col>
           <Col>
             {flags.indexOf(1) >= 0 && (
               <Tooltip title={<ImportTip />} placement="bottom">
-                <Button
-                  type="dashed"
-                  icon="monitor"
-                  shape="circle"
-                  onClick={() => setActiveKey("1")}
-                  tabindex="-1"
-                />
+                  <Button
+                    type="dashed"
+                    icon="vertical-align-bottom"
+                    shape="circle"
+                    onClick={() => setActiveKey("1")}
+                    tabindex="-1"
+                  />
               </Tooltip>
             )}
             {flags.indexOf(2) >= 0 && (

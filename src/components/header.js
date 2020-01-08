@@ -1,10 +1,10 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, {useState} from "react"
 
 import ImportReview from "./import-review"
 
-import { Row, Col } from "antd"
+import { Row, Col, Button, Popconfirm, message } from "antd"
 
 const Header = ({ siteTitle }) => (
   <header
@@ -36,7 +36,10 @@ const Header = ({ siteTitle }) => (
         </div>
       </Col>
       <Col span="4">
-        <ImportReview />
+        <Popconfirm title="This will overwrite all values with imported data. Are you sure you want to proceed?"
+          onConfirm={() => message.success('You imported 45ish items to this MDS')}
+          onCancel={() => message.error('Action Canceled: No items were imported to this MDS')}
+        ><Button>Import All</Button></Popconfirm>
       </Col>
     </Row>
   </header>
