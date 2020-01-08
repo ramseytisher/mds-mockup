@@ -10,6 +10,7 @@ import {
   Switch,
   Row,
   Col,
+  message
 } from "antd"
 const { Panel } = Collapse
 const { Text } = Typography
@@ -102,7 +103,7 @@ export default () => {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Import</Button>
+      <Button icon="vertical-align-bottom" onClick={() => setOpen(true)} />
       <Modal
         title="Import Review"
         visible={open}
@@ -118,54 +119,12 @@ export default () => {
           </Button>,
         ]}
       >
-        <div style={{ paddingBottom: 10 }}>
-          <Row type="flex" justify="space-between" gutter={[16, 16]}>
-            <Col span={8}>
-              <Text>Filter by Section</Text>
-              <br />
-              <Select
-                mode="multiple"
-                style={{ width: "100%" }}
-                placeholder="Select section(s) to filter by"
-              >
-                <Option key="a">Section A</Option>
-                <Option key="b">Section B</Option>
-                <Option key="c">Section C</Option>
-                <Option key="d">Section D</Option>
-                <Option key="e">Section E</Option>
-                <Option key="f">Section F</Option>
-                <Option key="g">Section G</Option>
-              </Select>
-            </Col>
-            <Col span={8}>
-              <Text>Show Only Changes</Text>
-              <br />
-              <Switch />
-            </Col>
-            <Col span={6}>
-              <Button>Save As My Filter</Button>{" "}
-              <Button type="primary">Apply My Filter</Button>
-            </Col>
-          </Row>
-        </div>
-        <Collapse>
-          <Panel header="Section A: Identification Information" key="1">
-            Section A Stuff
-          </Panel>
-          <Panel header="Section B: Hearing, Speech, and Vision" key="2">
-            Section B Stuff
-          </Panel>
-          <Panel header="Section C: Cognitive Patterns" key="3">
-            <Table
-              rowSelection={rowSelection}
-              columns={columns}
-              dataSource={data}
-            />{" "}
-          </Panel>
-          <Panel header="You get the idea ..." key="4">
-            Really, you had to click this?
-          </Panel>
-        </Collapse>
+        <Table
+          rowSelection={rowSelection}
+          columns={columns}
+          dataSource={data}
+          size="small"
+        />{" "}
       </Modal>
     </>
   )

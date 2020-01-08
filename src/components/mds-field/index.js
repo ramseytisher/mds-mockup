@@ -283,30 +283,65 @@ export default ({
             <InputType />
           </Col>
           <Col>
-            {flags.indexOf(1) >= 0 && (
-              <Tooltip title={<ImportTip />} placement="bottom">
-                  <Button
-                    type="dashed"
-                    icon="vertical-align-bottom"
-                    shape="circle"
-                    onClick={() => setActiveKey("1")}
-                    tabindex="-1"
+            <Tooltip title={<ImportTip />} placement="bottom">
+              {flags.indexOf(1) >= 0 ? (
+                <Button
+                  type="primary"
+                  shape="circle"
+                  onClick={() => setActiveKey("1")}
+                  tabindex="-1"
+                  style={{ background: "#00A8E1", border: "none" }}
+                >
+                  <Icon
+                    type="vertical-align-bottom"
+                    style={{ fontSize: "1.25rem" }}
                   />
-              </Tooltip>
-            )}
-            {flags.indexOf(2) >= 0 && (
-              <Tooltip title={<FinancialTip />} placement="bottom">
+                </Button>
+              ) : (
                 <Button
                   type="dashed"
-                  icon="dollar"
+                  shape="circle"
+                  onClick={() => setActiveKey("1")}
+                  tabindex="-1"
+                >
+                  <Icon type="vertical-align-bottom" />
+                </Button>
+              )}
+            </Tooltip>
+            <Tooltip title={<FinancialTip />} placement="bottom">
+              {flags.indexOf(2) >= 0 ? (
+                <Button
+                  type="primary"
                   shape="circle"
                   onClick={() => setActiveKey("2")}
                   tabindex="-1"
-                />
-              </Tooltip>
-            )}
-            {flags.indexOf(3) >= 0 && (
-              <Tooltip title={<QualityTip />} placement="bottom">
+                  style={{ background: "#00A8E1", border: "none" }}
+                >
+                  <Icon type="dollar" style={{ fontSize: "1.15rem" }} />
+                </Button>
+              ) : (
+                <Button
+                  type="dashed"
+                  shape="circle"
+                  onClick={() => setActiveKey("2")}
+                  tabindex="-1"
+                >
+                  <Icon type="dollar" />
+                </Button>
+              )}
+            </Tooltip>
+            <Tooltip title={<QualityTip />} placement="bottom">
+              {flags.indexOf(3) >= 0 ? (
+                <Button
+                  type="primary"
+                  shape="circle"
+                  onClick={() => setActiveKey("3")}
+                  tabindex="-1"
+                  style={{ background: "#00A8E1", border: "none" }}
+                >
+                  QM
+                </Button>
+              ) : (
                 <Button
                   type="dashed"
                   shape="circle"
@@ -315,31 +350,52 @@ export default ({
                 >
                   QM
                 </Button>
-              </Tooltip>
-            )}
-            {flags.indexOf(4) >= 0 && (
-              <Tooltip title={<ClinicalTip />} placement="bottom">
+              )}
+            </Tooltip>
+            <Tooltip title={<ClinicalTip />} placement="bottom">
+              {flags.indexOf(4) >= 0 ? (
+                <Button
+                  type="primary"
+                  shape="circle"
+                  onClick={() => setActiveKey("4")}
+                  tabindex="-1"
+                  style={{ background: "#00A8E1", border: "none" }}
+                >
+                  <Icon type="medicine-box" style={{ fontSize: "1.15rem" }} />
+                </Button>
+              ) : (
                 <Button
                   type="dashed"
                   shape="circle"
                   onClick={() => setActiveKey("4")}
                   tabindex="-1"
                 >
-                  <ClinicalIcon />
+                  <Icon type="medicine-box" />
                 </Button>
-              </Tooltip>
-            )}
-            {flags.indexOf(5) >= 0 && (
-              <Tooltip title={<NoteTip />} placement="bottom">
+              )}
+            </Tooltip>
+            <Tooltip title={<NoteTip />} placement="bottom">
+              {flags.indexOf(5) >= 0 ? (
+                <Button
+                  type="primary"
+                  shape="circle"
+                  onClick={() => setActiveKey("6")}
+                  tabindex="-1"
+                  style={{ background: "#00A8E1", border: "none" }}
+                >
+                  <Icon type="file" style={{ fontSize: "1.15rem" }} />
+                </Button>
+              ) : (
                 <Button
                   type="dashed"
-                  icon="file"
                   shape="circle"
-                  tabindex="-1"
                   onClick={() => setActiveKey("6")}
-                />
-              </Tooltip>
-            )}
+                  tabindex="-1"
+                >
+                  <Icon type="file" />
+                </Button>
+              )}
+            </Tooltip>
           </Col>
         </Row>
         {flag && showFlag && (

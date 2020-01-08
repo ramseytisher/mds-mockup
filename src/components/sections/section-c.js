@@ -61,7 +61,7 @@ export default ({ showDetail }) => {
         valueFrom="import"
         setValue={value => handleChange("C0300A", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4, 5]}
+        flags={[2, 3, 5]}
         loading
       />
       <MdsField
@@ -69,7 +69,7 @@ export default ({ showDetail }) => {
         value={C0300B}
         setValue={value => handleChange("C0300B", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4]}
+        flags={[1, 3, 4]}
         flag
       />
       <MdsField
@@ -78,7 +78,7 @@ export default ({ showDetail }) => {
         valueFrom="import"
         setValue={value => handleChange("C0300C", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4]}
+        flags={[3, 4, 5]}
       />
       <Divider orientation="left">
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>C0400. Recall</Text>
@@ -88,14 +88,14 @@ export default ({ showDetail }) => {
         value={C0400A}
         setValue={value => handleChange("C0400A", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4]}
+        flags={[1, 4]}
       />
       <MdsField
         field="C0400B"
         value={C0400B}
         setValue={value => handleChange("C0400B", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4]}
+        flags={[3, 4]}
       />
       <MdsField
         field="C0400C"

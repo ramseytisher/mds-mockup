@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react"
 
 import Layout from "../components/layout"
 import { MdsContext } from "../context/mds-context"
+import ImportReview from "../components/import-review"
 
 import SectionA from "../components/sections/section-a"
 import SectionC from "../components/sections/section-c"
@@ -22,13 +23,8 @@ import {
   Button,
   Drawer,
   Tabs,
-  Divider,
-  Typography,
-  Card,
   Icon,
-  Tag,
 } from "antd"
-const { Title } = Typography
 const { TabPane } = Tabs
 
 const IndexPage = () => {
@@ -47,7 +43,7 @@ const IndexPage = () => {
           padding: "6px",
         }}
         extra={[
-          <Button icon="vertical-align-bottom" />,
+          <ImportReview />,
           <Button icon="login" />,
           <Button icon="like" />,
           <Button icon="book" />,
@@ -63,7 +59,7 @@ const IndexPage = () => {
           padding: "6px",
         }}
         extra={[
-          <Button icon="vertical-align-bottom" />,
+          <ImportReview />,
           <Button icon="login" />,
           <Button icon="like" />,
           <Button icon="book" />,
@@ -79,7 +75,7 @@ const IndexPage = () => {
           padding: "6px",
         }}
         extra={[
-          <Button icon="vertical-align-bottom" />,
+          <ImportReview />,
           <Button icon="login" />,
           <Button icon="like" />,
           <Button icon="book" />,
@@ -95,7 +91,7 @@ const IndexPage = () => {
           padding: "6px",
         }}
         extra={[
-          <Button icon="vertical-align-bottom" />,
+          <ImportReview />,
           <Button icon="login" />,
           <Button icon="like" />,
           <Button icon="book" />,
@@ -111,7 +107,7 @@ const IndexPage = () => {
           padding: "6px",
         }}
         extra={[
-          <Button icon="vertical-align-bottom" />,
+          <ImportReview />,
           <Button icon="login" />,
           <Button icon="like" />,
           <Button icon="book" />,
