@@ -23,7 +23,6 @@ export default ({ showDetail }) => {
         value={A2300}
         setValue={value => handleChange("A2300", value)}
         openModal={() => showDetail(true)}
-        flags={[3]}
       />
       <Divider orientation="left">
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>
@@ -36,7 +35,6 @@ export default ({ showDetail }) => {
         value={A0310A}
         setValue={value => handleChange("A0310A", value)}
         openModal={() => showDetail(true)}
-        flags={[3]}
       />
 
       <MdsField
@@ -44,7 +42,6 @@ export default ({ showDetail }) => {
         value={A0310B}
         setValue={value => handleChange("A0310B", value)}
         openModal={() => showDetail(true)}
-        flags={[3]}
       />
 
       <MdsField
@@ -52,7 +49,6 @@ export default ({ showDetail }) => {
         value={A0310E}
         setValue={value => handleChange("A0310E", value)}
         openModal={() => showDetail(true)}
-        flags={[3]}
         skip
       />
 
@@ -61,7 +57,6 @@ export default ({ showDetail }) => {
         value={A0310F}
         setValue={value => handleChange("A0310F", value)}
         openModal={() => showDetail(true)}
-        flags={[3]}
       />
     </div>
   )

@@ -91,7 +91,6 @@ export default ({
   openModal,
   flag,
   loading,
-  flags,
 }) => {
   const data = useStaticQuery(graphql`
     query GetFieldData {
@@ -321,7 +320,7 @@ export default ({
                 )}
               </Tooltip>
               <Tooltip title={<FinancialTip />} placement="bottom">
-                {flags.indexOf(2) >= 0 ? (
+                {fieldData.referenceData.financialImpact ? (
                   <Button
                     type="primary"
                     shape="circle"
@@ -343,7 +342,7 @@ export default ({
                 )}
               </Tooltip>
               <Tooltip title={<QualityTip />} placement="bottom">
-                {flags.indexOf(3) >= 0 ? (
+                {fieldData.referenceData.qmImpact ? (
                   <Button
                     type="primary"
                     shape="circle"
@@ -365,7 +364,7 @@ export default ({
                 )}
               </Tooltip>
               <Tooltip title={<ClinicalTip />} placement="bottom">
-                {flags.indexOf(4) >= 0 ? (
+                {fieldData.referenceData.caaImpact ? (
                   <Button
                     type="primary"
                     shape="circle"
@@ -387,7 +386,7 @@ export default ({
                 )}
               </Tooltip>
               <Tooltip title={<NoteTip />} placement="bottom">
-                {flags.indexOf(5) >= 0 ? (
+                {fieldData.noteData.length > 0 ? (
                   <Button
                     type="primary"
                     shape="circle"
