@@ -417,7 +417,6 @@ export default ({
               </Card>
             </Row>
           )}
-          <pre>{JSON.stringify(fieldData, null, 2)}</pre>
         </Col>
         <Drawer
           placement="right"

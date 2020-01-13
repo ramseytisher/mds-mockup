@@ -55,7 +55,7 @@ export default ({ closeDetail, detail, question, activeKey, setActiveKey }) => (
         }
         key="1"
       >
-        <SourceDetails />
+        <SourceDetails detail={detail.sourceData} />
       </TabPane>
       <TabPane
         tab={

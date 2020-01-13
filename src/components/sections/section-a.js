@@ -14,6 +14,19 @@ export default ({ showDetail }) => {
     <div style={{ padding: 10 }}>
       <Divider orientation="left">
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+          A2300. Assessment Reference Date
+        </Text>
+      </Divider>
+      <MdsField
+        field="A2300"
+        type="date"
+        value={A2300}
+        setValue={value => handleChange("A2300", value)}
+        openModal={() => showDetail(true)}
+        flags={[3]}
+      />
+      <Divider orientation="left">
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
           A0310. Type of Assessment
         </Text>
       </Divider>
@@ -47,19 +60,6 @@ export default ({ showDetail }) => {
         field="A0310F"
         value={A0310F}
         setValue={value => handleChange("A0310F", value)}
-        openModal={() => showDetail(true)}
-        flags={[3]}
-      />
-      <Divider orientation="left">
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          A2300. Assessment Reference Date
-        </Text>
-      </Divider>
-      <MdsField
-        field="A2300"
-        type="date"
-        value={A2300}
-        setValue={value => handleChange("A2300", value)}
         openModal={() => showDetail(true)}
         flags={[3]}
       />
