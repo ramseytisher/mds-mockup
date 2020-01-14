@@ -6,6 +6,8 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "antd": "^3.26.3",
+    "aws-amplify": "^2.2.2",
+    "aws-amplify-react": "^3.1.3",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-antd": "^2.1.0",
