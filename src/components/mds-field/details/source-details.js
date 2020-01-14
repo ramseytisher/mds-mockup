@@ -1,7 +1,6 @@
 import React from "react"
 
-import { Typography, Card, Table, Tag, Collapse, Empty } from "antd"
-const { Title } = Typography
+import { Table, Tag, Collapse, Empty } from "antd"
 const { Panel } = Collapse
 
 const columns = [

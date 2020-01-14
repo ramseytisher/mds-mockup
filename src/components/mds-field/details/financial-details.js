@@ -1,7 +1,7 @@
 import React from "react"
 
 import { Typography, Collapse } from "antd"
-const { Title, Text } = Typography
+const { Text } = Typography
 const { Panel } = Collapse
 
 export default () => (

@@ -1,12 +1,7 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import MdsField from "../../components/mds-field"
 import FormDivider from "../common/form-divider"
 import { MdsContext } from "../../context/mds-context"
-
-import { Drawer, Tabs, Divider, Typography, Card, Tag } from "antd"
-
-const { Title, Text } = Typography
-const { TabPane } = Tabs
 
 export default ({ showDetail }) => {
   const { mds, handleChange } = useContext(MdsContext)

@@ -1,10 +1,7 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import MdsField from "../../components/mds-field"
+import FormDivider from "../common/form-divider"
 import { MdsContext } from "../../context/mds-context"
-import { Drawer, Tabs, Divider, Typography, Card, Tag } from "antd"
-
-const { Title } = Typography
-const { TabPane } = Tabs
 
 export default ({ showDetail }) => {
   const { mds, handleChange } = useContext(MdsContext)
@@ -12,12 +9,12 @@ export default ({ showDetail }) => {
 
   return (
     <>
-    <MdsField
+      <FormDivider text="Indicate the resident's primary medical condition category" />
+      <MdsField
         field="I0020"
         value={I0020}
         setValue={value => handleChange("I0020", value)}
         openModal={() => showDetail(true)}
-        flags={[3]}
       />
       <MdsField
         field="I0020B"
@@ -25,21 +22,19 @@ export default ({ showDetail }) => {
         type="search"
         setValue={value => handleChange("I0020B", value)}
         openModal={() => showDetail(true)}
-        flags={[1,2,3]}
       />
+      <FormDivider text="Active Diagnoses in last 7 days" />
       <MdsField
         field="I0100"
         value={I0100}
         setValue={value => handleChange("I0100", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4, 5]}
       />
       <MdsField
         field="I0200"
         value={I0200}
         setValue={value => handleChange("I0200", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4]}
         loading
       />
       <MdsField
@@ -47,7 +42,6 @@ export default ({ showDetail }) => {
         value={I0300}
         setValue={value => handleChange("I0300", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4, 5]}
         loading
       />
       <MdsField
@@ -55,8 +49,6 @@ export default ({ showDetail }) => {
         value={I0400}
         setValue={value => handleChange("I0400", value)}
         openModal={() => showDetail(true)}
-        flags={[1, 2, 3, 4]}
-        flag
       />
       <MdsField
         field="I8000A"
@@ -64,7 +56,6 @@ export default ({ showDetail }) => {
         type="search"
         setValue={value => handleChange("I8000A", value)}
         openModal={() => showDetail(true)}
-        flags={[1,2,3]}
       />
     </>
   )

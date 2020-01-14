@@ -1,7 +1,6 @@
 import React from "react"
 
-import { Typography, Card, Tag, Collapse, Tree } from "antd"
-const { Title, Text } = Typography
+import { Collapse, Tree } from "antd"
 const { Panel } = Collapse
 const { TreeNode } = Tree
 

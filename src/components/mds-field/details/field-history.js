@@ -1,7 +1,7 @@
 import React from "react"
 
-import { Typography, Card, Timeline, Descriptions } from "antd"
-const { Title, Text } = Typography
+import { Typography, Timeline, Descriptions } from "antd"
+const { Text } = Typography
 
 export default () => (
   <Timeline bordered>

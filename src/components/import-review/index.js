@@ -1,24 +1,14 @@
 import React, { useState } from "react"
 
-import { dataA, dataC } from './mock-data'
+import { dataA, dataC } from './import-data'
 
 import {
   Modal,
   Button,
-  Collapse,
   Table,
   Typography,
-  Select,
-  Switch,
-  Row,
-  Col,
-  message
 } from "antd"
-const { Panel } = Collapse
 const { Text } = Typography
-const { Option } = Select
-
-
 
 const columns = [
   {

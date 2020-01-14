@@ -7,8 +7,8 @@ import QualityDetails from "./quality-details"
 import FieldHistory from "./field-history"
 import Notes from "./notes"
 
-import { Typography, Tabs, Descriptions, Card, Button, Icon } from "antd"
-const { Title, Text } = Typography
+import { Typography, Tabs, Descriptions, Button, Icon } from "antd"
+const { Text } = Typography
 const { TabPane } = Tabs
 
 export default ({ closeDetail, detail, question, activeKey, setActiveKey }) => (

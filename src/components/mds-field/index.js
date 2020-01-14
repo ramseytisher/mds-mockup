@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { MdsContext } from "../../context/mds-context"
 import { mockData } from "../../data/mock-data"
 import FieldDetails from "./details"
 
@@ -11,19 +10,15 @@ import {
   Drawer,
   Col,
   Icon,
-  Input,
   Select,
   Typography,
   Tooltip,
   DatePicker,
-  Divider,
   Card,
-  Badge,
 } from "antd"
 
 const { Option } = Select
-const { Title, Text } = Typography
-const { Search } = Input
+const { Text } = Typography
 
 const QmSvg = () => (
   <svg
@@ -89,7 +84,6 @@ export default ({
   value,
   setValue,
   openModal,
-  flag,
   loading,
 }) => {
   const data = useStaticQuery(graphql`
@@ -119,9 +113,7 @@ export default ({
   `)
 
   const [showFlag, setShowFlag] = useState(false)
-  const [fieldDetail, setFieldDetail] = useState(null)
   const [activeKey, setActiveKey] = useState(null)
-  const [showDetail, setShowDetail] = useState(false)
 
   const question = data.allCmsItemMstrCsv.edges.find(item => {
     return item.node.itm_id === field
@@ -295,7 +287,7 @@ export default ({
             </Col>
             <Col>
               <Tooltip title={<ImportTip />} placement="bottom">
-                {fieldData.sourceData.results.length > 0 ? (
+                {fieldData.sourceData.results.length > 0 || fieldData.sourceData.calculatedResponse ? (
                   <Button
                     type="primary"
                     shape="circle"
@@ -425,7 +417,7 @@ export default ({
           width="70vw"
         >
           <FieldDetails
-            closeDetail={() => setActiveKey(0)}
+            closeDetail={() => {setActiveKey(0)}}
             detail={fieldData}
             question={question}
             activeKey={activeKey}
