@@ -261,7 +261,7 @@ export default ({
             <Col>
               {loading ? (
                 <Button shape="circle" loading={loading} tabindex="-1" />
-              ) : flag ? (
+              ) : (fieldData.intelligenceData) ? (
                 <Button
                   type="danger"
                   size="large"
@@ -409,10 +409,10 @@ export default ({
               </Tooltip>
             </Col>
           </Row>
-          {flag && showFlag && (
+          {showFlag && (
             <Row style={{ padding: "4px" }}>
-              <Card title={`Flag Information`} size="small">
-                <p>asdfasdfsadasdfsad</p>
+              <Card title={`Rule Name Here`} size="small">
+                <pre>{JSON.stringify(fieldData.intelligenceData, null, 2)}</pre>
               </Card>
             </Row>
           )}
