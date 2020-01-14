@@ -1,20 +1,14 @@
 import React, { useState } from "react"
 
+import { dataA, dataC } from './import-data'
+
 import {
   Modal,
   Button,
-  Collapse,
   Table,
   Typography,
-  Select,
-  Switch,
-  Row,
-  Col,
-  message
 } from "antd"
-const { Panel } = Collapse
 const { Text } = Typography
-const { Option } = Select
 
 const columns = [
   {
@@ -45,43 +39,6 @@ const columns = [
     render: () => <Button icon="search">View Details</Button>,
   },
 ]
-const data = [
-  {
-    key: "1",
-    field: "C0100: Should Brief Interview for Mental Status be Conducted?",
-    previous: "3. Correct",
-    previousUser: "Ramsey Tisher",
-    import: "Not a value to import",
-  },
-  {
-    key: "2",
-    field: "C0200: Repetition of Three Words",
-    previous: "3. Correct",
-    previousUser: "Ramsey Tisher",
-    import: "2. Missed by 1 year",
-  },
-  {
-    key: "3",
-    field: "C0300A: Able to report correct year",
-    previous: "3. Correct",
-    previousUser: "Ramsey Tisher",
-    import: "2. Missed by 1 year",
-  },
-  {
-    key: "4",
-    field: "C0300B: Able to report correct month",
-    previous: "3. Correct",
-    previousUser: "Ramsey Tisher",
-    import: "2. Missed by 1 year",
-  },
-  {
-    key: "5",
-    field: "C0300C: Able to report correct day of the week",
-    previous: "3. Correct",
-    previousUser: "Ramsey Tisher",
-    import: "2. Missed by 1 year",
-  },
-]
 
 // rowSelection object indicates the need for row selection
 const rowSelection = {
@@ -98,8 +55,16 @@ const rowSelection = {
   }),
 }
 
-export default () => {
+export default ({ section }) => {
   const [open, setOpen] = useState(false)
+
+  const getData = () => {
+    switch(section) {
+      case 'A': return dataA; break
+      case 'C': return dataC; break
+      default: return dataC; break
+    }
+  }
 
   return (
     <>
@@ -122,7 +87,7 @@ export default () => {
         <Table
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={data}
+          dataSource={getData()}
           size="small"
         />{" "}
       </Modal>

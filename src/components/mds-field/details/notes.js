@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 
-import { Typography, Card, Input, Button } from "antd"
-const { Title, Text } = Typography
+import { Input, Button } from "antd"
 const { TextArea } = Input
 
 const initialNotes = [
@@ -30,7 +29,6 @@ export default () => {
   const [currentNote, setCurrentNote] = useState("")
 
   const saveNote = () => {
-    const item = notes.length+1
     const newNote = {
       key: 4,
       user: "Current User",

@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { MdsContext } from "../../context/mds-context"
+import { mockData } from "../../data/mock-data"
+import FieldDetails from "./details"
 
 import {
   Button,
@@ -9,20 +10,15 @@ import {
   Drawer,
   Col,
   Icon,
-  Input,
   Select,
   Typography,
   Tooltip,
-  Tabs,
   DatePicker,
-  Divider,
   Card,
-  Badge,
 } from "antd"
 
 const { Option } = Select
-const { Title, Text } = Typography
-const { Search } = Input
+const { Text } = Typography
 
 const QmSvg = () => (
   <svg
@@ -88,9 +84,7 @@ export default ({
   value,
   setValue,
   openModal,
-  flag,
   loading,
-  flags,
 }) => {
   const data = useStaticQuery(graphql`
     query GetFieldData {
@@ -119,14 +113,18 @@ export default ({
   `)
 
   const [showFlag, setShowFlag] = useState(false)
-  const { setActiveKey } = useContext(MdsContext)
+  const [activeKey, setActiveKey] = useState(null)
 
-  const question = data.allCmsItemMstrCsv.edges.filter(item => {
+  const question = data.allCmsItemMstrCsv.edges.find(item => {
     return item.node.itm_id === field
   })
 
   const responses = data.allCmsItemValCsv.edges.filter(item => {
     return item.node.itm_id === field
+  })
+
+  const fieldData = mockData.find(data => {
+    return data.field === field
   })
 
   const responseOptions = []
@@ -222,190 +220,211 @@ export default ({
     }
   }
 
-  return (
-    <Row gutter={[16, 16]} style={{ paddingLeft: 40 }}>
-      <Col>
-        <Row>
-          <Tooltip
-            title="Vice photo booth iceland id dolor direct trade, ullamco before they sold out franzen 3 wolf moon cloud bread seitan lomo craft beer. La croix photo booth velit whatever trust fund tumeric. Freegan eiusmod succulents jean shorts, banh mi ethical velit dreamcatcher occupy. Chicharrones bitters humblebrag disrupt cliche actually fixie. Keytar schlitz poutine semiotics."
-            placement="left"
-          >
-            <Text
-              style={{
-                fontSize: 14,
-              }}
+  if (!fieldData) {
+    return null
+  }
+
+  if (fieldData) {
+    return (
+      <Row gutter={[16, 16]} style={{ paddingLeft: 40 }}>
+        <Col>
+          <Row>
+            <Tooltip
+              title="Vice photo booth iceland id dolor direct trade, ullamco before they sold out franzen 3 wolf moon cloud bread seitan lomo craft beer. La croix photo booth velit whatever trust fund tumeric. Freegan eiusmod succulents jean shorts, banh mi ethical velit dreamcatcher occupy. Chicharrones bitters humblebrag disrupt cliche actually fixie. Keytar schlitz poutine semiotics."
+              placement="left"
             >
-              {field}
-            </Text>
-            <Text
-              style={{
-                fontSize: 14,
-              }}
-            >
-              {`: ${question[0].node.itm_shrt_label}`}
-            </Text>
-          </Tooltip>
-        </Row>
-        <Row align="middle" type="flex" gutter={8} style={{ padding: 2 }}>
-          <Col>
-            {loading ? (
-              <Button shape="circle" loading={loading} tabindex="-1" />
-            ) : flag ? (
-              <Button
-                type="danger"
-                size="large"
-                shape="circle"
-                onClick={() => setShowFlag(!showFlag)}
-                tabindex="-1"
+              <Text
+                style={{
+                  fontSize: 14,
+                }}
               >
-                {showFlag ? (
-                  <Icon type="close" style={{ fontSize: "22px" }} />
-                ) : (
-                  <Icon type="flag" style={{ fontSize: "22px" }} />
-                )}
-              </Button>
-            ) : (
-              <Button
-                type="primary"
-                shape="circle"
-                tabindex="-1"
-                disabled={skip}
+                {field}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 14,
+                }}
               >
-                {skip ? (
-                  <Icon type="stop" style={{ fontSize: "22px" }} />
-                ) : (
-                  <Icon type="safety" style={{ fontSize: "22px" }} />
-                )}
-              </Button>
-            )}
-          </Col>
-          <Col>
-            <InputType />
-          </Col>
-          <Col>
-            <Tooltip title={<ImportTip />} placement="bottom">
-              {flags.indexOf(1) >= 0 ? (
-                <Button
-                  type="primary"
-                  shape="circle"
-                  onClick={() => setActiveKey("1")}
-                  tabindex="-1"
-                  style={{ background: "#00A8E1", border: "none" }}
-                >
-                  <Icon
-                    type="vertical-align-bottom"
-                    style={{ fontSize: "1.25rem" }}
-                  />
-                </Button>
-              ) : (
-                <Button
-                  type="dashed"
-                  shape="circle"
-                  onClick={() => setActiveKey("1")}
-                  tabindex="-1"
-                >
-                  <Icon type="vertical-align-bottom" />
-                </Button>
-              )}
+                {`: ${question.node.itm_shrt_label}`}
+              </Text>
             </Tooltip>
-            <Tooltip title={<FinancialTip />} placement="bottom">
-              {flags.indexOf(2) >= 0 ? (
-                <Button
-                  type="primary"
-                  shape="circle"
-                  onClick={() => setActiveKey("2")}
-                  tabindex="-1"
-                  style={{ background: "#00A8E1", border: "none" }}
-                >
-                  <Icon type="dollar" style={{ fontSize: "1.15rem" }} />
-                </Button>
-              ) : (
-                <Button
-                  type="dashed"
-                  shape="circle"
-                  onClick={() => setActiveKey("2")}
-                  tabindex="-1"
-                >
-                  <Icon type="dollar" />
-                </Button>
-              )}
-            </Tooltip>
-            <Tooltip title={<QualityTip />} placement="bottom">
-              {flags.indexOf(3) >= 0 ? (
-                <Button
-                  type="primary"
-                  shape="circle"
-                  onClick={() => setActiveKey("3")}
-                  tabindex="-1"
-                  style={{ background: "#00A8E1", border: "none" }}
-                >
-                  QM
-                </Button>
-              ) : (
-                <Button
-                  type="dashed"
-                  shape="circle"
-                  onClick={() => setActiveKey("3")}
-                  tabindex="-1"
-                >
-                  QM
-                </Button>
-              )}
-            </Tooltip>
-            <Tooltip title={<ClinicalTip />} placement="bottom">
-              {flags.indexOf(4) >= 0 ? (
-                <Button
-                  type="primary"
-                  shape="circle"
-                  onClick={() => setActiveKey("4")}
-                  tabindex="-1"
-                  style={{ background: "#00A8E1", border: "none" }}
-                >
-                  <Icon type="medicine-box" style={{ fontSize: "1.15rem" }} />
-                </Button>
-              ) : (
-                <Button
-                  type="dashed"
-                  shape="circle"
-                  onClick={() => setActiveKey("4")}
-                  tabindex="-1"
-                >
-                  <Icon type="medicine-box" />
-                </Button>
-              )}
-            </Tooltip>
-            <Tooltip title={<NoteTip />} placement="bottom">
-              {flags.indexOf(5) >= 0 ? (
-                <Button
-                  type="primary"
-                  shape="circle"
-                  onClick={() => setActiveKey("6")}
-                  tabindex="-1"
-                  style={{ background: "#00A8E1", border: "none" }}
-                >
-                  <Icon type="file" style={{ fontSize: "1.15rem" }} />
-                </Button>
-              ) : (
-                <Button
-                  type="dashed"
-                  shape="circle"
-                  onClick={() => setActiveKey("6")}
-                  tabindex="-1"
-                >
-                  <Icon type="file" />
-                </Button>
-              )}
-            </Tooltip>
-          </Col>
-        </Row>
-        {flag && showFlag && (
-          <Row style={{ padding: "4px" }}>
-            <Card title={`Flag Information`} size="small">
-              <p>asdfasdfsadasdfsad</p>
-            </Card>
           </Row>
-        )}
-      </Col>
-    </Row>
-  )
+          <Row align="middle" type="flex" gutter={8} style={{ padding: 2 }}>
+            <Col>
+              {loading ? (
+                <Button shape="circle" loading={loading} tabindex="-1" />
+              ) : (fieldData.intelligenceData) ? (
+                <Button
+                  type="danger"
+                  size="large"
+                  shape="circle"
+                  onClick={() => setShowFlag(!showFlag)}
+                  tabindex="-1"
+                >
+                  {showFlag ? (
+                    <Icon type="close" style={{ fontSize: "22px" }} />
+                  ) : (
+                    <Icon type="flag" style={{ fontSize: "22px" }} />
+                  )}
+                </Button>
+              ) : (
+                <Button
+                  type="primary"
+                  shape="circle"
+                  tabindex="-1"
+                  disabled={skip}
+                >
+                  {skip ? (
+                    <Icon type="stop" style={{ fontSize: "22px" }} />
+                  ) : (
+                    <Icon type="safety" style={{ fontSize: "22px" }} />
+                  )}
+                </Button>
+              )}
+            </Col>
+            <Col>
+              <InputType />
+            </Col>
+            <Col>
+              <Tooltip title={<ImportTip />} placement="bottom">
+                {fieldData.sourceData.results.length > 0 || fieldData.sourceData.calculatedResponse ? (
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    onClick={() => setActiveKey("1")}
+                    tabindex="-1"
+                    style={{ background: "#00A8E1", border: "none" }}
+                  >
+                    <Icon
+                      type="vertical-align-bottom"
+                      style={{ fontSize: "1.25rem" }}
+                    />
+                  </Button>
+                ) : (
+                  <Button
+                    type="dashed"
+                    shape="circle"
+                    onClick={() => setActiveKey("1")}
+                    tabindex="-1"
+                  >
+                    <Icon type="vertical-align-bottom" />
+                  </Button>
+                )}
+              </Tooltip>
+              <Tooltip title={<FinancialTip />} placement="bottom">
+                {fieldData.referenceData.financialImpact ? (
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    onClick={() => setActiveKey("2")}
+                    tabindex="-1"
+                    style={{ background: "#00A8E1", border: "none" }}
+                  >
+                    <Icon type="dollar" style={{ fontSize: "1.15rem" }} />
+                  </Button>
+                ) : (
+                  <Button
+                    type="dashed"
+                    shape="circle"
+                    onClick={() => setActiveKey("2")}
+                    tabindex="-1"
+                  >
+                    <Icon type="dollar" />
+                  </Button>
+                )}
+              </Tooltip>
+              <Tooltip title={<QualityTip />} placement="bottom">
+                {fieldData.referenceData.qmImpact ? (
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    onClick={() => setActiveKey("3")}
+                    tabindex="-1"
+                    style={{ background: "#00A8E1", border: "none" }}
+                  >
+                    QM
+                  </Button>
+                ) : (
+                  <Button
+                    type="dashed"
+                    shape="circle"
+                    onClick={() => setActiveKey("3")}
+                    tabindex="-1"
+                  >
+                    QM
+                  </Button>
+                )}
+              </Tooltip>
+              <Tooltip title={<ClinicalTip />} placement="bottom">
+                {fieldData.referenceData.caaImpact ? (
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    onClick={() => setActiveKey("4")}
+                    tabindex="-1"
+                    style={{ background: "#00A8E1", border: "none" }}
+                  >
+                    <Icon type="medicine-box" style={{ fontSize: "1.15rem" }} />
+                  </Button>
+                ) : (
+                  <Button
+                    type="dashed"
+                    shape="circle"
+                    onClick={() => setActiveKey("4")}
+                    tabindex="-1"
+                  >
+                    <Icon type="medicine-box" />
+                  </Button>
+                )}
+              </Tooltip>
+              <Tooltip title={<NoteTip />} placement="bottom">
+                {fieldData.noteData.length > 0 ? (
+                  <Button
+                    type="primary"
+                    shape="circle"
+                    onClick={() => setActiveKey("6")}
+                    tabindex="-1"
+                    style={{ background: "#00A8E1", border: "none" }}
+                  >
+                    <Icon type="file" style={{ fontSize: "1rem" }} />
+                  </Button>
+                ) : (
+                  <Button
+                    type="dashed"
+                    shape="circle"
+                    onClick={() => setActiveKey("6")}
+                    tabindex="-1"
+                  >
+                    <Icon type="file" />
+                  </Button>
+                )}
+              </Tooltip>
+            </Col>
+          </Row>
+          {showFlag && (
+            <Row style={{ padding: "4px" }}>
+              <Card title={`Rule Name Here`} size="small">
+                <pre>{JSON.stringify(fieldData.intelligenceData, null, 2)}</pre>
+              </Card>
+            </Row>
+          )}
+        </Col>
+        <Drawer
+          placement="right"
+          closable={false}
+          onClose={() => setActiveKey(0)}
+          visible={activeKey > 0}
+          width="70vw"
+        >
+          <FieldDetails
+            closeDetail={() => {setActiveKey(0)}}
+            detail={fieldData}
+            question={question}
+            activeKey={activeKey}
+            setActiveKey={setActiveKey}
+          />
+        </Drawer>
+      </Row>
+    )
+  }
 }

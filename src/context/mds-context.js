@@ -18,9 +18,19 @@ const initialMdsState = {
   C0400A: "-",
   C0400B: "-",
   C0400C: "-",
-  C0500: "99",
-  C0700: "-",
+  C0500: "",
+  C0700: "",
+  C0800: "-",
+  C0900A: "-",
+  C0900B: "-",
+  C0900C: "-",
+  C0900D: "-",
+  C0900Z: "-",
   C1000: "-",
+  C1310A: "-",
+  C1310B: "-",
+  C1310C: "-",
+  C1310D: "-",
   GG0130A1: "-",
   GG0130A2: "-",
   GG0130A3: "-",
@@ -52,7 +62,6 @@ const initialMdsState = {
 
 export const MdsProvider = ({ children }) => {
   const [mds, setMds] = useState(initialMdsState)
-  const [activeKey, setActiveKey] = useState(0)
 
   function handleChange(field, value) {
     setMds({
@@ -62,7 +71,7 @@ export const MdsProvider = ({ children }) => {
   }
 
   return (
-    <MdsContext.Provider value={{ mds, handleChange, activeKey, setActiveKey }}>
+    <MdsContext.Provider value={{ mds, handleChange }}>
       {children}
     </MdsContext.Provider>
   )

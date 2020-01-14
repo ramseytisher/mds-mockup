@@ -1,20 +1,7 @@
-import React, { useState, useContext } from "react"
+import React, { useContext } from "react"
 import MdsField from "../../components/mds-field"
+import FormDivider from "../common/form-divider"
 import { MdsContext } from "../../context/mds-context"
-import {
-  Drawer,
-  Timeline,
-  Tabs,
-  Divider,
-  Typography,
-  Card,
-  Tag,
-  Row,
-  Col,
-} from "antd"
-
-const { Title, Text } = Typography
-const { TabPane } = Tabs
 
 export default ({ showDetail }) => {
   const { mds, handleChange } = useContext(MdsContext)
@@ -32,11 +19,7 @@ export default ({ showDetail }) => {
 
   return (
     <div style={{ padding: 10 }}>
-      <Divider orientation="left">
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          GG0130A. Eating
-        </Text>
-      </Divider>
+      <FormDivider text="GG0130A. Eating" />
 
       <MdsField
         field="GG0130A1"
@@ -63,11 +46,7 @@ export default ({ showDetail }) => {
         skip
       />
 
-      <Divider orientation="left">
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          GG0130B. Oral hygiene
-        </Text>
-      </Divider>
+      <FormDivider text="GG0130B. Oral hygienec" />
       <MdsField
         field="GG0130B1"
         value={GG0130B1}
@@ -90,11 +69,7 @@ export default ({ showDetail }) => {
         flags={[3]}
         skip
       />
-      <Divider orientation="left">
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          GG0130C. Toileting hygiene
-        </Text>
-      </Divider>
+      <FormDivider text="GG0130C. Toileting hygiene" />
       <MdsField
         field="GG0130C1"
         value={GG0130C1}
