@@ -36,6 +36,7 @@ export default () => {
         footer={null}
       >
         <Authenticator
+          usernameAttributes='email'
           onStateChange={authState =>
             authState === "signedIn" && setLoggedIn(true)
           }
