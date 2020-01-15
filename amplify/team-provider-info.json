@@ -8,12 +8,12 @@
             "DeploymentBucketName": "amplify-mds-mockup-develop-133858-deployment",
             "UnauthRoleName": "amplify-mds-mockup-develop-133858-unauthRole",
             "StackName": "amplify-mds-mockup-develop-133858",
-            "StackId": "arn:aws:cloudformation:us-east-2:208254545607:stack/amplify-mds-mockup-develop-133858/217430b0-36fd-11ea-b786-063c30684966",
-            "AmplifyAppId": "d3mn11lib54t05"
+            "StackId": "arn:aws:cloudformation:us-east-2:208254545607:stack/amplify-mds-mockup-develop-133858/90b13170-37a3-11ea-8c43-06d398e7edd6",
+            "AmplifyAppId": "d3k4djz85heqq6"
         },
         "categories": {
             "auth": {
-                "mdsmockup8ff0be6a": {}
+                "mdsmockup23c0a9cf": {}
             }
         }
     }

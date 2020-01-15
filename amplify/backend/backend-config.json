@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"mdsmockup8ff0be6a": {
+		"mdsmockup23c0a9cf": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
