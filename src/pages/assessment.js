@@ -37,7 +37,7 @@ export default () => (
       <Col>
         <Search
           placeholder="search by field/description ..."
-          style={{ width: "30vw", boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.3)" }}
+          style={{ width: "30vw", boxShadow: "0 0 8px 0 rgba(0, 0, 0, 0.3)" }}
           size="large"
         />
       </Col>
