@@ -1,0 +1,20 @@
+{
+    "appName": "mdsmockup",
+    "roleName": "pinpointLambdaRolebb1391d3",
+    "cloudWatchPolicyName": "cloudWatchPolicybb1391d3",
+    "pinpointPolicyName": "pinpointPolicybb1391d3",
+    "authPolicyName": "pinpoint_amplify_bb1391d3",
+    "unauthPolicyName": "pinpoint_amplify_bb1391d3",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

@@ -1,6 +1,6 @@
 {
     "identityPoolName": "mdsmockup23c0a9cf_identitypool_23c0a9cf",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "mdsmoc23c0a9cf",
     "userPoolName": "mdsmockup23c0a9cf_userpool_23c0a9cf",
     "autoVerifiedAttributes": [
