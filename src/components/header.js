@@ -2,51 +2,46 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-import { Row, Col, Button, Popconfirm, message } from "antd"
-
 import Login from "./login"
+
+import { Row, Col, Button, Popconfirm, Typography, message, Icon } from "antd"
+const { Title, Text } = Typography
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `#5C6770`,
-      marginBottom: `1.45rem`,
+      background: `#fff`,
+      margin: `0 auto`,
+      maxWidth: 1280,
+      padding: `1.05rem 1.0875rem`,
     }}
   >
-    <Row type="flex" align="middle">
-      <Col span="20">
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `1.05rem 1.0875rem`,
-          }}
-        >
-          <h1 style={{ margin: 0 }}>
-            <Link
-              to="/"
-              style={{
-                color: `white`,
-                textDecoration: `none`,
-              }}
-            >
-              {siteTitle}
-            </Link>
-          </h1>
-        </div>
+    <Row type="flex" align="middle" justify="space-between">
+      <Col>
+        <Title>
+          <Link
+            to="/"
+            style={{
+              textDecoration: `none`,
+              color: "#5C6770",
+            }}
+          >
+            <Icon type="highlight" theme="twoTone" />{" "}
+            {siteTitle}
+          </Link>
+        </Title>
       </Col>
-      <Col span="4">
-        <Popconfirm
-          title="This will overwrite all values with imported data. Are you sure you want to proceed?"
-          onConfirm={() =>
-            message.success("You imported 45ish items to this MDS")
-          }
-          onCancel={() =>
-            message.error("Action Canceled: No items were imported to this MDS")
-          }
-        >
-          <Button>Import All</Button>
-        </Popconfirm>
+      <Col>
+        <Link to="/assessment">
+          <Button type="link" size="large">
+            Assessment
+          </Button>
+        </Link>
+        <Link to="/schedule">
+          <Button type="link" size="large">
+            Schedule
+          </Button>
+        </Link>
         <Login />
       </Col>
     </Row>

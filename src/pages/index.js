@@ -3,102 +3,25 @@ import React from "react"
 import Layout from "../components/layout"
 import ImportReview from "../components/import-review"
 
-import SectionA from "../components/sections/section-a"
-import SectionC from "../components/sections/section-c"
-import SectionI from "../components/sections/section-i"
-import SectionK from "../components/sections/section-k"
-import SectionGG from "../components/sections/section-gg"
+import { Typography } from "antd"
 
-
-import {
-  PageHeader,
-  Button,
-} from "antd"
+const { Title, Text } = Typography
 
 const IndexPage = () => {
-
   return (
     <Layout>
-      <PageHeader
-        title="Section A"
-        subTitle="Identification Information"
+      <div
         style={{
-          border: "1px solid rgb(235, 237, 240)",
-          background: "lightblue",
-          padding: "6px",
+          margin: `0 auto`,
+          padding: `0px 1.0875rem 1.45rem`,
+          paddingTop: 0,
+          maxWidth: 520,
+          textAlign: 'right'
         }}
-        extra={[
-          <ImportReview section="A" />,
-          <Button icon="login" />,
-          <Button icon="like" />,
-          <Button icon="book" />,
-        ]}
-      />
-      <SectionA />
-      <PageHeader
-        title="Section C"
-        subTitle="Cognitive Patterns"
-        style={{
-          border: "1px solid rgb(235, 237, 240)",
-          background: "lightblue",
-          padding: "6px",
-        }}
-        extra={[
-          <ImportReview section="C" />,
-          <Button icon="login" />,
-          <Button icon="like" />,
-          <Button icon="book" />,
-        ]}
-      />
-      <SectionC />
-      <PageHeader
-        title="Section GG"
-        subTitle="Functional Abilities and Goals"
-        style={{
-          border: "1px solid rgb(235, 237, 240)",
-          background: "lightblue",
-          padding: "6px",
-        }}
-        extra={[
-          <ImportReview />,
-          <Button icon="login" />,
-          <Button icon="like" />,
-          <Button icon="book" />,
-        ]}
-      />
-      <SectionGG />
-      <PageHeader
-        title="Section I"
-        subTitle="Active Diagnosis"
-        style={{
-          border: "1px solid rgb(235, 237, 240)",
-          background: "lightblue",
-          padding: "6px",
-        }}
-        extra={[
-          <ImportReview />,
-          <Button icon="login" />,
-          <Button icon="like" />,
-          <Button icon="book" />,
-        ]}
-      />
-      <SectionI />
-      <PageHeader
-        title="Section K"
-        subTitle="Swallowing/Nutritional Status"
-        style={{
-          border: "1px solid rgb(235, 237, 240)",
-          background: "lightblue",
-          padding: "6px",
-        }}
-        extra={[
-          <ImportReview />,
-          <Button icon="login" />,
-          <Button icon="like" />,
-          <Button icon="book" />,
-        ]}
-      />
-      <SectionK />
+      >
+        <Title>What this is</Title>
+        <Text>Our team has developed this working prototype to obtain rapid feedback from clients earlier in the design phase. It will help facilitate conversations about future features/workflows, as well as provide us a place to try new things. </Text>
+      </div>
     </Layout>
   )
 }
