@@ -9,17 +9,19 @@ import SectionI from "../components/sections/section-i"
 import SectionK from "../components/sections/section-k"
 import SectionGG from "../components/sections/section-gg"
 
-import { PageHeader, Button, Popconfirm, message } from "antd"
+import { PageHeader, Button, Popconfirm, message, Row, Col, Input } from "antd"
+const { Search } = Input
 
 export default () => (
   <Layout>
-    <PageHeader
-      style={{
-        border: "1px solid rgb(235, 237, 240)",
-        background: "#8F8D8C",
-        padding: "6px",
-      }}
-      extra={[
+    <Row type="flex" justify="space-between" style={{ padding: "1rem" }}>
+      <Col>
+        <Button style={{ margin: 2 }} icon="vertical-align-middle" />
+        <Button style={{ margin: 2 }} icon="calculator" />
+        <Button style={{ margin: 2 }} icon="printer" />
+        <Button style={{ margin: 2 }} icon="flag" />
+        <Button style={{ margin: 2 }} icon="question-circle" />
+        <Button style={{ margin: 2 }} icon="book" />
         <Popconfirm
           title="This will overwrite all values with imported data. Are you sure you want to proceed?"
           onConfirm={() =>
@@ -29,10 +31,18 @@ export default () => (
             message.error("Action Canceled: No items were imported to this MDS")
           }
         >
-          <Button>Import All</Button>
-        </Popconfirm>,
-      ]}
-    />
+          <Button icon="vertical-align-bottom">Import All</Button>
+        </Popconfirm>
+      </Col>
+      <Col>
+        <Search
+          placeholder="search by field/description ..."
+          style={{ width: "30vw", boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.3)" }}
+          size="large"
+        />
+      </Col>
+    </Row>
+
     <div
       style={{
         margin: `0 auto`,
