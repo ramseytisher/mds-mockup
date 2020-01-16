@@ -62,6 +62,7 @@ const initialMdsState = {
 
 export const MdsProvider = ({ children }) => {
   const [mds, setMds] = useState(initialMdsState)
+  const [searchValue, setSearchValue] = useState('')
 
   function handleChange(field, value) {
     setMds({
@@ -71,7 +72,8 @@ export const MdsProvider = ({ children }) => {
   }
 
   return (
-    <MdsContext.Provider value={{ mds, handleChange }}>
+    <MdsContext.Provider value={{ mds, handleChange, searchValue, setSearchValue }}>
+      <pre>{JSON.stringify(searchValue, null, 2)}</pre>
       {children}
     </MdsContext.Provider>
   )

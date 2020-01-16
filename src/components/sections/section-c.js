@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import MdsField from "../../components/mds-field"
-import FormDivider from "../common/form-divider"
 import { MdsContext } from "../../context/mds-context"
 
 export default ({ showDetail }) => {
@@ -32,15 +31,14 @@ export default ({ showDetail }) => {
 
   return (
     <>
-      <FormDivider text="C0100. Should Brief Interview for Mental Status (C0200 - C0500) be Conducted?" />
       <MdsField
         field="C0100"
         valueFrom="import"
         value={C0100}
         setValue={value => handleChange("C0100", value)}
         openModal={() => showDetail(true)}
+        divider="C0100. Should Brief Interview for Mental Status (C0200 - C0500) be Conducted?"
       />
-      <FormDivider text="C0200. Repetition of Three Words" />
       <MdsField
         field="C0200"
         valueFrom="import"
@@ -48,14 +46,15 @@ export default ({ showDetail }) => {
         setValue={value => handleChange("C0200", value)}
         openModal={() => showDetail(true)}
         loading
+        divider="C0200. Repetition of Three Words"
       />
-      <FormDivider text="C0300. Temporal Orientation (orientation to year, month, and day)" />
       <MdsField
         field="C0300A"
         value={C0300A}
         valueFrom="import"
         setValue={value => handleChange("C0300A", value)}
         openModal={() => showDetail(true)}
+        divider="C0300. Temporal Orientation (orientation to year, month, and day)"
       />
       <MdsField
         field="C0300B"
@@ -70,12 +69,12 @@ export default ({ showDetail }) => {
         setValue={value => handleChange("C0300C", value)}
         openModal={() => showDetail(true)}
       />
-      <FormDivider text="C0400. Recall" />
       <MdsField
         field="C0400A"
         value={C0400A}
         setValue={value => handleChange("C0400A", value)}
         openModal={() => showDetail(true)}
+        divider="C0400. Recall"
       />
       <MdsField
         field="C0400B"
@@ -101,12 +100,12 @@ export default ({ showDetail }) => {
         setValue={value => handleChange("C0600", value)}
         openModal={() => showDetail(true)}
       />
-      <FormDivider text="Staff Assessment for Mental Status" />
       <MdsField
         field="C0700"
         value={C0700}
         setValue={value => handleChange("C0700", value)}
         openModal={() => showDetail(true)}
+        divider="Staff Assessment for Mental Status"
       />
       <MdsField
         field="C0800"
@@ -150,12 +149,12 @@ export default ({ showDetail }) => {
         setValue={value => handleChange("C1000", value)}
         openModal={() => showDetail(true)}
       />
-      <FormDivider text="Delirium" />
       <MdsField
         field="C1310A"
         value={C1310A}
         setValue={value => handleChange("C1310A", value)}
         openModal={() => showDetail(true)}
+        divider="Delirium"
       />
       <MdsField
         field="C1310B"
