@@ -57,7 +57,7 @@ export default () => {
         </Col>
       </Row>
       <Row type="flex">
-        <Col span={6}>
+        <Col span={3}>
           <div
             style={{
                 margin: `0 auto`,
