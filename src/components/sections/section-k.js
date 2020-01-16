@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import MdsField from "../../components/mds-field"
-import FormDivider from "../common/form-divider"
 import { MdsContext } from "../../context/mds-context"
 
 export default ({ showDetail }) => {
@@ -21,12 +20,12 @@ export default ({ showDetail }) => {
 
   return (
     <>
-      <FormDivider text="Swallowing Disorder" />
       <MdsField
         field="K0100A"
         value={K0100A}
         setValue={value => handleChange("K0100A", value)}
         openModal={() => showDetail(true)}
+        divider="Swallowing Disorder"
       />
       <MdsField
         field="K0100B"
@@ -54,12 +53,12 @@ export default ({ showDetail }) => {
         openModal={() => showDetail(true)}
         loading
       />
-      <FormDivider text="Height and Weight" />
       <MdsField
         field="K0200A"
         value={K0200A}
         setValue={value => handleChange("K0200A", value)}
         openModal={() => showDetail(true)}
+        divider="Height and Weight"
       />
       <MdsField
         field="K0200B"
@@ -79,12 +78,12 @@ export default ({ showDetail }) => {
         setValue={value => handleChange("K0310", value)}
         openModal={() => showDetail(true)}
       />
-      <FormDivider text="Nutrional Approaches" />
       <MdsField
         field="K0510A1"
         value={K0510A1}
         setValue={value => handleChange("K0510A1", value)}
         openModal={() => showDetail(true)}
+        divider="Nutrional Approaches"
       />
       <MdsField
         field="K0510A2"

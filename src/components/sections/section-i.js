@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import MdsField from "../../components/mds-field"
-import FormDivider from "../common/form-divider"
 import { MdsContext } from "../../context/mds-context"
 
 export default ({ showDetail }) => {
@@ -9,12 +8,12 @@ export default ({ showDetail }) => {
 
   return (
     <>
-      <FormDivider text="Indicate the resident's primary medical condition category" />
       <MdsField
         field="I0020"
         value={I0020}
         setValue={value => handleChange("I0020", value)}
         openModal={() => showDetail(true)}
+        divider="Indicate the resident's primary medical condition category"
       />
       <MdsField
         field="I0020B"
@@ -23,12 +22,12 @@ export default ({ showDetail }) => {
         setValue={value => handleChange("I0020B", value)}
         openModal={() => showDetail(true)}
       />
-      <FormDivider text="Active Diagnoses in last 7 days" />
       <MdsField
         field="I0100"
         value={I0100}
         setValue={value => handleChange("I0100", value)}
         openModal={() => showDetail(true)}
+        divider="Active Diagnoses in last 7 days"
       />
       <MdsField
         field="I0200"

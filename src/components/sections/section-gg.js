@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import MdsField from "../../components/mds-field"
-import FormDivider from "../common/form-divider"
 import { MdsContext } from "../../context/mds-context"
 
 export default ({ showDetail }) => {
@@ -19,16 +18,14 @@ export default ({ showDetail }) => {
 
   return (
     <div style={{ padding: 10 }}>
-      <FormDivider text="GG0130A. Eating" />
-
       <MdsField
         field="GG0130A1"
         value={GG0130A1}
         setValue={value => handleChange("GG0130A1", value)}
         openModal={() => showDetail(true)}
         flags={[3]}
+        divider="GG0130A. Eating"
       />
-
       <MdsField
         field="GG0130A2"
         value={GG0130A2}
@@ -36,7 +33,6 @@ export default ({ showDetail }) => {
         openModal={() => showDetail(true)}
         flags={[3]}
       />
-
       <MdsField
         field="GG0130A3"
         value={GG0130A3}
@@ -45,14 +41,13 @@ export default ({ showDetail }) => {
         flags={[3]}
         skip
       />
-
-      <FormDivider text="GG0130B. Oral hygienec" />
       <MdsField
         field="GG0130B1"
         value={GG0130B1}
         setValue={value => handleChange("GG0130B1", value)}
         openModal={() => showDetail(true)}
         flags={[3]}
+        divider="GG0130B. Oral hygiene"
       />
       <MdsField
         field="GG0130B2"
@@ -69,13 +64,13 @@ export default ({ showDetail }) => {
         flags={[3]}
         skip
       />
-      <FormDivider text="GG0130C. Toileting hygiene" />
       <MdsField
         field="GG0130C1"
         value={GG0130C1}
         setValue={value => handleChange("GG0130C1", value)}
         openModal={() => showDetail(true)}
         flags={[3]}
+        divider="GG0130C. Toileting hygiene"
       />
       <MdsField
         field="GG0130C2"
