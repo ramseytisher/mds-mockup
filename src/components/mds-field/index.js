@@ -166,7 +166,6 @@ export default ({
     const values = Object.values(question.node)
       .join("")
       .toLowerCase()
-    console.log("values: ", values)
     if (searchValue === "") {
       setShowField(true)
     } else {
