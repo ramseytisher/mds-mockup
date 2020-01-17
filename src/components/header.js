@@ -53,13 +53,6 @@ const Header = () => (
           <Login />
         </Col>
       </Row>
-      <hr
-        style={{
-          border: 0,
-          height: 0,
-          boxShadow: "0 0 12px 1px black",
-        }}
-      />
     </header>
   </Affix>
 )
