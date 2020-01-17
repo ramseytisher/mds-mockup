@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react"
 import { Auth } from "aws-amplify"
 
 import Login from "../components/login"
+import Header from "../components/header"
 
 import { Result } from "antd"
 
@@ -33,7 +34,12 @@ export const UserProvider = ({ children }) => {
       {loggedIn ? (
         children
       ) : (
-        <Result title="You must login to see this content." extra={<Login />} />
+        <>
+          <Header />
+          <Result
+            title="You must login to see this content."
+          />
+        </>
       )}
     </UserContext.Provider>
   )

@@ -1,5 +1,4 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 
 import Login from "./login"
@@ -7,7 +6,7 @@ import Login from "./login"
 import { Row, Col, Button, Popconfirm, Typography, message, Icon } from "antd"
 const { Title, Text } = Typography
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header
     style={{
       background: `#fff`,
@@ -26,7 +25,7 @@ const Header = ({ siteTitle }) => (
             }}
           >
             <Icon type="highlight" theme="twoTone" />{" "}
-            {siteTitle}
+            MDS Mockup
           </Link>
         </Title>
       </Col>
@@ -37,7 +36,7 @@ const Header = ({ siteTitle }) => (
           </Button>
         </Link>
         <Link to="/schedule">
-          <Button type="link" size="large">
+          <Button type="link" size="large" disabled>
             Schedule
           </Button>
         </Link>
@@ -46,13 +45,5 @@ const Header = ({ siteTitle }) => (
     </Row>
   </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header
