@@ -50,6 +50,11 @@ const Header = () => (
               Schedule
             </Button>
           </Link>
+          <Link to="/dashboard">
+            <Button type="link" size="large">
+              Dashboard
+            </Button>
+          </Link>
           <Login />
         </Col>
       </Row>

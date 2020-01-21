@@ -134,7 +134,7 @@ export const mockData = [
     sourceData: {
       registration: "",
       results: [],
-      diagnosis: [],
+      diagnosis: [""],
       procedure: [],
       rehabOptimaTherapy: [],
       calculationDetail: "",
@@ -653,9 +653,9 @@ export const mockData = [
   {
     key: "C1000",
     field: "C1000",
-    previousAnswer: "",
-    previousUser: "",
-    previousDateTime: "",
+    previousAnswer: "3. Severely impaired",
+    previousUser: "Robin Miller",
+    previousDateTime: "1/17/2020 1:41PM",
     sourceData: {
       registration: "",
       results: [],
@@ -665,7 +665,7 @@ export const mockData = [
       calculationDetail: "",
     },
     referenceData: {
-      financialImpact: false,
+      financialImpact: true,
       financialDescription: "This is how I impact payment",
       qmImpact: false,
       qmItems: [],
