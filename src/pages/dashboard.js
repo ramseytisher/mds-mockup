@@ -13,6 +13,7 @@ import {
   Slider,
   PageHeader,
   Popconfirm,
+  Progress,
   message,
 } from "antd"
 
@@ -163,6 +164,37 @@ export default () => {
     <Layout>
       <Row type="flex" justify="center" align="top">
         <Col span={14}>
+          <PageHeader title="MDS Information" />
+          <Row type="flex" justify="center" gutter={[16,16]}>
+            <Col>
+              <Progress
+                type="dashboard"
+                percent={14}
+                format={percent => `${percent}`}
+              />
+              <br />
+              <span>Open Assessments</span>
+            </Col>
+            <Col>
+              <Progress
+                type="dashboard"
+                percent={34}
+                format={percent => `${percent}`}
+              />
+              <br />
+              <span>Open Assessments</span>
+            </Col>
+            <Col>
+              <Progress
+                type="dashboard"
+                percent={54}
+                format={percent => `${percent}`}
+              />
+              <br />
+              <span>Open Assessments</span>
+            </Col>
+          </Row>
+
           <PageHeader title="MDS Tasks" />
           <div style={{ padding: 10 }}>
             Filter by task:
