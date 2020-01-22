@@ -12,6 +12,7 @@ import {
   Table,
   Slider,
   PageHeader,
+  Modal
 } from "antd"
 
 const initialAlerts = [
@@ -38,6 +39,7 @@ const initialAlerts = [
 export default () => {
   const [alerts, setAlerts] = useState(initialAlerts)
   const [hidden, setHidden] = useState([])
+  const [visible, setVisible] = useState(false)
 
   const columns = [
     {
@@ -63,10 +65,13 @@ export default () => {
       render: item => {
         return (
           <span>
-            <Button type="link" onClick={() => setHidden({...hidden, [item.key]: item })}>
+            <Button
+              type="link"
+              onClick={() => setHidden({ ...hidden, [item.key]: item })}
+            >
               Ignore
             </Button>
-            <Button type="primary">Create</Button>
+            <Button type="primary" onClick={() => setVisible(true)}>Create</Button>
           </span>
         )
       },
@@ -74,17 +79,24 @@ export default () => {
   ]
 
   useEffect(() => {
-      const filtered = alerts.filter(alert => { 
-          return !hidden[alert.key]
-      })
-      setAlerts(filtered)
-
+    const filtered = alerts.filter(alert => {
+      return !hidden[alert.key]
+    })
+    setAlerts(filtered)
   }, [hidden])
 
   return (
     <>
       <PageHeader title="Suggested Significant Change Assessments" />
       <Table size="small" columns={columns} dataSource={alerts} />
+      <Modal
+        title="Suggested IPA Details"
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+      >
+        <p>something awesome would be said here .. </p>
+      </Modal>
     </>
   )
 }

@@ -13,6 +13,7 @@ import {
   Slider,
   Collapse,
   PageHeader,
+  Modal
 } from "antd"
 
 const { Panel } = Collapse
@@ -54,6 +55,7 @@ export default () => {
   const [slider, setSlider] = useState(25)
   const [alerts, setAlerts] = useState(initialAlerts)
   const [hidden, setHidden] = useState([])
+  const [visible, setVisible] = useState(false)
 
   const columns = [
     {
@@ -85,7 +87,7 @@ export default () => {
             >
               Ignore
             </Button>
-            <Button type="primary">Create</Button>
+            <Button type="primary" onClick={() => setVisible(true)}>Create</Button>
           </span>
         )
       },
@@ -114,6 +116,14 @@ export default () => {
           return item.difference < slider
         })}
       />
+      <Modal
+        title="Suggested IPA Details"
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+      >
+        <p>something awesome would be said here  .. </p>
+      </Modal>
     </>
   )
 }
