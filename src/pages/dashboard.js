@@ -15,7 +15,10 @@ import {
   Popconfirm,
   Progress,
   message,
+  DatePicker
 } from "antd"
+
+const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
 const initialAssessments = [
   {
@@ -24,6 +27,8 @@ const initialAssessments = [
     assessmentResident: "Smith, John",
     action: 1,
     actionDate: "1/22/2020",
+    ard: "1/1/2020",
+    type: "Admission",
   },
   {
     key: "2",
@@ -31,6 +36,8 @@ const initialAssessments = [
     assessmentResident: "Jones, Hank",
     action: 2,
     actionDate: "1/23/2020",
+    ard: "1/1/2020",
+    type: "5 Day",
   },
   {
     key: "3",
@@ -38,6 +45,8 @@ const initialAssessments = [
     assessmentResident: "Miller, Amy",
     action: 4,
     actionDate: "1/23/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
   },
   {
     key: "4",
@@ -45,6 +54,8 @@ const initialAssessments = [
     assessmentResident: "Morris, Chet",
     action: 5,
     actionDate: "1/26/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
   },
   {
     key: "5",
@@ -52,6 +63,8 @@ const initialAssessments = [
     assessmentResident: "Abner, Abbey",
     action: 3,
     actionDate: "1/26/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
   },
 ]
 
@@ -66,26 +79,31 @@ const columns = [
     dataIndex: "assessmentResident",
     key: "assessmentResident",
   },
+  // {
+  //   title: "Assessment Task",
+  //   key: "action",
+  //   render: item => {
+  //     if (item.action === 1) {
+  //       return <span>Set ARD</span>
+  //     }
+  //     if (item.action === 2) {
+  //       return <span>Signature Due</span>
+  //     }
+  //     if (item.action === 3) {
+  //       return <span>Assessment Due</span>
+  //     }
+  //     if (item.action === 4) {
+  //       return <span>Care Plan Due</span>
+  //     }
+  //     if (item.action === 5) {
+  //       return <span>Open Working Copy</span>
+  //     }
+  //   },
+  // },
   {
-    title: "Assessment Task",
-    key: "action",
-    render: item => {
-      if (item.action === 1) {
-        return <span>Set ARD</span>
-      }
-      if (item.action === 2) {
-        return <span>Signature Due</span>
-      }
-      if (item.action === 3) {
-        return <span>Assessment Due</span>
-      }
-      if (item.action === 4) {
-        return <span>Care Plan Due</span>
-      }
-      if (item.action === 5) {
-        return <span>Open Working Copy</span>
-      }
-    },
+    title: "Assessment Type",
+    key: "type",
+    dataIndex: "type",
   },
   {
     title: "Task Date",
@@ -114,7 +132,8 @@ const columns = [
             okText="Yes"
             cancelText="No"
           >
-            <Button type="primary">Sign MDS</Button>
+            <Button type="primary">Complete MDS</Button>
+            <Button icon="rocket" style={{ marginLeft: 4 }}>Sign</Button>
           </Popconfirm>
         )
       }
@@ -124,7 +143,7 @@ const columns = [
             type="primary"
             onClick={() => message.info("This would go to the assessment")}
           >
-            Open Assessment
+            Complete Care Plan
           </Button>
         )
       }
@@ -134,7 +153,7 @@ const columns = [
             type="primary"
             onClick={() => message.info("This would go to the assessment")}
           >
-            Open Assessment
+            Comlete CAA
           </Button>
         )
       }
@@ -165,7 +184,7 @@ export default () => {
       <Row type="flex" justify="center" align="top">
         <Col span={14}>
           <PageHeader title="MDS Information" />
-          <Row type="flex" justify="center" gutter={[16,16]}>
+          <Row type="flex" justify="center" gutter={[16, 16]}>
             <Col>
               <Progress
                 type="dashboard"
@@ -196,6 +215,9 @@ export default () => {
           </Row>
 
           <PageHeader title="MDS Tasks" />
+          Past Due Tasks | Current Tasks
+          <br />
+          Date Range: <RangePicker />
           <div style={{ padding: 10 }}>
             Filter by task:
             <Button
