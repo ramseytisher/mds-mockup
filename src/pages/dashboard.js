@@ -15,10 +15,12 @@ import {
   Popconfirm,
   Progress,
   message,
-  DatePicker
+  DatePicker,
+  Tabs,
 } from "antd"
 
-const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
+const { MonthPicker, RangePicker, WeekPicker } = DatePicker
+const { TabPane } = Tabs
 
 const initialAssessments = [
   {
@@ -133,7 +135,9 @@ const columns = [
             cancelText="No"
           >
             <Button type="primary">Complete MDS</Button>
-            <Button icon="rocket" style={{ marginLeft: 4 }}>Sign</Button>
+            <Button icon="rocket" style={{ marginLeft: 4 }}>
+              Sign
+            </Button>
           </Popconfirm>
         )
       }
@@ -183,6 +187,73 @@ export default () => {
     <Layout>
       <Row type="flex" justify="center" align="top">
         <Col span={14}>
+          <PageHeader title="MDS Tasks" />
+          <Tabs defaultActiveKey="1">
+            <TabPane tab="Current" key="1">
+              <div style={{ padding: 10 }}>
+                <div style={{ marginBottom: 4 }}>
+                  Date Range: <RangePicker />
+                </div>
+                <br />
+                Filter by task:
+                <Button
+                  type={assessmentFilter === 1 ? "primary" : "link"}
+                  onClick={() => setAssessmentFilter(1)}
+                  size="small"
+                >
+                  Set ARD
+                </Button>
+                <Button
+                  type={assessmentFilter === 2 ? "primary" : "link"}
+                  onClick={() => setAssessmentFilter(2)}
+                  size="small"
+                >
+                  Signatures Due
+                </Button>
+                <Button
+                  type={assessmentFilter === 3 ? "primary" : "link"}
+                  onClick={() => setAssessmentFilter(3)}
+                  size="small"
+                >
+                  Assessments Due
+                </Button>
+                <Button
+                  type={assessmentFilter === 4 ? "primary" : "link"}
+                  onClick={() => setAssessmentFilter(4)}
+                  size="small"
+                >
+                  Care Plan Due
+                </Button>
+                <Button
+                  type={assessmentFilter === 5 ? "primary" : "link"}
+                  onClick={() => setAssessmentFilter(5)}
+                  size="small"
+                >
+                  Recall Working Copy
+                </Button>
+                {assessmentFilter !== 0 && (
+                  <Button
+                    type="circle"
+                    icon="close"
+                    onClick={() => setAssessmentFilter(0)}
+                    style={{ marginLeft: 4 }}
+                  />
+                )}
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <Table
+                  size="small"
+                  dataSource={assessments}
+                  columns={columns}
+                />
+              </div>
+            </TabPane>
+            <TabPane tab="Past Due" key="2">
+              <pre>show past due assessments here</pre>
+            </TabPane>
+          </Tabs>
+        </Col>
+        <Col span={10}>
           <PageHeader title="MDS Information" />
           <Row type="flex" justify="center" gutter={[16, 16]}>
             <Col>
@@ -213,62 +284,6 @@ export default () => {
               <span>Open Assessments</span>
             </Col>
           </Row>
-
-          <PageHeader title="MDS Tasks" />
-          Past Due Tasks | Current Tasks
-          <br />
-          Date Range: <RangePicker />
-          <div style={{ padding: 10 }}>
-            Filter by task:
-            <Button
-              type={assessmentFilter === 1 ? "primary" : "link"}
-              onClick={() => setAssessmentFilter(1)}
-              size="small"
-            >
-              Set ARD
-            </Button>
-            <Button
-              type={assessmentFilter === 2 ? "primary" : "link"}
-              onClick={() => setAssessmentFilter(2)}
-              size="small"
-            >
-              Signatures Due
-            </Button>
-            <Button
-              type={assessmentFilter === 3 ? "primary" : "link"}
-              onClick={() => setAssessmentFilter(3)}
-              size="small"
-            >
-              Assessments Due
-            </Button>
-            <Button
-              type={assessmentFilter === 4 ? "primary" : "link"}
-              onClick={() => setAssessmentFilter(4)}
-              size="small"
-            >
-              Care Plan Due
-            </Button>
-            <Button
-              type={assessmentFilter === 5 ? "primary" : "link"}
-              onClick={() => setAssessmentFilter(5)}
-              size="small"
-            >
-              Recall Working Copy
-            </Button>
-            {assessmentFilter !== 0 && (
-              <Button
-                type="circle"
-                icon="close"
-                onClick={() => setAssessmentFilter(0)}
-                style={{ marginLeft: 4 }}
-              />
-            )}
-          </div>
-          <div style={{ marginTop: 10 }}>
-            <Table size="small" dataSource={assessments} columns={columns} />
-          </div>
-        </Col>
-        <Col span={10}>
           <IpaTable />
           <SigChangTable />
         </Col>
