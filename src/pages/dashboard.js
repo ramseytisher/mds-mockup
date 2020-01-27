@@ -17,10 +17,12 @@ import {
   message,
   DatePicker,
   Tabs,
+  Input,
 } from "antd"
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker
 const { TabPane } = Tabs
+const { Search } = Input
 
 const initialAssessments = [
   {
@@ -68,11 +70,56 @@ const initialAssessments = [
     ard: "1/1/2020",
     type: "Quarterly",
   },
+  {
+    key: "6",
+    assessmentId: "753",
+    assessmentResident: "Morris, Chet",
+    action: 5,
+    actionDate: "1/26/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
+  },
+  {
+    key: "7",
+    assessmentId: "951",
+    assessmentResident: "Abner, Abbey",
+    action: 3,
+    actionDate: "1/26/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
+  },
+  {
+    key: "8",
+    assessmentId: "740",
+    assessmentResident: "Abner, Abbey",
+    action: 3,
+    actionDate: "1/26/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
+  },
+  {
+    key: "9",
+    assessmentId: "753",
+    assessmentResident: "Morris, Chet",
+    action: 5,
+    actionDate: "1/26/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
+  },
+  {
+    key: "10",
+    assessmentId: "951",
+    assessmentResident: "Abner, Abbey",
+    action: 3,
+    actionDate: "1/26/2020",
+    ard: "1/1/2020",
+    type: "Quarterly",
+  },
 ]
 
 const columns = [
   {
-    title: "Assessment ID",
+    title: "ID",
     dataIndex: "assessmentId",
     key: "assessmentId",
   },
@@ -103,12 +150,17 @@ const columns = [
   //   },
   // },
   {
-    title: "Assessment Type",
+    title: "Type",
     key: "type",
     dataIndex: "type",
   },
   {
-    title: "Task Date",
+    title: "ARD",
+    key: "ard",
+    dataIndex: "ard"
+  },
+  {
+    title: "Due By",
     dataIndex: "actionDate",
     key: "actionDate",
   },
@@ -121,6 +173,7 @@ const columns = [
           <Button
             type="primary"
             onClick={() => message.info("This would go to the assessment")}
+            size="small"
           >
             Set ARD
           </Button>
@@ -134,8 +187,8 @@ const columns = [
             okText="Yes"
             cancelText="No"
           >
-            <Button type="primary">Complete MDS</Button>
-            <Button icon="rocket" style={{ marginLeft: 4 }}>
+            <Button type="primary" size="small">Complete MDS</Button>
+            <Button icon="edit" style={{ marginLeft: 4 }} size="small">
               Sign
             </Button>
           </Popconfirm>
@@ -146,6 +199,7 @@ const columns = [
           <Button
             type="primary"
             onClick={() => message.info("This would go to the assessment")}
+            size="small"
           >
             Complete Care Plan
           </Button>
@@ -156,13 +210,14 @@ const columns = [
           <Button
             type="primary"
             onClick={() => message.info("This would go to the assessment")}
+            size="small"
           >
             Comlete CAA
           </Button>
         )
       }
       if (item.action === 5) {
-        return <Button type="danger">Recall Working Copy</Button>
+        return <Button type="danger" size="small">Recall Working Copy</Button>
       }
     },
   },
@@ -191,9 +246,19 @@ export default () => {
           <Tabs defaultActiveKey="1">
             <TabPane tab="Current" key="1">
               <div style={{ padding: 10 }}>
-                <div style={{ marginBottom: 4 }}>
-                  Date Range: <RangePicker />
-                </div>
+                <Row style={{ marginBottom: 4 }}>
+                  <Col span={16}>
+                    Date Range: <RangePicker />
+                  </Col>
+                  <Col span={8}>
+                    <Search
+                      placeholder="search by resident/id/type"
+                      style={{
+                        boxShadow: "0 0 2px 0 rgba(0, 0, 0, 0.3)",
+                      }}
+                    />
+                  </Col>
+                </Row>
                 <br />
                 Filter by task:
                 <Button
