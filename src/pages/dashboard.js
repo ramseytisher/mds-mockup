@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import IpaTable from "../components/dashboard/ipa"
 import SigChangTable from "../components/dashboard/sig-change"
 import DashboardItem from "../components/dashboard/dashboard-item"
+import MdsCalendar from "../components/dashboard/mds-calendar"
 
 import {
   Button,
@@ -71,7 +72,7 @@ const initialAssessments = [
     assessmentId: "740",
     assessmentResident: "Abner, Abbey",
     action: 3,
-    actionDate: "1/26/2020",
+    actionDate: "1/6/2020",
     ard: "1/1/2020",
     type: "Quarterly",
     working: ["User 4"],
@@ -81,7 +82,7 @@ const initialAssessments = [
     assessmentId: "951",
     assessmentResident: "Abner, Abbey",
     action: 3,
-    actionDate: "1/26/2020",
+    actionDate: "2/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
     working: [],
@@ -91,7 +92,7 @@ const initialAssessments = [
     assessmentId: "740",
     assessmentResident: "Abner, Abbey",
     action: 3,
-    actionDate: "1/26/2020",
+    actionDate: "3/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
     working: [],
@@ -241,7 +242,7 @@ export default () => {
   return (
     <Layout>
       <Row type="flex" justify="center" align="top">
-        <Col span={14}>
+        <Col span={16}>
           <PageHeader title="MDS Assessment Tasks" />
           <Tabs defaultActiveKey="1">
             <TabPane tab="Past Due" key="2">
@@ -330,9 +331,12 @@ export default () => {
                 />
               </div>
             </TabPane>
+            <TabPane tab="Calendar" key="3">
+              <MdsCalendar assessments={initialAssessments} />
+            </TabPane>
           </Tabs>
         </Col>
-        <Col span={10}>
+        <Col span={8}>
           <PageHeader title="Active MDS Assessments" />
           <Row type="flex" justify="center" gutter={[16, 16]}>
             <DashboardItem label="PPS" value={14} />
