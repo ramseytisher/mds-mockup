@@ -157,7 +157,7 @@ const columns = [
   {
     title: "ARD",
     key: "ard",
-    dataIndex: "ard"
+    dataIndex: "ard",
   },
   {
     title: "Due By",
@@ -187,7 +187,9 @@ const columns = [
             okText="Yes"
             cancelText="No"
           >
-            <Button type="primary" size="small">Complete MDS</Button>
+            <Button type="primary" size="small">
+              Complete MDS
+            </Button>
             <Button icon="edit" style={{ marginLeft: 4 }} size="small">
               Sign
             </Button>
@@ -217,7 +219,11 @@ const columns = [
         )
       }
       if (item.action === 5) {
-        return <Button type="danger" size="small">Recall Working Copy</Button>
+        return (
+          <Button type="danger" size="small">
+            Recall Working Copy
+          </Button>
+        )
       }
     },
   },
@@ -325,33 +331,28 @@ export default () => {
               <Progress
                 type="dashboard"
                 percent={14}
-                format={percent => `${percent}`}
+                format={percent => `${percent} PPS`}
               />
-              <br />
-              <span>Open Assessments</span>
             </Col>
             <Col>
               <Progress
                 type="dashboard"
-                percent={34}
-                format={percent => `${percent}`}
+                percent={6}
+                format={percent => `${percent} OBRA`}
               />
-              <br />
-              <span>Open Assessments</span>
             </Col>
             <Col>
               <Progress
                 type="dashboard"
-                percent={54}
-                format={percent => `${percent}`}
+                percent={2}
+                format={percent => `${percent} Managed Care`}
               />
-              <br />
-              <span>Open Assessments</span>
             </Col>
           </Row>
           <IpaTable />
           <SigChangTable />
         </Col>
+
       </Row>
     </Layout>
   )

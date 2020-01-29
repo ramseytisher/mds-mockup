@@ -5,7 +5,8 @@ import ImportReview from "../components/import-review"
 
 import { MdsContext } from "../context/mds-context"
 
-import SectionList from "../components/section-list"
+import SectionList from "../components/assessment/section-list"
+import Intelligence from "../components/assessment/intelligence"
 
 import SectionA from "../components/sections/section-a"
 import SectionC from "../components/sections/section-c"
@@ -57,17 +58,17 @@ export default () => {
         </Col>
       </Row>
       <Row type="flex">
-        <Col span={3}>
+        <Col span={4}>
           <div
             style={{
-                margin: `0 auto`,
-                padding: `0px 1rem 1.5rem`
+              margin: `0 auto`,
+              padding: `0px 1rem 1.5rem`,
             }}
           >
             <SectionList />
           </div>
         </Col>
-        <Col>
+        <Col span={18}>
           <div
             style={{
               margin: `0 auto`,
@@ -146,6 +147,9 @@ export default () => {
             />
             <SectionK />
           </div>
+        </Col>
+        <Col span={2}>
+          <Intelligence />
         </Col>
       </Row>
     </Layout>
