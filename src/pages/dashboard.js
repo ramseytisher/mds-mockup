@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 
 import Layout from "../components/layout"
-import IpaTable from "../components/dashboard/ipaTable"
-import SigChangTable from "../components/dashboard/sigChangeTable"
+import IpaTable from "../components/dashboard/ipa"
+import SigChangTable from "../components/dashboard/sig-change"
 
 import {
   Button,
@@ -33,6 +33,7 @@ const initialAssessments = [
     actionDate: "1/22/2020",
     ard: "1/1/2020",
     type: "Admission",
+    working: ["User 1", "User 2"],
   },
   {
     key: "2",
@@ -42,6 +43,7 @@ const initialAssessments = [
     actionDate: "1/23/2020",
     ard: "1/1/2020",
     type: "5 Day",
+    working: ["User 2"],
   },
   {
     key: "3",
@@ -51,15 +53,17 @@ const initialAssessments = [
     actionDate: "1/23/2020",
     ard: "1/1/2020",
     type: "Quarterly",
+    working: ["User 1", "User 3"],
   },
   {
     key: "4",
     assessmentId: "331",
     assessmentResident: "Morris, Chet",
-    action: 5,
+    action: 1,
     actionDate: "1/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
+    working: [],
   },
   {
     key: "5",
@@ -69,15 +73,7 @@ const initialAssessments = [
     actionDate: "1/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
-  },
-  {
-    key: "6",
-    assessmentId: "753",
-    assessmentResident: "Morris, Chet",
-    action: 5,
-    actionDate: "1/26/2020",
-    ard: "1/1/2020",
-    type: "Quarterly",
+    working: ["User 4"],
   },
   {
     key: "7",
@@ -87,6 +83,7 @@ const initialAssessments = [
     actionDate: "1/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
+    working: [],
   },
   {
     key: "8",
@@ -96,15 +93,17 @@ const initialAssessments = [
     actionDate: "1/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
+    working: [],
   },
   {
     key: "9",
     assessmentId: "753",
     assessmentResident: "Morris, Chet",
-    action: 5,
+    action: 2,
     actionDate: "1/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
+    working: [],
   },
   {
     key: "10",
@@ -114,6 +113,7 @@ const initialAssessments = [
     actionDate: "1/26/2020",
     ard: "1/1/2020",
     type: "Quarterly",
+    working: [],
   },
 ]
 
@@ -218,13 +218,6 @@ const columns = [
           </Button>
         )
       }
-      if (item.action === 5) {
-        return (
-          <Button type="danger" size="small">
-            Recall Working Copy
-          </Button>
-        )
-      }
     },
   },
 ]
@@ -250,6 +243,9 @@ export default () => {
         <Col span={14}>
           <PageHeader title="MDS Tasks" />
           <Tabs defaultActiveKey="1">
+            <TabPane tab="Past Due" key="2">
+              <pre>show past due assessments here</pre>
+            </TabPane>
             <TabPane tab="Current" key="1">
               <div style={{ padding: 10 }}>
                 <Row style={{ marginBottom: 4 }}>
@@ -295,13 +291,13 @@ export default () => {
                 >
                   Care Plan Due
                 </Button>
-                <Button
+                {/* <Button
                   type={assessmentFilter === 5 ? "primary" : "link"}
                   onClick={() => setAssessmentFilter(5)}
                   size="small"
                 >
                   Recall Working Copy
-                </Button>
+                </Button> */}
                 {assessmentFilter !== 0 && (
                   <Button
                     type="circle"
@@ -315,12 +311,21 @@ export default () => {
                 <Table
                   size="small"
                   dataSource={assessments}
+                  expandedRowRender={record => (
+                    <span>
+                      Active Working Copies:
+                      {record.working.length === 0
+                        ? "None"
+                        : record.working.map(user => (
+                            <Popconfirm title="Do you want to recall this working copy?">
+                              <Button size="small" style={{ margin: 4}}>{user}</Button>
+                            </Popconfirm>
+                          ))}
+                    </span>
+                  )}
                   columns={columns}
                 />
               </div>
-            </TabPane>
-            <TabPane tab="Past Due" key="2">
-              <pre>show past due assessments here</pre>
             </TabPane>
           </Tabs>
         </Col>
@@ -352,7 +357,6 @@ export default () => {
           <IpaTable />
           <SigChangTable />
         </Col>
-
       </Row>
     </Layout>
   )
