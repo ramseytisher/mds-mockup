@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import IpaTable from "../components/dashboard/ipa"
 import SigChangTable from "../components/dashboard/sig-change"
+import DashboardItem from "../components/dashboard/dashboard-item"
 
 import {
   Button,
@@ -241,7 +242,7 @@ export default () => {
     <Layout>
       <Row type="flex" justify="center" align="top">
         <Col span={14}>
-          <PageHeader title="MDS Tasks" />
+          <PageHeader title="MDS Assessment Tasks" />
           <Tabs defaultActiveKey="1">
             <TabPane tab="Past Due" key="2">
               <pre>show past due assessments here</pre>
@@ -318,7 +319,9 @@ export default () => {
                         ? "None"
                         : record.working.map(user => (
                             <Popconfirm title="Do you want to recall this working copy?">
-                              <Button size="small" style={{ margin: 4}}>{user}</Button>
+                              <Button size="small" style={{ margin: 4 }}>
+                                {user}
+                              </Button>
                             </Popconfirm>
                           ))}
                     </span>
@@ -330,32 +333,30 @@ export default () => {
           </Tabs>
         </Col>
         <Col span={10}>
-          <PageHeader title="MDS Information" />
+          <PageHeader title="Active MDS Assessments" />
           <Row type="flex" justify="center" gutter={[16, 16]}>
-            <Col>
-              <Progress
-                type="dashboard"
-                percent={14}
-                format={percent => `${percent} PPS`}
-              />
-            </Col>
-            <Col>
-              <Progress
-                type="dashboard"
-                percent={6}
-                format={percent => `${percent} OBRA`}
-              />
-            </Col>
-            <Col>
-              <Progress
-                type="dashboard"
-                percent={2}
-                format={percent => `${percent} Managed Care`}
-              />
-            </Col>
+            <DashboardItem label="PPS" value={14} />
+            <DashboardItem label="OBRA" value={6} />
+            <DashboardItem label="Managed Care" value={2} />
           </Row>
-          <IpaTable />
-          <SigChangTable />
+          <PageHeader title="MDS Intelligence Alerts" />
+          <Row type="flex" justify="center" gutter={[16, 16]}>
+            <DashboardItem label="IPA" value={5} details={<IpaTable />} />
+            <DashboardItem
+              label="Significant Change"
+              value={3}
+              details={<SigChangTable />}
+            />
+          </Row>
+          <PageHeader title="MDS Search Queries" />
+          <Row type="flex" justify="center" gutter={[16, 16]}>
+            <DashboardItem label="Custom Search Query 1" value={7} />
+            <DashboardItem label="Custom Search Query 2" value={52} />
+            <DashboardItem label="Custom Search Query 3" value={86} />
+            <DashboardItem label="Custom Search Query 4" value={18} />
+            <DashboardItem label="Custom Search Query 5" value={34} />
+            <DashboardItem label="Custom Search Query 6" value={85} />
+          </Row>
         </Col>
       </Row>
     </Layout>
