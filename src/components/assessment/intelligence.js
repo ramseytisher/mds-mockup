@@ -10,24 +10,28 @@ export default () => (
       percent={20}
       format={percent => `PT: TI`}
     />
+    <br/>
     <Progress
       type="dashboard"
       width={70}
       percent={20}
       format={percent => `OT: TI`}
     />
+    <br/>
     <Progress
       type="dashboard"
       width={70}
       percent={40}
       format={percent => `SLP: SA`}
     />
+    <br/>
     <Progress
       type="dashboard"
       width={70}
       percent={90}
       format={percent => `NTA: NF`}
     />
+    <br/>
     <Progress
       type="dashboard"
       width={70}
