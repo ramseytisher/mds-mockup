@@ -55,14 +55,14 @@ const rowSelection = {
   }),
 }
 
-export default ({ section }) => {
+export default ({ section, text }) => {
   const [open, setOpen] = useState(false)
 
   const getData = () => {
     switch(section) {
       case 'A': return dataA; break
       case 'C': return dataC; break
-      default: return dataC; break
+      default: return dataA; break
     }
   }
 
