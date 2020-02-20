@@ -18,6 +18,7 @@ import {
   Tooltip,
   DatePicker,
   Card,
+  Badge,
 } from "antd"
 
 const { Option } = Select
@@ -313,18 +314,20 @@ export default ({
                 <Tooltip title={<ImportTip />} placement="bottom">
                   {fieldData.sourceData.results.length > 0 ||
                   fieldData.sourceData.calculatedResponse ? (
-                    <Button
-                      type="primary"
-                      shape="circle"
-                      onClick={() => setActiveKey("1")}
-                      tabindex="-1"
-                      style={{ background: "#00A8E1", border: "none" }}
-                    >
-                      <Icon
-                        type="vertical-align-bottom"
-                        style={{ fontSize: "1.25rem" }}
-                      />
-                    </Button>
+                    <Badge dot offset={[-4, 2]}>
+                      <Button
+                        type="primary"
+                        shape="circle"
+                        onClick={() => setActiveKey("1")}
+                        tabindex="-1"
+                        style={{ background: "#00A8E1", border: "none" }}
+                      >
+                        <Icon
+                          type="vertical-align-bottom"
+                          style={{ fontSize: "1.25rem" }}
+                        />
+                      </Button>
+                    </Badge>
                   ) : (
                     <Button
                       type="dashed"

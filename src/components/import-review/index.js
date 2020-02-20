@@ -17,7 +17,7 @@ const columns = [
     render: text => <a>{text}</a>,
   },
   {
-    title: "Current Value",
+    title: "Current Field Value",
     dataIndex: "previous",
     render: (text, record) => (
       <>
@@ -31,7 +31,7 @@ const columns = [
     ),
   },
   {
-    title: "New Value",
+    title: "Value To Import",
     dataIndex: "import",
   },
   {

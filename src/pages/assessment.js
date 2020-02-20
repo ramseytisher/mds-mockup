@@ -30,19 +30,7 @@ export default () => {
           <Button style={{ margin: 2 }} icon="flag" />
           <Button style={{ margin: 2 }} icon="question-circle" />
           <Button style={{ margin: 2 }} icon="book" />
-          <Popconfirm
-            title="This will overwrite all values with imported data. Are you sure you want to proceed?"
-            onConfirm={() =>
-              message.success("You imported 45ish items to this MDS")
-            }
-            onCancel={() =>
-              message.error(
-                "Action Canceled: No items were imported to this MDS"
-              )
-            }
-          >
-            <Button icon="vertical-align-bottom">Import All</Button>
-          </Popconfirm>
+          <Button icon="vertical-align-bottom">Import All</Button>
         </Col>
         <Col>
           <Search
