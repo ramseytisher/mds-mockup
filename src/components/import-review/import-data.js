@@ -1,3 +1,52 @@
+export const importData = [
+  {
+    key: "1",
+    section: "B",
+    field: "B0100: Comatose",
+    previous: null,
+    previousUser: null,
+    import: "0. No",
+  },
+  {
+    key: "2",
+    section: "B",
+    field: "B0200: Ability to hear",
+    previous: null,
+    import: "1. Minimal difficulty",
+  },
+  {
+    key: "3",
+    section: "B",
+    field: "B0300: Hearing aid",
+    previous: null,
+    import: "error",
+  },
+  {
+    key: "4",
+    section: "B",
+    field: "B0600: Speech clarity",
+    previous: "0. Clear speech",
+    previousUser: "Ramsey Tisher",
+    import: "2. No speech",
+  },
+  {
+    key: "4",
+    section: "B",
+    field: "B0600: Speech clarity",
+    previous: "0. Clear speech",
+    previousUser: "Ramsey Tisher",
+    import: null,
+  },
+  {
+    key: "5",
+    section: "B",
+    field: "B0700: Makes Self Understood",
+    previous: null,
+    previousUser: null,
+    import: undefined
+  },
+]
+
 export const dataA = [
   {
     key: "1",

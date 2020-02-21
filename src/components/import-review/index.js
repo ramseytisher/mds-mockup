@@ -1,8 +1,18 @@
 import React, { useState } from "react"
 
-import { dataA, dataC } from "./import-data"
+import { dataA, dataC, importData } from "./import-data"
 
-import { Modal, Button, Table, Typography, Switch, Select, Row, Col } from "antd"
+import {
+  Modal,
+  Button,
+  Table,
+  Typography,
+  Switch,
+  Select,
+  Row,
+  Col,
+  Alert,
+} from "antd"
 const { Text } = Typography
 const { Option } = Select
 
@@ -15,24 +25,76 @@ const columns = [
   {
     title: "Current Value",
     dataIndex: "previous",
-    render: (text, record) => (
-      <>
-        <Text>{text}</Text>
-        <br />
-        <Text
-          style={{ fontSize: "80%" }}
-          disabled
-        >{`${record.previousUser}`}</Text>
-      </>
-    ),
+    render: (text, record) => {
+      return (
+        <>
+          <Text>{text}</Text>
+          <br />
+          <Text
+            style={{ fontSize: "80%" }}
+            disabled
+          >{`${record.previousUser}`}</Text>
+        </>
+      )
+    },
   },
   {
     title: "Import Value",
     dataIndex: "import",
+    render: (text, record) => {
+      if (record.import === "error") {
+        return (
+          <Alert
+            message="Issue Importing Data"
+            type="warning"
+            description="There was an issue trying to import this value, contact support if it continues."
+            showIcon
+          />
+        )
+      } else if (record.import === null) {
+        return (
+          <Alert
+            message="No Import Value"
+            type="info"
+            description="No import value found"
+            showIcon
+          />
+        )
+      } else if (record.import === undefined) {
+        return (
+          <Alert
+            message="No Import Setup"
+            type="info"
+            description="There is no import configured for this field"
+            showIcon
+          />
+        )
+      } else {
+        return (
+          <Alert
+            message="Import Value Found"
+            type="success"
+            description={text}
+            showIcon
+          />
+        )
+      }
+    },
   },
   {
     title: "View Details",
-    render: () => <Button icon="search">View Details</Button>,
+    render: (text, record) => (
+      <Button
+        icon="search"
+        disabled={
+          record.import === null ||
+          record.import === "error" ||
+          record.import === undefined
+        }
+      >
+        View Details
+      </Button>
+    ),
   },
 ]
 
@@ -63,7 +125,7 @@ export default ({ section, text }) => {
         return dataC
         break
       default:
-        return dataA
+        return importData
         break
     }
   }
@@ -86,12 +148,19 @@ export default ({ section, text }) => {
           </Button>,
         ]}
       >
-        <Row type="flex" align="middle" gutter={4} style={{ marginBottom: 10}} justify="end">
+        <Row
+          type="flex"
+          align="middle"
+          gutter={4}
+          style={{ marginBottom: 10 }}
+          justify="end"
+        >
           <Col> Show:</Col>
           <Col>
             <Select defaultValue="All" style={{ width: 200 }}>
               <Option value="all">All</Option>
               <Option value="empty">Current Value Empty</Option>
+              <Option value="found">Import Value Found</Option>
               <Option value="different">Import Value Different</Option>
             </Select>
           </Col>
