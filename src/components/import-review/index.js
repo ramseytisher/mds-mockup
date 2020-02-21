@@ -46,7 +46,7 @@ const columns = [
         return (
           <Alert
             message="Issue Importing Data"
-            type="warning"
+            type="error"
             description="There was an issue trying to import this value, contact support if it continues."
             showIcon
           />
@@ -54,18 +54,16 @@ const columns = [
       } else if (record.import === null) {
         return (
           <Alert
-            message="No Import Value"
+            message="No Import Value Found"
             type="info"
-            description="No import value found"
             showIcon
           />
         )
       } else if (record.import === undefined) {
         return (
           <Alert
-            message="No Import Setup"
+            message="No Import Configured"
             type="info"
-            description="There is no import configured for this field"
             showIcon
           />
         )
