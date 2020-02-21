@@ -1,14 +1,10 @@
 import React, { useState } from "react"
 
-import { dataA, dataC } from './import-data'
+import { dataA, dataC } from "./import-data"
 
-import {
-  Modal,
-  Button,
-  Table,
-  Typography,
-} from "antd"
+import { Modal, Button, Table, Typography, Switch, Select, Row, Col } from "antd"
 const { Text } = Typography
+const { Option } = Select
 
 const columns = [
   {
@@ -17,7 +13,7 @@ const columns = [
     render: text => <a>{text}</a>,
   },
   {
-    title: "Current Field Value",
+    title: "Current Value",
     dataIndex: "previous",
     render: (text, record) => (
       <>
@@ -31,7 +27,7 @@ const columns = [
     ),
   },
   {
-    title: "Value To Import",
+    title: "Import Value",
     dataIndex: "import",
   },
   {
@@ -59,10 +55,16 @@ export default ({ section, text }) => {
   const [open, setOpen] = useState(false)
 
   const getData = () => {
-    switch(section) {
-      case 'A': return dataA; break
-      case 'C': return dataC; break
-      default: return dataA; break
+    switch (section) {
+      case "A":
+        return dataA
+        break
+      case "C":
+        return dataC
+        break
+      default:
+        return dataA
+        break
     }
   }
 
@@ -84,6 +86,16 @@ export default ({ section, text }) => {
           </Button>,
         ]}
       >
+        <Row type="flex" align="middle" gutter={4} style={{ marginBottom: 10}} justify="end">
+          <Col> Show:</Col>
+          <Col>
+            <Select defaultValue="All" style={{ width: 200 }}>
+              <Option value="all">All</Option>
+              <Option value="empty">Current Value Empty</Option>
+              <Option value="different">Import Value Different</Option>
+            </Select>
+          </Col>
+        </Row>
         <Table
           rowSelection={rowSelection}
           columns={columns}
