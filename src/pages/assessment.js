@@ -30,7 +30,7 @@ export default () => {
           <Button style={{ margin: 2 }} icon="flag" />
           <Button style={{ margin: 2 }} icon="question-circle" />
           <Button style={{ margin: 2 }} icon="book" />
-          <ImportReview section="all"/>
+          <ImportReview section={null}/>
         </Col>
         <Col>
           <Search

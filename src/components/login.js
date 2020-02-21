@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import { Authenticator, SignIn, SignUp } from "aws-amplify-react"
 import { Link } from "gatsby"
 

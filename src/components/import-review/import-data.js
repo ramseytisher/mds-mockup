@@ -30,7 +30,7 @@ export const importData = [
     import: "2. No speech",
   },
   {
-    key: "4",
+    key: "5",
     section: "B",
     field: "B0600: Speech clarity",
     previous: "0. Clear speech",
@@ -38,12 +38,28 @@ export const importData = [
     import: null,
   },
   {
-    key: "5",
+    key: "6",
     section: "B",
     field: "B0700: Makes Self Understood",
     previous: null,
     previousUser: null,
     import: undefined
+  },
+  {
+    key: "7",
+    section: "B",
+    field: "B0800: Ability To Understand Others",
+    previous: '0. Understands',
+    previousUser: 'Ramsey Tisher',
+    import: '0. Understands'
+  },
+  {
+    key: "8",
+    section: "C",
+    field: "C0100: ?",
+    previous: null,
+    previousUser: null,
+    import: '0. Understands'
   },
 ]
 

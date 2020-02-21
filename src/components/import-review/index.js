@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { dataA, dataC, importData } from "./import-data"
 
@@ -52,21 +52,9 @@ const columns = [
           />
         )
       } else if (record.import === null) {
-        return (
-          <Alert
-            message="No Import Value Found"
-            type="info"
-            showIcon
-          />
-        )
+        return <Alert message="No Import Value Found" type="info" showIcon />
       } else if (record.import === undefined) {
-        return (
-          <Alert
-            message="No Import Configured"
-            type="info"
-            showIcon
-          />
-        )
+        return <Alert message="No Import Configured" type="info" showIcon />
       } else {
         return (
           <Alert
@@ -113,24 +101,47 @@ const rowSelection = {
 
 export default ({ section, text }) => {
   const [open, setOpen] = useState(false)
+  const [filter, setFilter] = useState(null)
+  const [filterSection, setFilterSection] = useState(null)
+  const [data, setData] = useState(importData)
 
-  const getData = () => {
-    switch (section) {
-      case "A":
-        return dataA
-        break
-      case "C":
-        return dataC
-        break
-      default:
-        return importData
-        break
-    }
+  useEffect(() => {
+    const filtered = importData.filter(item => {
+      switch (filter) {
+        case "all":
+          return item
+        case "empty":
+          return item.previous === null
+        case "different":
+          return item.previous !== item.import
+        case "found":
+          return !(
+            item.import === null ||
+            item.import === undefined ||
+            item.import === "error"
+          )
+        default:
+          return item
+      }
+    })
+    setData(filtered.filter(item => {
+      if (filterSection) {
+        return item.section === filterSection
+      } else {
+        return item
+      }
+    }))
+
+  }, [filter, filterSection])
+
+  const handleSelect = () => {
+    setOpen(true)
+    setFilterSection(section)
   }
 
   return (
     <>
-      <Button icon="vertical-align-bottom" onClick={() => setOpen(true)} />
+      <Button icon="vertical-align-bottom" onClick={handleSelect} />
       <Modal
         title="Import Review"
         visible={open}
@@ -155,7 +166,7 @@ export default ({ section, text }) => {
         >
           <Col> Show:</Col>
           <Col>
-            <Select defaultValue="All" style={{ width: 200 }}>
+            <Select defaultValue="All" style={{ width: 200 }} onChange={value => setFilter(value)}>
               <Option value="all">All</Option>
               <Option value="empty">Current Value Empty</Option>
               <Option value="found">Import Value Found</Option>
@@ -166,7 +177,7 @@ export default ({ section, text }) => {
         <Table
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={getData()}
+          dataSource={data}
           size="small"
         />{" "}
       </Modal>
