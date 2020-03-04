@@ -337,14 +337,8 @@ export default () => {
               <MdsCalendar assessments={initialAssessments} />
             </TabPane>
           </Tabs> */}
-          <PageHeader title="Active MDS Assessments" />
-          <Row type="flex" justify="center" gutter={[16, 16]}>
-            <ActiveAssessments />
-          </Row>
-          <PageHeader title="MDS Search Queries" />
-          <Row type="flex" justify="center" gutter={[16, 16]}>
-            <SearchQuery />
-          </Row>
+          <ActiveAssessments />
+          <SearchQuery />
         </Col>
         <Col span={12}>
           <IpaTable />
