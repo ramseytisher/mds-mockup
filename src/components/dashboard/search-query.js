@@ -8,12 +8,12 @@ import _ from "lodash"
 //   VictoryLegend,
 //   VictoryTheme,
 // } from "victory"
-import { Card, Progress, Button } from "antd"
+import { Card, Progress, Button, Row, Col } from "antd"
 
 const data = [
-  { query: "Query 1", assessments: 4, residents: 3 },
-  { query: "Query 2", assessments: 12, residents: 9 },
-  { query: "Query 3", assessments: 8, residents: 6 },
+  { query: "I0020B Equals Diabetes", assessments: 4, residents: 3 },
+  { query: "Fall Occurred", assessments: 12, residents: 9 },
+  { query: "Active Wound", assessments: 8, residents: 6 },
   { query: "Query 4", assessments: 32, residents: 25 },
   { query: "Query 5", assessments: 21, residents: 18 },
 ]
@@ -26,22 +26,28 @@ export default () => {
     <Card
       title={`MDS Search Queries By ${byResident ? "Resident" : "Assessment"}`}
       extra={<Button onClick={() => setByResident(!byResident)}>Toggle</Button>}
+      bordered={false}
     >
       {data.map(({ query, assessments, residents }) => {
-        const percentAssessments = assessments / maxAssessments.assessments * 100
-        const percentResidents = residents / maxResidents.residents * 100
+        const percentAssessments =
+          (assessments / maxAssessments.assessments) * 100
+        const percentResidents = (residents / maxResidents.residents) * 100
 
         return (
-          <span>
-          {query}:{` `}
-          <Progress
-            percent={byResident ? percentResidents : percentAssessments}
-            strokeWidth={20}
-            format={byResident ? () => `${residents}` : () => `${assessments}`}
-            status="active"
-          />
-          </span>
-          
+          <Row justify="space-around">
+            <Col span={8}>{query}</Col>
+            <Col span={16}>
+              <Progress
+                percent={byResident ? percentResidents : percentAssessments}
+                strokeWidth={20}
+                format={
+                  byResident ? () => `${residents}` : () => `${assessments}`
+                }
+                status="active"
+                style={{ padding: 10 }}
+              />
+            </Col>
+          </Row>
         )
       })}
     </Card>

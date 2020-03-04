@@ -28,6 +28,7 @@ export default () => {
   return (
     <Card
       title="Active MDS Assessments"
+      bordered={false}
     //   extra={
     //     <Button onClick={() => setChartVersion(!chartVersion)}>
     //       Toggle{max.assessments}
