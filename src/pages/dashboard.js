@@ -5,6 +5,8 @@ import IpaTable from "../components/dashboard/ipa"
 import SigChangTable from "../components/dashboard/sig-change"
 import DashboardItem from "../components/dashboard/dashboard-item"
 import MdsCalendar from "../components/dashboard/mds-calendar"
+import ActiveAssessments from "../components/dashboard/active-assessments"
+import SearchQuery from "../components/dashboard/search-query"
 
 import {
   Button,
@@ -242,8 +244,8 @@ export default () => {
   return (
     <Layout>
       <Row type="flex" justify="center" align="top">
-        <Col span={16}>
-          <PageHeader title="MDS Assessment Tasks" />
+        <Col span={12}>
+          {/* <PageHeader title="MDS Assessment Tasks" />
           <Tabs defaultActiveKey="1">
             <TabPane tab="Past Due" key="2">
               <pre>show past due assessments here</pre>
@@ -299,7 +301,7 @@ export default () => {
                   size="small"
                 >
                   Recall Working Copy
-                </Button> */}
+                </Button> 
                 {assessmentFilter !== 0 && (
                   <Button
                     type="circle"
@@ -334,33 +336,19 @@ export default () => {
             <TabPane tab="Calendar" key="3">
               <MdsCalendar assessments={initialAssessments} />
             </TabPane>
-          </Tabs>
-        </Col>
-        <Col span={8}>
+          </Tabs> */}
           <PageHeader title="Active MDS Assessments" />
           <Row type="flex" justify="center" gutter={[16, 16]}>
-            <DashboardItem label="PPS" value={14} />
-            <DashboardItem label="OBRA" value={6} />
-            <DashboardItem label="Managed Care" value={2} />
-          </Row>
-          <PageHeader title="MDS Intelligence Alerts" />
-          <Row type="flex" justify="center" gutter={[16, 16]}>
-            <DashboardItem label="IPA" value={5} details={<IpaTable />} />
-            <DashboardItem
-              label="Significant Change"
-              value={3}
-              details={<SigChangTable />}
-            />
+            <ActiveAssessments />
           </Row>
           <PageHeader title="MDS Search Queries" />
           <Row type="flex" justify="center" gutter={[16, 16]}>
-            <DashboardItem label="Custom Search Query 1" value={7} />
-            <DashboardItem label="Custom Search Query 2" value={52} />
-            <DashboardItem label="Custom Search Query 3" value={86} />
-            <DashboardItem label="Custom Search Query 4" value={18} />
-            <DashboardItem label="Custom Search Query 5" value={34} />
-            <DashboardItem label="Custom Search Query 6" value={85} />
+            <SearchQuery />
           </Row>
+        </Col>
+        <Col span={12}>
+          <IpaTable />
+          <SigChangTable />
         </Col>
       </Row>
     </Layout>

@@ -1,6 +1,9 @@
 import React from "react"
 
 import { Table, Tag, Collapse, Empty } from "antd"
+
+import ReactMarkdown from 'react-markdown'
+
 const { Panel } = Collapse
 
 const columns = [
@@ -45,9 +48,9 @@ export default ({ detail }) => {
   }
 
   return (
-    <Collapse>
+    <Collapse defaultActiveKey={['1', '6']}>
       {results.length > 0 && (
-        <Panel header="PowerChart Results">
+        <Panel header="PowerChart Results" key={1}>
           <Table
             columns={columns}
             dataSource={results}
@@ -58,13 +61,13 @@ export default ({ detail }) => {
       )}
 
       {registration && (
-        <Panel header="Millennium Registration">
+        <Panel header="Millennium Registration" key={2}>
           <pre>{JSON.stringify(registration, null, 2)}</pre>
         </Panel>
       )}
 
       {diagnosis.length > 0 && (
-        <Panel header="PowerChart Diagnosis">
+        <Panel header="PowerChart Diagnosis" key={3}>
           {diagnosis.map(item => (
             <Tag color="#5C6770">{item}</Tag>
           ))}
@@ -72,7 +75,7 @@ export default ({ detail }) => {
       )}
 
       {procedure.length > 0 && (
-        <Panel header="PowerChart Procedures">
+        <Panel header="PowerChart Procedures" key={4}>
           {procedure.map(item => (
             <Tag color="#5C6770">{item}</Tag>
           ))}
@@ -80,14 +83,15 @@ export default ({ detail }) => {
       )}
 
       {rehabOptimaTherapy.length > 0 && (
-        <Panel header="Rehab Optima Therapy">
+        <Panel header="Rehab Optima Therapy" key={5}>
           <pre>{JSON.stringify(rehabOptimaTherapy, null, 2)}</pre>
         </Panel>
       )}
 
+      {/* react-markdown: https://github.com/rexxars/react-markdown */}
       {calculationDetail && (
-        <Panel header="Calculation Detail">
-          <p>{calculationDetail}</p>
+        <Panel header="Calculation Detail" key={6}>
+          <ReactMarkdown source={calculationDetail} />
         </Panel>
       )}
     </Collapse>

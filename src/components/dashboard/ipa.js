@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react"
+import _ from "lodash"
+import { mockAlerts } from "../../data/mock-alerts"
+import AlertTag from "../dashboard/alert-tag"
 
 import {
   Typography,
@@ -13,47 +16,19 @@ import {
   Slider,
   Collapse,
   PageHeader,
-  Modal
+  Modal,
+  Progress,
+  Tooltip,
+  Popconfirm,
+  message
 } from "antd"
 
 const { Panel } = Collapse
 
-const initialAlerts = [
-  {
-    key: "1",
-    resident: "Smith, John",
-    difference: 35,
-    found: "1/22/2020",
-  },
-  {
-    key: "2",
-    resident: "Smith, John",
-    difference: 25,
-    found: "1/20/2020",
-  },
-  {
-    key: "3",
-    resident: "Smith, John",
-    difference: 85,
-    found: "1/22/2020",
-  },
-  {
-    key: "4",
-    resident: "Smith, John",
-    difference: 75,
-    found: "1/21/2020",
-  },
-  {
-    key: "5",
-    resident: "Smith, John",
-    difference: 5,
-    found: "1/21/2020",
-  },
-]
-
 export default () => {
   const [slider, setSlider] = useState(25)
-  const [alerts, setAlerts] = useState(initialAlerts)
+  const [alerts, setAlerts] = useState(mockAlerts)
+  const [detail, setDetail] = useState(null)
   const [hidden, setHidden] = useState([])
   const [visible, setVisible] = useState(false)
 
@@ -64,65 +39,122 @@ export default () => {
       key: "resident",
     },
     {
-      title: "Found",
+      title: "Last Alert",
+      key: "found",
+      dataIndex: "found",
+    },
+    // {
+    //   title: "Difference",
+    //   key: "difference",
+    //   dataIndex: "difference",
+    //   sorter: (a, b) => a.difference - b.difference,
+    //   sortDirection: ["descend"],
+    // },
+    // {
+    //   title: "Actions",
+    //   key: "actions",
+    //   render: item => {
+    //     return (
+    //       <span>
+    //         <Button
+    //           type="link"
+    //           onClick={() => setHidden({ ...hidden, [item.key]: item })}
+    //         >
+    //           Ignore
+    //         </Button>
+    //         <Button type="primary" onClick={() => setVisible(true)}>Create</Button>
+    //       </span>
+    //     )
+    //   },
+    // },
+  ]
+
+  const detailColumns = [
+    {
+      title: "Suggested Date",
       key: "found",
       dataIndex: "found",
     },
     {
-      title: "Difference",
-      key: "difference",
-      dataIndex: "difference",
-      sorter: (a, b) => a.difference - b.difference,
-      sortDirection: ["descend"],
+      title: "Alerts",
+      width: "50%",
+      key: "alerts",
+      render: item => {
+        const tags = item.alerts
+        return tags.map(tag => <AlertTag text={tag} />)
+      },
+    },
+    {
+      title: "Data Percentage",
+      key: "percent",
+      render: item => {
+        return (
+          <Tooltip title="Amount of PDPM items where clinical data was identified">
+            <Progress percent={item.percent} />
+          </Tooltip>
+        )
+      },
     },
     {
       title: "Actions",
-      key: "actions",
-      render: item => {
-        return (
-          <span>
-            <Button
-              type="link"
-              onClick={() => setHidden({ ...hidden, [item.key]: item })}
-            >
-              Ignore
-            </Button>
-            <Button type="primary" onClick={() => setVisible(true)}>Create</Button>
-          </span>
-        )
-      },
+      render: (text, record) => (
+        <Popconfirm
+          title={`Are you sure you want to start an IPA assessment for ${record.found}?`}
+          okText="Yes"
+          cancelText="No"
+          onConfirm={record => {
+            setDetail(null)
+            message.success('This would open the IPA Assessment with ARD set')}
+          }
+        >
+          <Button>Start Assessment</Button>
+        </Popconfirm>
+      ),
     },
   ]
 
   useEffect(() => {
-    const filtered = alerts.filter(alert => {
-      return !hidden[alert.key]
-    })
-    setAlerts(filtered)
+    // const filtered = alerts.filter(alert => {
+    //   return !hidden[alert.key]
+    // })
+    // setAlerts(filtered)
   }, [hidden])
 
   return (
     <>
       <PageHeader title="Suggested Interim Payment Assessments" />
-      <Slider
+      {/* <Slider
         toolTipVisible
         value={slider}
         onChange={value => setSlider(value)}
-      />
+      /> */}
       <Table
         size="small"
+        showHeader={false}
         columns={columns}
-        dataSource={alerts.filter(item => {
-          return item.difference < slider
-        })}
+        dataSource={_.uniqBy(alerts, "resident")}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: event => {
+              setDetail(record.resident)
+            },
+          }
+        }}
       />
       <Modal
-        title="Suggested IPA Details"
-        visible={visible}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
+        title={`Suggested IPA Details For: ${detail}`}
+        width="90vw"
+        visible={detail !== null}
+        onOk={() => setDetail(null)}
+        onCancel={() => setDetail(null)}
       >
-        <p>something awesome would be said here  .. </p>
+        <Table
+          size="small"
+          columns={detailColumns}
+          dataSource={alerts.filter(alert => {
+            return alert.resident === detail
+          })}
+        />
       </Modal>
     </>
   )
