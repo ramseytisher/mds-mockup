@@ -8,7 +8,8 @@ import _ from "lodash"
 //   VictoryLegend,
 //   VictoryTheme,
 // } from "victory"
-import { Card, Progress, Button, Row, Col } from "antd"
+import { Card, Progress, Button, Row, Col, Modal, Select, message } from "antd"
+const { Option } = Select
 
 const data = [
   { query: "I0020B Equals Diabetes", assessments: 4, residents: 3 },
@@ -22,13 +23,37 @@ const maxResidents = _.maxBy(data, "residents")
 
 export default () => {
   const [byResident, setByResident] = useState(false)
+  const [addQuery, setAddQuery] = useState(false)
+  const [selectedQueries, setSelectedQueries] = useState(data)
+
   return (
     <Card
       title={`MDS Search Queries By ${byResident ? "Resident" : "Assessment"}`}
-      extra={<Button onClick={() => setByResident(!byResident)}>Toggle</Button>}
+      extra={
+        <>
+          <Button onClick={() => setAddQuery(true)}>Add Query</Button>
+          <Modal
+            title="Add MDS Search Query"
+            visible={addQuery}
+            onOk={() => setAddQuery(false)}
+            onCancel={() => setAddQuery(false)}
+          >
+            <Select
+              mode="multiple"
+              style={{ width: "100%" }}
+              placeholder="Select query"
+              onChange={() => message.info('Not wired up yet')}
+            >
+              <Option key="1">More Option 1</Option>
+              <Option key="2">More Option 2</Option>
+            </Select>
+          </Modal>
+          <Button onClick={() => setByResident(!byResident)}>Toggle</Button>
+        </>
+      }
       bordered={false}
     >
-      {data.map(({ query, assessments, residents }) => {
+      {selectedQueries.map(({ query, assessments, residents }) => {
         const percentAssessments =
           (assessments / maxAssessments.assessments) * 100
         const percentResidents = (residents / maxResidents.residents) * 100
