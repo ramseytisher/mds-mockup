@@ -127,13 +127,7 @@ export default ({ text }) => {
           </p>
         )
       default:
-        return (
-          <Result
-            status="500"
-            title="Oops"
-            subTitle="Not sure what happened here"
-          />
-        )
+        return null
     }
   }
 

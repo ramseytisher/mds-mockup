@@ -20,7 +20,8 @@ import {
   Progress,
   Tooltip,
   Popconfirm,
-  message
+  message,
+  Alert,
 } from "antd"
 
 const { Panel } = Collapse
@@ -78,9 +79,9 @@ export default () => {
     {
       title: "Alerts",
       width: "50%",
-      key: "alerts",
+      key: "ipaAlerts",
       render: item => {
-        const tags = item.alerts
+        const tags = item.ipaAlerts
         return tags.map(tag => <AlertTag text={tag} />)
       },
     },
@@ -104,8 +105,8 @@ export default () => {
           cancelText="No"
           onConfirm={record => {
             setDetail(null)
-            message.success('This would open the IPA Assessment with ARD set')}
-          }
+            message.success("This would open the IPA Assessment with ARD set")
+          }}
         >
           <Button>Start Assessment</Button>
         </Popconfirm>
@@ -148,6 +149,14 @@ export default () => {
         onOk={() => setDetail(null)}
         onCancel={() => setDetail(null)}
       >
+        <Alert
+          description={`The Interim Payment Assessment (IPA) is an optional
+assessment that may be completed by providers in order to report a change in the
+resident’s PDPM classification.`}
+          type="info"
+          showIcon
+          style={{ margin: 10 }}
+        />
         <Table
           size="small"
           columns={detailColumns}

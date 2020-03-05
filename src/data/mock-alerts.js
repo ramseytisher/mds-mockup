@@ -4,7 +4,7 @@ export const mockAlerts = [
     resident: "Tisher, Ramsey",
     difference: 35,
     found: "3/2/2020",
-    alerts: [
+    ipaAlerts: [
       "Primary Diagnosis Change",
       "PT/OT Functional Score Change",
       "PT/OT Clinical Category Change",
@@ -17,6 +17,23 @@ export const mockAlerts = [
       "Nursing Functional Score Change",
       "Nursing Group Change",
     ],
+    sigChangeAlerts: [
+      "Non-Hospice > Hospice",
+      "Hospice > Non-Hospice",
+      "5% Weight Increase Last 30 Days",
+      "5% Weight Decrease Last 30 Days",
+      "10% Weight Increase Last 6 Months",
+      "10% Weight Decrease Last 6 Months",
+      "Decision Making Improvement",
+      "Decision Making Decline",
+      "Presense of Resident Mood Items Not Previously Reported",
+      "ADL Decline",
+      "ADL Improvement",
+      "Increased Incontinence Pattern",
+      "Decreased Incontinence Pattern",
+      "New Pressure Ulcer",
+      "Restraints Used",
+    ],
     percent: 88,
   },
   {
@@ -24,7 +41,8 @@ export const mockAlerts = [
     resident: "Smith, John",
     difference: 25,
     found: "3/2/2020",
-    alerts: ["SLP Comorbidities Change", "Nursing Functional Score Change"],
+    ipaAlerts: ["SLP Comorbidities Change", "Nursing Functional Score Change"],
+    sigChangeAlerts: [],
     percent: 67,
   },
   {
@@ -32,7 +50,8 @@ export const mockAlerts = [
     resident: "Miller, Robin",
     difference: 85,
     found: "3/1/2020",
-    alerts: ["Primary Diagnosis Change"],
+    ipaAlerts: ["Primary Diagnosis Change"],
+    sigChangeAlerts: [],
     percent: 60,
   },
   {
@@ -40,7 +59,8 @@ export const mockAlerts = [
     resident: "Smith, John",
     difference: 75,
     found: "2/29/2020",
-    alerts: ["NTA Score Change"],
+    ipaAlerts: ["NTA Score Change"],
+    sigChangeAlerts: [],
     percent: 52,
   },
   {
@@ -48,7 +68,8 @@ export const mockAlerts = [
     resident: "Abner, Abby",
     difference: 5,
     found: "2/28/2020",
-    alerts: ["PT/OT Functional Score Change"],
+    ipaAlerts: ["PT/OT Functional Score Change"],
+    sigChangeAlerts: [],
     percent: 34,
   },
 ]

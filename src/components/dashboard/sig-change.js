@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react"
+import _ from "lodash"
+import { mockAlerts } from "../../data/mock-alerts"
+import AlertTag from "../dashboard/alert-tag"
 
 import {
   Typography,
@@ -11,33 +14,22 @@ import {
   Icon,
   Table,
   Slider,
+  Collapse,
   PageHeader,
-  Modal
+  Modal,
+  Progress,
+  Tooltip,
+  Popconfirm,
+  message,
+  Alert,
 } from "antd"
 
-const initialAlerts = [
-  {
-    key: "1",
-    resident: "Smith, John",
-    difference: 4,
-    found: "1/22/2020",
-  },
-  {
-    key: "2",
-    resident: "Jones, Michael",
-    difference: 2,
-    found: "1/21/2020",
-  },
-  {
-    key: "3",
-    resident: "Doe, Jane",
-    difference: 3,
-    found: "1/20/2020",
-  },
-]
+const { Panel } = Collapse
 
 export default () => {
-  const [alerts, setAlerts] = useState(initialAlerts)
+  const [slider, setSlider] = useState(25)
+  const [alerts, setAlerts] = useState(mockAlerts)
+  const [detail, setDetail] = useState(null)
   const [hidden, setHidden] = useState([])
   const [visible, setVisible] = useState(false)
 
@@ -48,56 +40,139 @@ export default () => {
       key: "resident",
     },
     {
-      title: "Found",
+      title: "Indicators Found",
+      dataIndex: "sigChangeAlerts",
+      render: item => <span>{item.length}</span>,
+    },
+    {
+      title: "Last Alert",
+      key: "found",
+      dataIndex: "found",
+    },
+    // {
+    //   title: "Difference",
+    //   key: "difference",
+    //   dataIndex: "difference",
+    //   sorter: (a, b) => a.difference - b.difference,
+    //   sortDirection: ["descend"],
+    // },
+    // {
+    //   title: "Actions",
+    //   key: "actions",
+    //   render: item => {
+    //     return (
+    //       <span>
+    //         <Button
+    //           type="link"
+    //           onClick={() => setHidden({ ...hidden, [item.key]: item })}
+    //         >
+    //           Ignore
+    //         </Button>
+    //         <Button type="primary" onClick={() => setVisible(true)}>Create</Button>
+    //       </span>
+    //     )
+    //   },
+    // },
+  ]
+
+  const detailColumns = [
+    {
+      title: "Suggested Date",
       key: "found",
       dataIndex: "found",
     },
     {
-      title: "Difference",
-      key: "difference",
-      dataIndex: "difference",
-      sorter: (a, b) => a.difference - b.difference,
-      sortDirection: ["descend"],
+      title: "Alerts",
+      width: "50%",
+      key: "sigChangeAlerts",
+      render: item => {
+        const tags = item.sigChangeAlerts
+        return tags.map(tag => <AlertTag text={tag} />)
+      },
     },
+    // {
+    //   title: "Data Percentage",
+    //   key: "percent",
+    //   render: item => {
+    //     return (
+    //       <Tooltip title="Amount of PDPM items where clinical data was identified">
+    //         <Progress percent={item.percent} />
+    //       </Tooltip>
+    //     )
+    //   },
+    // },
     {
       title: "Actions",
-      key: "actions",
-      render: item => {
-        return (
-          <span>
-            <Button
-              type="link"
-              onClick={() => setHidden({ ...hidden, [item.key]: item })}
-            >
-              Ignore
-            </Button>
-            <Button type="primary" onClick={() => setVisible(true)}>Create</Button>
-          </span>
-        )
-      },
+      render: (text, record) => (
+        <Popconfirm
+          title={`Are you sure you want to start an Significant Change assessment for ${record.found}?`}
+          okText="Yes"
+          cancelText="No"
+          onConfirm={record => {
+            setDetail(null)
+            message.success("This would open the Significant Change Assessment with ARD set")
+          }}
+        >
+          <Button>Start Assessment</Button>
+        </Popconfirm>
+      ),
     },
   ]
 
   useEffect(() => {
-    const filtered = alerts.filter(alert => {
-      return !hidden[alert.key]
-    })
-    setAlerts(filtered)
+    // const filtered = alerts.filter(alert => {
+    //   return !hidden[alert.key]
+    // })
+    // setAlerts(filtered)
   }, [hidden])
 
   return (
     <>
-      <PageHeader title="Suggested Significant Change Assessments" />
-      <Result type="404" title="Under Construction" subTitle="Most likely will be similiar to IPA" />
-      {/* <Table size="small" columns={columns} dataSource={alerts} />
+      <PageHeader title="Suggested Significant Change Assessment" />
+      {/* <Slider
+        toolTipVisible
+        value={slider}
+        onChange={value => setSlider(value)}
+      /> */}
+      <Table
+        size="small"
+        showHeader={true}
+        columns={columns}
+        dataSource={_.uniqBy(alerts, "resident")}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: event => {
+              setDetail(record.resident)
+            },
+          }
+        }}
+      />
       <Modal
-        title="Suggested IPA Details"
-        visible={visible}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
+        title={`Suggested Signficant Change Details For: ${detail}`}
+        width="90vw"
+        visible={detail !== null}
+        onOk={() => setDetail(null)}
+        onCancel={() => setDetail(null)}
       >
-        <p>something awesome would be said here .. </p>
-      </Modal> */}
+        <>
+          <Alert
+            description={`The final decision regarding what constitutes a significant change in status must be based upon
+                the judgment of the IDT. MDS assessments are not required for minor or temporary variations in
+                resident status - in these cases, the resident’s condition is expected to return to baseline within 2
+                weeks`}
+            type="info"
+            showIcon
+            style={{ margin: 10 }}
+          />
+          <Table
+            size="small"
+            columns={detailColumns}
+            dataSource={alerts.filter(alert => {
+              return alert.resident === detail
+            })}
+          />
+        </>
+      </Modal>
     </>
   )
 }
