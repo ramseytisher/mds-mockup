@@ -29,11 +29,13 @@ export default () => {
     <Card
       title="Active MDS Assessments"
       bordered={false}
-    //   extra={
-    //     <Button onClick={() => setChartVersion(!chartVersion)}>
-    //       Toggle{max.assessments}
-    //     </Button>
-    //   }
+      style={{ padding: 10 }}
+
+      //   extra={
+      //     <Button onClick={() => setChartVersion(!chartVersion)}>
+      //       Toggle{max.assessments}
+      //     </Button>
+      //   }
     >
       {chartVersion ? (
         <>
@@ -61,8 +63,8 @@ export default () => {
         </>
       ) : (
         <div style={{ padding: 30 }}>
-          {data.map(({assessments, type}) => {
-            const percent = assessments/max.assessments * 100
+          {data.map(({ assessments, type }) => {
+            const percent = (assessments / max.assessments) * 100
             return (
               <Progress
                 percent={percent}
@@ -70,7 +72,7 @@ export default () => {
                 steps={max.assessments}
                 format={() => `${assessments} - ${type}`}
                 status="active"
-                style={{ padding: 10, width: '75%' }}
+                style={{ padding: 10, width: "75%" }}
               />
             )
           })}

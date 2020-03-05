@@ -8,72 +8,125 @@ import _ from "lodash"
 //   VictoryLegend,
 //   VictoryTheme,
 // } from "victory"
-import { Card, Progress, Button, Row, Col, Modal, Select, message } from "antd"
+import {
+  Card,
+  Progress,
+  Button,
+  Row,
+  Col,
+  Modal,
+  Select,
+  message,
+  Checkbox,
+} from "antd"
 const { Option } = Select
 
-const data = [
-  { query: "I0020B Equals Diabetes", assessments: 4, residents: 3 },
-  { query: "Fall Occurred", assessments: 12, residents: 9 },
-  { query: "Active Wound", assessments: 8, residents: 6 },
-  { query: "Query 4", assessments: 32, residents: 25 },
-  { query: "Query 5", assessments: 21, residents: 18 },
+const initialData = [
+  {
+    query: "Psychotropic Drug Used Last 7 Days & Fall In Last Month",
+    assessments: 1,
+    residents: 1,
+    selected: false,
+  },
+  {
+    query: "Psychotropic Drug Use & No Gradual Dose Reduction",
+    assessments: 2,
+    residents: 1,
+    selected: true,
+  },
+  {
+    query: "Psychotropic Drug Use & No Supportive Diagnosis",
+    assessments: 1,
+    residents: 1,
+    selected: false,
+  },
+  {
+    query: "Indwelling Catheter & No Supportive Diagnosis",
+    assessments: 4,
+    residents: 4,
+    selected: false,
+  },
+  {
+    query: "Indwelling Catheter & UTI",
+    assessments: 2,
+    residents: 1,
+    selected: true,
+  },
 ]
-const maxAssessments = _.maxBy(data, "assessments")
-const maxResidents = _.maxBy(data, "residents")
 
 export default () => {
   const [byResident, setByResident] = useState(false)
   const [addQuery, setAddQuery] = useState(false)
-  const [selectedQueries, setSelectedQueries] = useState(data)
+  const [data, setData] = useState(initialData)
+
+  const maxAssessments = _.maxBy(data, "assessments")
+  const maxResidents = _.maxBy(data, "residents")
+
+  function handleChange(event, item) {
+    const newData = data.map(d => {
+      return d.query === item.query
+        ? { ...d, selected: event.target.checked }
+        : d
+    })
+    setData(newData)
+  }
 
   return (
     <Card
       title={`MDS Search Queries By ${byResident ? "Resident" : "Assessment"}`}
+      style={{ padding: 10 }}
       extra={
         <>
-          <Button onClick={() => setAddQuery(true)}>Add Query</Button>
           <Modal
             title="Add MDS Search Query"
             visible={addQuery}
             onOk={() => setAddQuery(false)}
             onCancel={() => setAddQuery(false)}
           >
-            <Select
-              mode="multiple"
-              style={{ width: "100%" }}
-              placeholder="Select query"
-              onChange={() => message.info('Not wired up yet')}
-            >
-              <Option key="1">More Option 1</Option>
-              <Option key="2">More Option 2</Option>
-            </Select>
+            <>
+              {data.map(item => (
+                <Checkbox
+                  checked={item.selected}
+                  onChange={event => handleChange(event, item)}
+                >
+                  {item.query}
+                </Checkbox>
+              ))}
+            </>
           </Modal>
-          <Button onClick={() => setByResident(!byResident)}>Toggle</Button>
         </>
       }
+      actions={[
+        <Button onClick={() => setByResident(!byResident)}>Toggle</Button>,
+        <Button type="dashed" icon="setting" onClick={() => setAddQuery(true)}>
+          Configure
+        </Button>,
+      ]}
       bordered={false}
     >
-      {selectedQueries.map(({ query, assessments, residents }) => {
+      {data.map(({ query, assessments, residents, selected }) => {
         const percentAssessments =
           (assessments / maxAssessments.assessments) * 100
         const percentResidents = (residents / maxResidents.residents) * 100
-
-        return (
-          <Row justify="space-around">
-            <Col span={8}>{query}</Col>
-            <Col span={16}>
-              <Progress
-                percent={byResident ? percentResidents : percentAssessments}
-                strokeWidth={20}
-                format={
-                  byResident ? () => `${residents}` : () => `${assessments}`
-                }
-                status="active"
-                style={{ padding: 10 }}
-              />
-            </Col>
-          </Row>
-        )
+        if (selected) {
+          return (
+            <Row justify="space-around">
+              <Col span={8}>{query}</Col>
+              <Col span={16}>
+                <Progress
+                  percent={byResident ? percentResidents : percentAssessments}
+                  strokeWidth={20}
+                  format={
+                    byResident ? () => `${residents}` : () => `${assessments}`
+                  }
+                  status="active"
+                  style={{ padding: 10 }}
+                  onClick={() => message.info('This would go to the related MDS Search Query')}
+                />
+              </Col>
+            </Row>
+          )
+        } else return null
       })}
     </Card>
   )

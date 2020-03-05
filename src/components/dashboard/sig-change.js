@@ -88,7 +88,8 @@ export default () => {
   return (
     <>
       <PageHeader title="Suggested Significant Change Assessments" />
-      <Table size="small" columns={columns} dataSource={alerts} />
+      <Result type="404" title="Under Construction" subTitle="Most likely will be similiar to IPA" />
+      {/* <Table size="small" columns={columns} dataSource={alerts} />
       <Modal
         title="Suggested IPA Details"
         visible={visible}
@@ -96,7 +97,7 @@ export default () => {
         onCancel={() => setVisible(false)}
       >
         <p>something awesome would be said here .. </p>
-      </Modal>
+      </Modal> */}
     </>
   )
 }
