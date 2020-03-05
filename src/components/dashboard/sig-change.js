@@ -138,7 +138,7 @@ export default () => {
         size="small"
         showHeader={true}
         columns={columns}
-        dataSource={_.uniqBy(alerts, "resident")}
+        dataSource={_.uniqBy(alerts.filter(({sigChangeAlerts}) => { return sigChangeAlerts.length > 2 }), "resident")}
         onRow={(record, rowIndex) => {
           return {
             onClick: event => {
