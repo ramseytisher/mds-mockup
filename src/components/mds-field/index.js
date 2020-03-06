@@ -185,6 +185,8 @@ export default ({
     </p>
   )
 
+  const DisabledTip = () => <p>This field is not configured to import.</p>
+
   const FinancialTip = () => <p>This field impacts financial calucations.</p>
 
   const QualityTip = () => (
@@ -201,6 +203,17 @@ export default ({
   const NoteTip = () => (
     <p>
       This field has manually entered notes associated to it from other users.
+    </p>
+  )
+
+  const ImportNoDataTip = () => (
+    <p>This field is configured to import but no data was found. </p>
+  )
+
+  const ImportDangerTip = () => (
+    <p>
+      This field is configured but there is an issue with its configuration.
+      Click to see more details.{" "}
     </p>
   )
 
@@ -311,10 +324,38 @@ export default ({
                 <InputType />
               </Col>
               <Col>
-                <Tooltip title={<ImportTip />} placement="bottom">
-                  {fieldData.sourceData.results.length > 0 ||
-                  fieldData.sourceData.calculatedResponse ? (
-                    <Badge dot offset={[-4, 2]}>
+                {fieldData.sourceData.results === "error" && (
+                  <Tooltip title={<DisabledTip />} placement="bottom">
+                    <Button
+                      type="dashed"
+                      disabled
+                      shape="circle"
+                      onClick={() => setActiveKey("1")}
+                      tabindex="-1"
+                    >
+                      <Icon type="vertical-align-bottom" />
+                    </Button>
+                  </Tooltip>
+                )}
+                {fieldData.sourceData.results === "danger" && (
+                  <Tooltip title={<ImportDangerTip />} placement="bottom">
+                    <Button
+                      type="danger"
+                      shape="circle"
+                      onClick={() => setActiveKey("1")}
+                      tabindex="-1"
+                      style={{ border: "none" }}
+                    >
+                      <Icon
+                        type="vertical-align-bottom"
+                        style={{ fontSize: "1.15rem" }}
+                      />
+                    </Button>
+                  </Tooltip>
+                )}
+                {fieldData.sourceData.results !== "error" &&
+                  fieldData.sourceData.calculatedResponse && (
+                    <Tooltip title={<ImportTip />} placement="bottom">
                       <Button
                         type="primary"
                         shape="circle"
@@ -327,18 +368,21 @@ export default ({
                           style={{ fontSize: "1.25rem" }}
                         />
                       </Button>
-                    </Badge>
-                  ) : (
-                    <Button
-                      type="dashed"
-                      shape="circle"
-                      onClick={() => setActiveKey("1")}
-                      tabindex="-1"
-                    >
-                      <Icon type="vertical-align-bottom" />
-                    </Button>
+                    </Tooltip>
                   )}
-                </Tooltip>
+                {fieldData.sourceData.results !== "error" &&
+                  fieldData.sourceData.results.length < 1 && (
+                    <Tooltip title={<ImportNoDataTip />} placement="bottom">
+                      <Button
+                        type="dashed"
+                        shape="circle"
+                        onClick={() => setActiveKey("1")}
+                        tabindex="-1"
+                      >
+                        <Icon type="vertical-align-bottom" />
+                      </Button>
+                    </Tooltip>
+                  )}
                 <Tooltip title={<FinancialTip />} placement="bottom">
                   {fieldData.referenceData.financialImpact ? (
                     <Button

@@ -158,7 +158,7 @@ export const mockData = [
     previousDateTime: "1/1/2020 12:30PM",
     sourceData: {
       registration: "",
-      results: [],
+      results: "error",
       diagnosis: [],
       procedure: [],
       rehabOptimaTherapy: [],
@@ -276,7 +276,7 @@ export const mockData = [
     previousDateTime: "1/1/2020 12:30PM",
     sourceData: {
       registration: "",
-      results: [],
+      results: "danger",
       diagnosis: [],
       procedure: [],
       rehabOptimaTherapy: [],
