@@ -42,7 +42,11 @@ export const mockAlerts = [
     difference: 25,
     found: "3/2/2020",
     ipaAlerts: ["SLP Comorbidities Change", "Nursing Functional Score Change"],
-    sigChangeAlerts: [],
+    sigChangeAlerts: [
+      "10% Weight Decrease Last 6 Months",
+      "Decision Making Improvement",
+      "ADL Improvement",
+    ],
     percent: 67,
   },
   {
@@ -51,7 +55,7 @@ export const mockAlerts = [
     difference: 85,
     found: "3/1/2020",
     ipaAlerts: ["Primary Diagnosis Change"],
-    sigChangeAlerts: [],
+    sigChangeAlerts: ["Hospice > Non-Hospice", "ADL Improvement"],
     percent: 60,
   },
   {
@@ -60,7 +64,10 @@ export const mockAlerts = [
     difference: 75,
     found: "2/29/2020",
     ipaAlerts: ["NTA Score Change"],
-    sigChangeAlerts: [],
+    sigChangeAlerts: [
+      "10% Weight Decrease Last 6 Months",
+      "ADL Improvement",
+    ],
     percent: 52,
   },
   {
@@ -69,7 +76,12 @@ export const mockAlerts = [
     difference: 5,
     found: "2/28/2020",
     ipaAlerts: ["PT/OT Functional Score Change"],
-    sigChangeAlerts: [],
+    sigChangeAlerts: [
+      "ADL Decline",
+      "Decision Making Decline",
+      "Increased Incontinence Pattern",
+      "5% Weight Increase Last 30 Days",
+    ],
     percent: 34,
   },
 ]
