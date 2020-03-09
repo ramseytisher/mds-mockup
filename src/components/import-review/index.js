@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 
 import { dataA, dataC, importData } from "./import-data"
-import SourceDetail from "../mds-field/details/source-details"
+import SourceDetails from "../mds-field/details/source-details"
 
 import {
   Modal,
@@ -31,6 +31,37 @@ const rowSelection = {
     disabled: record.key === "1", // Column configuration not to be checked
     name: record.name,
   }),
+}
+
+const sourceDetail = {
+  calculatedResponse: "0. None",
+  results: [
+    {
+      key: "1",
+      dta: "Repitition of Three Words",
+      dataResponse: "0.None",
+      user: "Jane Smith (RN)",
+      dateTime: "1/10/2020 11:43AM"
+    },
+    {
+      key: "2",
+      dta: "Repitition of Three Words",
+      dataResponse: "1. One",
+      user: "John Doe (MD)",
+      dateTime: "1/8/2020 01:25PM"
+    },
+    {
+      key: "3",
+      dta: "Repitition of Three Words",
+      dataResponse: "2. Two",
+      user: "Jim Henry (CNA)",
+      dateTime: "1/7/2020 04:42PM"
+    }
+  ],
+  diagnosis: [],
+  procedure: [],
+  rehabOptimaTherapy: [],
+  calculationDetail: "## This 'Is' Markdown \n\n This is still markdown \n\n ## This is More Markdown \n\n Even more Markdown"
 }
 
 export default ({ section, text }) => {
@@ -111,10 +142,11 @@ export default ({ section, text }) => {
             closable={true}
             onClose={() => setViewDetail(false)}
             visible={viewDetail}
-            width="90vw"
+            width="80vw"
             mask={true}
           >
-          <p>Show details here without Import Button ... review only</p>
+          <p>Show some header block here without Import Button</p>
+          <SourceDetails detail={sourceDetail} />
           </Drawer>
         </>
       ),
