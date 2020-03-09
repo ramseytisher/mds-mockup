@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 
 import { dataA, dataC, importData } from "./import-data"
+import SourceDetail from "../mds-field/details/source-details"
 
 import {
   Modal,
@@ -12,77 +13,10 @@ import {
   Row,
   Col,
   Alert,
+  Drawer
 } from "antd"
 const { Text } = Typography
 const { Option } = Select
-
-const columns = [
-  {
-    title: "Field",
-    dataIndex: "field",
-    render: text => <a>{text}</a>,
-  },
-  {
-    title: "Current Value",
-    dataIndex: "previous",
-    render: (text, record) => {
-      return (
-        <>
-          <Text>{text}</Text>
-          <br />
-          <Text
-            style={{ fontSize: "80%" }}
-            disabled
-          >{`${record.previousUser}`}</Text>
-        </>
-      )
-    },
-  },
-  {
-    title: "Import Value",
-    dataIndex: "import",
-    render: (text, record) => {
-      if (record.import === "error") {
-        return (
-          <Alert
-            message="Issue Importing Data"
-            type="error"
-            description="There was an issue trying to import this value, contact support if it continues."
-            showIcon
-          />
-        )
-      } else if (record.import === null) {
-        return <Alert message="No Import Value Found" type="info" showIcon />
-      } else if (record.import === undefined) {
-        return <Alert message="No Import Configured" type="info" showIcon />
-      } else {
-        return (
-          <Alert
-            message="Import Value Found"
-            type="success"
-            description={text}
-            showIcon
-          />
-        )
-      }
-    },
-  },
-  {
-    title: "View Details",
-    render: (text, record) => (
-      <Button
-        icon="search"
-        disabled={
-          record.import === null ||
-          record.import === "error" ||
-          record.import === undefined
-        }
-      >
-        View Details
-      </Button>
-    ),
-  },
-]
 
 // rowSelection object indicates the need for row selection
 const rowSelection = {
@@ -104,6 +38,88 @@ export default ({ section, text }) => {
   const [filter, setFilter] = useState(null)
   const [filterSection, setFilterSection] = useState(null)
   const [data, setData] = useState(importData)
+  const [viewDetail, setViewDetail] = useState(false)
+
+  const columns = [
+    {
+      title: "Field",
+      dataIndex: "field",
+      render: text => <a>{text}</a>,
+    },
+    {
+      title: "Current Value",
+      dataIndex: "previous",
+      render: (text, record) => {
+        return (
+          <>
+            <Text>{text}</Text>
+            <br />
+            <Text
+              style={{ fontSize: "80%" }}
+              disabled
+            >{`${record.previousUser}`}</Text>
+          </>
+        )
+      },
+    },
+    {
+      title: "Import Value",
+      dataIndex: "import",
+      render: (text, record) => {
+        if (record.import === "error") {
+          return (
+            <Alert
+              message="Issue Importing Data"
+              type="error"
+              description="There was an issue trying to import this value, contact support if it continues."
+              showIcon
+            />
+          )
+        } else if (record.import === null) {
+          return <Alert message="No Import Value Found" type="info" showIcon />
+        } else if (record.import === undefined) {
+          return <Alert message="No Import Configured" type="info" showIcon />
+        } else {
+          return (
+            <Alert
+              message="Import Value Found"
+              type="success"
+              description={text}
+              showIcon
+            />
+          )
+        }
+      },
+    },
+    {
+      title: "View Details",
+      render: (text, record) => (
+        <>
+          <Button
+            icon="search"
+            disabled={
+              record.import === null ||
+              record.import === "error" ||
+              record.import === undefined
+            }
+            onClick={() => setViewDetail(true)}
+          >
+            View Details
+          </Button>
+          <Drawer
+            placement="right"
+            closable={true}
+            onClose={() => setViewDetail(false)}
+            visible={viewDetail}
+            width="90vw"
+            mask={true}
+          >
+          <p>Show details here without Import Button ... review only</p>
+          </Drawer>
+        </>
+      ),
+    },
+  ]
 
   useEffect(() => {
     const filtered = importData.filter(item => {
@@ -124,14 +140,15 @@ export default ({ section, text }) => {
           return item
       }
     })
-    setData(filtered.filter(item => {
-      if (filterSection) {
-        return item.section === filterSection
-      } else {
-        return item
-      }
-    }))
-
+    setData(
+      filtered.filter(item => {
+        if (filterSection) {
+          return item.section === filterSection
+        } else {
+          return item
+        }
+      })
+    )
   }, [filter, filterSection])
 
   const handleSelect = () => {
@@ -166,7 +183,11 @@ export default ({ section, text }) => {
         >
           <Col> Show:</Col>
           <Col>
-            <Select defaultValue="All" style={{ width: 200 }} onChange={value => setFilter(value)}>
+            <Select
+              defaultValue="All"
+              style={{ width: 200 }}
+              onChange={value => setFilter(value)}
+            >
               <Option value="all">All</Option>
               <Option value="empty">Current Value Empty</Option>
               <Option value="found">Import Value Found</Option>
