@@ -119,7 +119,6 @@ export default () => {
                   format={
                     byResident ? () => `${residents}` : () => `${assessments}`
                   }
-                  status="active"
                   style={{ padding: 10 }}
                   onClick={() => message.info('This would go to the related MDS Search Query')}
                 />

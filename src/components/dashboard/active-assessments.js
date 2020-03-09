@@ -71,7 +71,6 @@ export default () => {
                 strokeWidth={20}
                 steps={max.assessments}
                 format={() => `${assessments} - ${type}`}
-                status="active"
                 style={{ padding: 10, width: "75%" }}
               />
             )
