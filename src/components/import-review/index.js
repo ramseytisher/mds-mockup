@@ -145,7 +145,8 @@ export default ({ section, text }) => {
             width="80vw"
             mask={true}
           >
-          <p>Show some header block here without Import Button</p>
+          <p>show field info here without ability to import</p>
+          <pre>{JSON.stringify(sourceDetail.calculatedResponse, null, 2)}</pre>
           <SourceDetails detail={sourceDetail} />
           </Drawer>
         </>
