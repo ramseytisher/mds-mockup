@@ -2,7 +2,7 @@ import React from "react"
 
 import { Table, Tag, Collapse, Empty, Alert } from "antd"
 
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown"
 
 const { Panel } = Collapse
 
@@ -32,10 +32,10 @@ export default ({ detail }) => {
     procedure,
     rehabOptimaTherapy,
     calculationDetail,
-    registration
+    registration,
   } = detail
 
-  if ( 
+  if (
     !registration &&
     !calculationDetail &&
     results.length === 0 &&
@@ -48,17 +48,25 @@ export default ({ detail }) => {
   }
 
   return (
-    <Collapse defaultActiveKey={['1', '6']}>
+    <Collapse defaultActiveKey={["1", "6"]}>
       {results.length > 0 && (
         <Panel header="PowerChart Results" key={1}>
+          <Alert
+            showIcon
+            message="If there was an issue getting data, but still able to calculate show this. Otherwise don't show it."
+            type="warning"
+          />
+          <Alert
+            showIcon
+            message="If there was an error getting data, and we're not able to calculate generate message here. Otherwise don't show this. If there is an error we should probably also disable the `Use This Response` button"
+            type="error"
+          />
           <Table
             columns={columns}
             dataSource={results}
             size="small"
             pagination={false}
           />
-          <Alert showIcon message="If there was an issue getting data, but still able to calculate show this. Otherwise don't show it." type="warning" />
-          <Alert showIcon message="If there was an error getting data, and we're not able to calculate generate message here. Otherwise don't show this. If there is an error we should probably also disable the `Use This Response` button" type="error" />
         </Panel>
       )}
 
