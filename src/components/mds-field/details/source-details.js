@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Table, Tag, Collapse, Empty } from "antd"
+import { Table, Tag, Collapse, Empty, Alert } from "antd"
 
 import ReactMarkdown from 'react-markdown'
 
@@ -57,6 +57,8 @@ export default ({ detail }) => {
             size="small"
             pagination={false}
           />
+          <Alert showIcon message="If there was an issue getting data, but still able to calculate show this. Otherwise don't show it." type="warning" />
+          <Alert showIcon message="If there was an error getting data, and we're not able to calculate generate message here. Otherwise don't show this. If there is an error we should probably also disable the `Use This Response` button" type="error" />
         </Panel>
       )}
 

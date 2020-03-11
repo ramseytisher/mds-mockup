@@ -7,44 +7,39 @@ import QualityDetails from "./quality-details"
 import FieldHistory from "./field-history"
 import Notes from "./notes"
 
-import { Typography, Tabs, Descriptions, Button, Icon } from "antd"
-const { Text } = Typography
+import {
+  Typography,
+  Tabs,
+  Button,
+  Icon,
+  Card,
+  Tag,
+} from "antd"
+const { Text, Title } = Typography
 const { TabPane } = Tabs
 
 export default ({ closeDetail, detail, question, activeKey, setActiveKey }) => (
   <>
-    <Descriptions
-      bordered
-      title={`${detail.field}: ${question.node.itm_shrt_label}`}
-    >
-      <Descriptions.Item label="Current Value">
-        {detail.previousAnswer}
-      </Descriptions.Item>
-      <Descriptions.Item label="Completed By">
-        {detail.previousUser}
-      </Descriptions.Item>
-      <Descriptions.Item label="Date/Time">
-        {detail.previousDateTime}
-      </Descriptions.Item>
-      {detail.sourceData.calculatedResponse && (
-        <Descriptions.Item
-          label={
-            <>
-              <Text>Calculated Response</Text>
-              <br />
-              <Button type="primary" size="small" onClick={closeDetail}>
-                Import Response
-              </Button>
-            </>
-          }
-          span={3}
-        >
-          <Text mark style={{ fontSize: "1.5rem" }}>
-            {detail.sourceData.calculatedResponse}
-          </Text>
-        </Descriptions.Item>
-      )}
-    </Descriptions>
+    <Title
+      level={2}
+    >{`${detail.field}: ${question.node.itm_shrt_label}`}</Title>
+
+    <Card bordered={false}>
+      <Text>
+        The value currently in {detail.field} is "{detail.previousAnswer}", set
+        by {detail.previousUser} on {detail.previousDateTime}.
+      </Text>
+    </Card>
+
+    <Card>
+      Based on the imported information, there is documentation that supports a
+      response of "{detail.sourceData.calculatedResponse}"{" "}
+      <br />
+      <Button type="primary" onClick={closeDetail} style={{ margin: 10 }}>
+        Use This Response
+      </Button>
+    </Card>
+
     <Tabs activeKey={activeKey} onChange={e => setActiveKey(e)}>
       <TabPane
         tab={
