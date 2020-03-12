@@ -218,7 +218,8 @@ export const mockData = [
         //   dateTime: "10/9/2019 11:43AM",
         // },
       ],
-      calculationDetail: `## This 'Is' Markdown \n\n This is still markdown \n\n ## This is More Markdown \n\n Even more Markdown`,
+      calculationDetail: `Based on the clinical documentation in PowerChart for [Millennium DTA Description] in the lookback period defined as [ARD Start Date] - [ARD End Date], the most frequent response is used to determine the import value. If there are the same number of two different responses, then the more impaired choice is used. \n\n #### Other Sources\n Assess the resident during the interview process, review medical record and consult with family and care staff. 
+`,
     },
     referenceData: {
       financialImpact: true,
