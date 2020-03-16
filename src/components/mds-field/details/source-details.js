@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Table, Tag, Collapse, Empty, Alert } from "antd"
+import { Table, Tag, Collapse, Empty, Alert, Card } from "antd"
 
 import ReactMarkdown from "react-markdown"
 
@@ -79,7 +79,13 @@ export default ({ detail }) => {
       {diagnosis.length > 0 && (
         <Panel header="PowerChart Diagnosis" key={3}>
           {diagnosis.map(item => (
-            <Tag color="#5C6770">{item}</Tag>
+            <Card hoverable style={{ margin: 10 }} title={`${item.icd10}: ${item.description}`}>
+              <span>{`Diagnosis Start Date: ${item.start}`}</span><br/>
+              <span>{`Diagnosis Type: ${item.type}`}</span><br/>
+              <span>{`Diagnosis Classification: ${item.class}`}</span><br/>
+              <span>{`Diagnosis Confirmation: ${item.confirmation}`}</span>
+
+            </Card>
           ))}
         </Panel>
       )}
@@ -87,7 +93,11 @@ export default ({ detail }) => {
       {procedure.length > 0 && (
         <Panel header="PowerChart Procedures" key={4}>
           {procedure.map(item => (
-            <Tag color="#5C6770">{item}</Tag>
+            <Card title={`${item.icd10}: ${item.description}`}>
+              <span>{`Active: ${item.active ? "true" : "false"}`}</span>
+              <br />
+              <span>{`Procedure Date: ${item.start}`}</span>
+            </Card>
           ))}
         </Panel>
       )}
