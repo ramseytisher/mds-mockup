@@ -28,6 +28,7 @@ const columns = [
 export default ({ detail }) => {
   const {
     results,
+    caretracker,
     diagnosis,
     procedure,
     rehabOptimaTherapy,
@@ -39,6 +40,7 @@ export default ({ detail }) => {
     !registration &&
     !calculationDetail &&
     results.length === 0 &&
+    !caretracker &&
     diagnosis.length === 0 &&
     procedure.length === 0 &&
     rehabOptimaTherapy.length === 0 &&
@@ -73,6 +75,12 @@ export default ({ detail }) => {
       {registration && (
         <Panel header="Millennium Registration" key={2}>
           <pre>{JSON.stringify(registration, null, 2)}</pre>
+        </Panel>
+      )}
+
+      {caretracker && (
+        <Panel header="CareTracker" key={8}>
+          <p>{caretracker}</p>
         </Panel>
       )}
 

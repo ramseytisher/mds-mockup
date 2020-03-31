@@ -112,12 +112,14 @@ export default ({ section, text }) => {
           return <Alert message="No Import Configured" type="info" showIcon />
         } else {
           return (
+            <>
             <Alert
-              message="Import Value Found"
               type="success"
               description={text}
               showIcon
             />
+            <p style={{ paddingLeft: 10 }}>There was an issue importing data.</p>
+            </>
           )
         }
       },
