@@ -13,6 +13,7 @@ import SectionC from "../components/sections/section-c"
 import SectionI from "../components/sections/section-i"
 import SectionK from "../components/sections/section-k"
 import SectionGG from "../components/sections/section-gg"
+import ReportCard from "../components/report-card"
 
 import { PageHeader, Button, Popconfirm, message, Row, Col, Input } from "antd"
 const { Search } = Input
@@ -30,6 +31,7 @@ export default () => {
           <Button style={{ margin: 2 }} icon="flag" />
           <Button style={{ margin: 2 }} icon="question-circle" />
           <Button style={{ margin: 2 }} icon="book" />
+          <ReportCard />
           <ImportReview section={null}/>
         </Col>
         <Col>
