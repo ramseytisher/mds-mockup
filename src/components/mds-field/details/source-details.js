@@ -1,10 +1,11 @@
 import React from "react"
 
-import { Table, Tag, Collapse, Empty, Alert, Card } from "antd"
+import { Table, Tag, Collapse, Empty, Alert, Card, Typography } from "antd"
 
 import ReactMarkdown from "react-markdown"
 
 const { Panel } = Collapse
+const { Text } = Typography
 
 const columns = [
   {
@@ -86,6 +87,47 @@ export default ({ detail }) => {
 
       {diagnosis.length > 0 && (
         <Panel header="PowerChart Diagnosis" key={3}>
+          <Table
+            size="small"
+            columns={[
+              {
+                title: "Diagnosis Information",
+                dataIndex: "icd10",
+                render: (text, record) => (
+                  <>
+                    <Text strong>{`${text}: ${record.description} `}</Text>
+                    <br />
+                    <Tag>{record.class}</Tag>
+                    <Tag>{record.type}</Tag>
+                    <Tag>{record.confirmation}</Tag>
+                  </>
+                ),
+              },
+              {
+                title: "Start Date",
+                dataIndex: "start",
+                key: "start",
+              },
+              {
+                title: "Rank",
+                dataIndex: "rank",
+                key: "rank"
+              },
+              {
+                title: "Notes",
+                render: (text, record) => (
+                  <>
+                    {record.mapped && <Tag color="#87d068">Mapped Message</Tag>}
+                    {record.filtered && <Tag>Filtered Message</Tag>}
+                  </>
+                )
+              }
+            ]}
+            dataSource={diagnosis}
+          />
+        </Panel>
+      )}
+      {/* <Panel header="PowerChart Diagnosis" key={3}>
           {diagnosis.map(item => (
             <Card hoverable style={{ margin: 10 }} title={`${item.icd10}: ${item.description}`}>
               <span>{`Diagnosis Start Date: ${item.start}`}</span><br/>
@@ -95,8 +137,7 @@ export default ({ detail }) => {
 
             </Card>
           ))}
-        </Panel>
-      )}
+        </Panel> */}
 
       {procedure.length > 0 && (
         <Panel header="PowerChart Procedures" key={4}>

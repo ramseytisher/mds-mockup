@@ -433,14 +433,14 @@ export const mockData = [
     previousDateTime: "1/1/2020 12:30PM",
     sourceData: {
       registration: "",
-      caretracker: "This information came from CareTracker and does not provide the ability to see more detailed information. Please review the MDS Reports in CareTracker for more specific information.",
+      caretracker:
+        "This information came from CareTracker and does not provide the ability to see more detailed information. Please review the MDS Reports in CareTracker for more specific information.",
       results: [],
       diagnosis: [],
       procedure: [],
       rehabOptimaTherapy: [],
       calculationDetail: "",
-            calculatedResponse: "0. None",
-
+      calculatedResponse: "0. None",
     },
     referenceData: {
       financialImpact: false,
@@ -1146,6 +1146,9 @@ export const mockData = [
           class: "Nursing",
           type: "Working",
           confirmation: "Confirmed",
+          rank: "Secondary",
+          mapped: true,
+          filtered: false,
         },
         {
           icd10: "ZYZ-987",
@@ -1154,6 +1157,20 @@ export const mockData = [
           class: "Nursing",
           type: "Billing",
           confirmation: "Confirmed",
+          rank: "Primary",
+          mapped: false,
+          filtered: false,
+        },
+        {
+          icd10: "ZYZ-987",
+          description: "Some Other Diagnosis Description",
+          start: "12/12/2019",
+          class: "Nursing",
+          type: "Billing",
+          confirmation: "Confirmed",
+          rank: "Tertiary",
+          mapped: false,
+          filtered: true,
         },
       ],
       procedure: [
