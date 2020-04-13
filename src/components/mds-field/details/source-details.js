@@ -1,6 +1,15 @@
 import React from "react"
 
-import { Table, Tag, Collapse, Empty, Alert, Card, Typography } from "antd"
+import {
+  Table,
+  Tag,
+  Collapse,
+  Empty,
+  Alert,
+  Card,
+  Typography,
+  Tooltip,
+} from "antd"
 
 import ReactMarkdown from "react-markdown"
 
@@ -97,9 +106,19 @@ export default ({ detail }) => {
                   <>
                     <Text strong>{`${text}: ${record.description} `}</Text>
                     <br />
-                    <Tag>{record.class}</Tag>
-                    <Tag>{record.type}</Tag>
-                    <Tag>{record.confirmation}</Tag>
+                    <Tag>Classification: {record.class}</Tag>
+                    <Tag>Type: {record.type}</Tag>
+                    <Tag>Status: {record.confirmation}</Tag>
+                    <br />
+                    <Tooltip title="Diagnosis Classification">
+                      <Tag>{record.class}</Tag>
+                    </Tooltip>
+                    <Tooltip title="Diagnosis Type">
+                      <Tag>{record.type}</Tag>
+                    </Tooltip>
+                    <Tooltip title="Diagnosis Status">
+                      <Tag>{record.confirmation}</Tag>
+                    </Tooltip>
                   </>
                 ),
               },
