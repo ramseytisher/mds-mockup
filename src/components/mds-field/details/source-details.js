@@ -91,7 +91,7 @@ export default ({ detail }) => {
             size="small"
             columns={[
               {
-                title: "Diagnosis Information",
+                title: "Related Diagnosis Information",
                 dataIndex: "icd10",
                 render: (text, record) => (
                   <>
@@ -111,20 +111,44 @@ export default ({ detail }) => {
               {
                 title: "Rank",
                 dataIndex: "rank",
-                key: "rank"
+                key: "rank",
               },
-              {
-                title: "Notes",
-                render: (text, record) => (
-                  <>
-                    {record.mapped && <Tag color="#87d068">Mapped Message</Tag>}
-                    {record.filtered && <Tag>Filtered Message</Tag>}
-                  </>
-                )
-              }
             ]}
             dataSource={diagnosis}
           />
+          <Collapse>
+            <Panel header="Additional Diagnosis Information">
+              <Table
+                size="small"
+                showHeader={false}
+                columns={[
+                  {
+                    dataIndex: "icd10",
+                    render: (text, record) => (
+                      <>
+                        <Text strong>{`${text}: ${record.description} `}</Text>
+                        <br />
+                        <Tag>{record.class}</Tag>
+                        <Tag>{record.type}</Tag>
+                        <Tag>{record.confirmation}</Tag>
+                      </>
+                    ),
+                  },
+                  {
+                    title: "Start Date",
+                    dataIndex: "start",
+                    key: "start",
+                  },
+                  {
+                    title: "Rank",
+                    dataIndex: "rank",
+                    key: "rank",
+                  },
+                ]}
+                dataSource={diagnosis}
+              />
+            </Panel>
+          </Collapse>
         </Panel>
       )}
       {/* <Panel header="PowerChart Diagnosis" key={3}>
