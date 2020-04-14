@@ -108,17 +108,7 @@ export default ({ detail }) => {
                     <br />
                     <Tag>Classification: {record.class}</Tag>
                     <Tag>Type: {record.type}</Tag>
-                    <Tag>Status: {record.confirmation}</Tag>
-                    <br />
-                    <Tooltip title="Diagnosis Classification">
-                      <Tag>{record.class}</Tag>
-                    </Tooltip>
-                    <Tooltip title="Diagnosis Type">
-                      <Tag>{record.type}</Tag>
-                    </Tooltip>
-                    <Tooltip title="Diagnosis Status">
-                      <Tag>{record.confirmation}</Tag>
-                    </Tooltip>
+                    <Tag>Confirmation: {record.confirmation}</Tag>
                   </>
                 ),
               },
