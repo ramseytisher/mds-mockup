@@ -14,6 +14,7 @@ import {
   Statistic,
   Popover,
   Tag,
+  Select,
   message,
 } from "antd"
 
@@ -22,6 +23,7 @@ const { Step } = Steps
 
 export default () => {
   const [openModal, setOpenModal] = useState(false)
+  const [showImportDetails, setShowImportDetails] = useState(false)
 
   return (
     <>
@@ -34,115 +36,175 @@ export default () => {
         onCancel={() => setOpenModal(false)}
         width="80vw"
       >
-        <Card title="Import Information">
-          The following items have changed since the first import for this
-          assessment:
+        <Card>
           <Table
-            size="small"
+            pagination={false}
             columns={[
               {
-                title: "Field",
-                render: (text, record) => (
-                  <>
-                    <Text>{record.field}</Text>
-                    <br />
-                    <Text>{record.fieldDesc}</Text>
-                  </>
-                ),
+                title: "",
+                dataIndex: "item",
               },
               {
-                title: "Suggested Value Change",
-                render: (text, record) => (
-                  <>
-                    <Text delete>{record.firstValue}</Text>
-                    <br />
-                    <Text mark>{record.lastValue}</Text>
-                  </>
-                ),
-              },
-              {
-                title: "Current Field Value",
-                render: (text, record) => (
-                  <Row align="middle" type="flex" gutter={2}>
-                    <Col span={20}>
-                      <Text strong>{record.currentValue}</Text>
-                      <br />
-                      <Text
-                        type="secondary"
-                        style={{ fontSize: ".7rem" }}
-                      >{`${record.currentValueUser} on ${record.currentValueDate}`}</Text>
-                    </Col>
-                    <Col span={4}>
-                      <Popover
-                        title="Field Note"
-                        content={
-                          <>
-                            <Text>{record.fieldNote}</Text>
-                            <br />
-                            <Text
-                              type="secondary"
-                              style={{ fontSize: ".9em" }}
-                            >{`${record.fieldNoteUser} on ${record.fieldNoteDate}`}</Text>
-                          </>
+                title: "Required Flags",
+                render: (text, record) => {
+                  if (record.required === 0) {
+                    return <Button icon="check" type="primary" />
+                  } else {
+                    return (
+                      <a
+                        onClick={() =>
+                          message.info(
+                            "What .. you know what I do already, click the IMPORT row!"
+                          )
                         }
                       >
-                        <Button size="small" icon="paper-clip" />
-                      </Popover>
-                    </Col>
-                  </Row>
-                ),
+                        {record.required}
+                      </a>
+                    )
+                  }
+                },
               },
               {
-                title: "Action",
-                key: "action",
-                render: (text, record) => (
-                  <span>
-                    <a
-                      style={{ fontSize: ".8rem" }}
-                      onClick={() =>
-                        message.info("User would be taken to edit working copy")
-                      }
-                    >
-                      Edit Assessment
-                    </a>
-                  </span>
-                ),
+                title: "Informational",
+                render: (text, record) => {
+                  if (record.information === 0) {
+                    return <Button icon="check" type="primary" />
+                  } else {
+                    return (
+                      <a
+                        onClick={() => setShowImportDetails(!showImportDetails)}
+                      >
+                        {record.information}
+                      </a>
+                    )
+                  }
+                },
               },
             ]}
             dataSource={[
               {
-                id: 1,
-                field: "[MDS Field]",
-                fieldDesc: "[MDS Field Description]",
-                firstValue: "[First Suggested Value]",
-                firstDate: "[First Suggested Date]",
-                lastValue: "[Last Suggested Value]",
-                lastDate: "[Last Suggested Date]",
-                currentValue: "[Current Value]",
-                currentValueUser: "[Current Value User]",
-                currentValueDate: "[Current Value Date]",
-                fieldNote: "[Field Note]",
-                fieldNoteUser: "[Field Note User]",
-                fieldNoteDate: "[Field Note Date]",
+                item: "CMS",
+                required: 2,
+                information: 0,
               },
               {
-                id: 2,
-                field: "G0120A",
-                fieldDesc: "Bathing - Self performance",
-                firstValue: "0. Independent",
-                firstDate: "4/1/2020",
-                lastValue: "3. Physical help in part of bathing activity",
-                lastDate: "4/20/2020",
-                currentValue: "1. Supervision",
-                currentValueUser: "[Current Value User]",
-                currentValueDate: "4/17/2020",
-                fieldNote:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                fieldNoteUser: "[Field Note User]",
-                fieldNoteDate: "[Field Note Date]",
+                item: "Critical",
+                required: 0,
+                information: 0,
+              },
+              {
+                item: "Clinical",
+                required: 1,
+                information: 0,
+              },
+              {
+                item: "Imports",
+                required: 0,
+                information: 3,
               },
             ]}
           />
+          {showImportDetails && (
+            <Card title="Suggested Import Information Changed">
+              The clinical documentation that was captured as a baseline at the
+              beginning of the assessment has changed, and the value currently
+              in the MDS field does not match the most recent suggested value.
+              The following items needed reviewed to ensure accuracy:
+              <Table
+                size="small"
+                columns={[
+                  {
+                    title: "Field",
+                    render: (text, record) => (
+                      <>
+                        <Text>
+                          {record.field}: {record.fieldDesc}
+                        </Text>
+                        <br />
+                        <Select value={record.currentValue} />
+                        <Button icon="paper-clip" />
+                      </>
+                    ),
+                  },
+                  {
+                    title: "Suggested Value Change",
+                    render: (text, record) => (
+                      <>
+                        <Text delete>{record.firstValue}</Text>
+                        <br />
+                        <Text mark>{record.lastValue}</Text>
+                      </>
+                    ),
+                  },
+                  {
+                    title: "Action",
+                    key: "action",
+                    render: (text, record) => (
+                      <span>
+                        <a
+                          style={{ fontSize: ".8rem" }}
+                          onClick={() =>
+                            message.info("This would resolve this one!")
+                          }
+                        >
+                          Accept Current Answer
+                        </a>
+                      </span>
+                    ),
+                  },
+                ]}
+                dataSource={[
+                  {
+                    id: 1,
+                    field: "[MDS Field]",
+                    fieldDesc: "[MDS Field Description]",
+                    firstValue: "[First Suggested Value]",
+                    firstDate: "[First Suggested Date]",
+                    lastValue: "[Last Suggested Value]",
+                    lastDate: "[Last Suggested Date]",
+                    currentValue: "[Current Value]",
+                    currentValueUser: "[Current Value User]",
+                    currentValueDate: "[Current Value Date]",
+                    fieldNote: "[Field Note]",
+                    fieldNoteUser: "[Field Note User]",
+                    fieldNoteDate: "[Field Note Date]",
+                  },
+                  {
+                    id: 2,
+                    field: "G0120A",
+                    fieldDesc: "Bathing - Self performance",
+                    firstValue: "0. Independent",
+                    firstDate: "4/1/2020",
+                    lastValue: "3. Physical help in part of bathing activity",
+                    lastDate: "4/20/2020",
+                    currentValue: "1. Supervision",
+                    currentValueUser: "[Current Value User]",
+                    currentValueDate: "4/17/2020",
+                    fieldNote:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                    fieldNoteUser: "[Field Note User]",
+                    fieldNoteDate: "[Field Note Date]",
+                  },
+                  {
+                    id: 3,
+                    field: "K0200B",
+                    fieldDesc: "Weight",
+                    firstValue: "170",
+                    firstDate: "4/1/2020",
+                    lastValue: "173",
+                    lastDate: "4/20/2020",
+                    currentValue: "172",
+                    currentValueUser: "[Current Value User]",
+                    currentValueDate: "4/17/2020",
+                    fieldNote:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                    fieldNoteUser: "[Field Note User]",
+                    fieldNoteDate: "[Field Note Date]",
+                  },
+                ]}
+              />
+            </Card>
+          )}
         </Card>
       </Modal>
     </>
