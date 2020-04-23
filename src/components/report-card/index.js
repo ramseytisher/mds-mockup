@@ -15,6 +15,8 @@ import {
   Popover,
   Tag,
   Select,
+  Radio,
+  Alert,
   message,
 } from "antd"
 
@@ -110,11 +112,28 @@ export default () => {
               beginning of the assessment has changed, and the value currently
               in the MDS field does not match the most recent suggested value.
               The following items needed reviewed to ensure accuracy:
+              <Alert
+                style={{ margin: 10 }}
+                type="warning"
+                message={`To resolve the flag you will need to review documentation and
+                edit the appropriate MDS response associated with the flag, or
+                you may resolve it by marking it as "Documenation is Accurate":`}
+              />
               <Table
                 size="small"
                 columns={[
                   {
-                    title: "Field",
+                    title: "Suggested Value Change",
+                    render: (text, record) => (
+                      <>
+                        <Text delete>{record.firstValue}</Text>
+                        <br />
+                        <Text mark>{record.lastValue}</Text>
+                      </>
+                    ),
+                  },
+                  {
+                    title: "Current Field Value",
                     render: (text, record) => (
                       <>
                         <Text>
@@ -127,28 +146,17 @@ export default () => {
                     ),
                   },
                   {
-                    title: "Suggested Value Change",
-                    render: (text, record) => (
-                      <>
-                        <Text delete>{record.firstValue}</Text>
-                        <br />
-                        <Text mark>{record.lastValue}</Text>
-                      </>
-                    ),
-                  },
-                  {
                     title: "Action",
                     key: "action",
                     render: (text, record) => (
                       <span>
-                        <a
-                          style={{ fontSize: ".8rem" }}
+                        <Radio
                           onClick={() =>
                             message.info("This would resolve this one!")
                           }
                         >
-                          Accept Current Answer
-                        </a>
+                          Documentation is Accurate
+                        </Radio>
                       </span>
                     ),
                   },
