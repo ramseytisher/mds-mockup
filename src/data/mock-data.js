@@ -1163,7 +1163,8 @@ export const mockData = [
         },
         {
           icd10: "ZYZ-987",
-          description: "Some Other Diagnosis Description, Some Other Diagnosis Description, Some Other Diagnosis Description, ",
+          description:
+            "Some Other Diagnosis Description, Some Other Diagnosis Description, Some Other Diagnosis Description, ",
           start: "12/12/2019",
           class: "Nursing",
           type: "Billing",

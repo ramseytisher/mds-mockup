@@ -112,13 +112,13 @@ export default () => {
               beginning of the assessment has changed, and the value currently
               in the MDS field does not match the most recent suggested value.
               The following items needed reviewed to ensure accuracy:
-              <Alert
+              {/* <Alert
                 style={{ margin: 10 }}
                 type="warning"
                 message={`To resolve the flag you will need to review documentation and
                 edit the appropriate MDS response associated with the flag, or
-                you may resolve it by marking it as "Documenation is Accurate":`}
-              />
+                you may resolve it by marking it as "Keep Current Field Value":`}
+              /> */}
               <Table
                 size="small"
                 columns={[
@@ -145,21 +145,21 @@ export default () => {
                       </>
                     ),
                   },
-                  {
-                    title: "Action",
-                    key: "action",
-                    render: (text, record) => (
-                      <span>
-                        <Radio
-                          onClick={() =>
-                            message.info("This would resolve this one!")
-                          }
-                        >
-                          Documentation is Accurate
-                        </Radio>
-                      </span>
-                    ),
-                  },
+                  // {
+                  //   title: "Action",
+                  //   key: "action",
+                  //   render: (text, record) => (
+                  //     <span>
+                  //       <Radio
+                  //         onClick={() =>
+                  //           message.info("This would resolve this one!")
+                  //         }
+                  //       >
+                  //         Keep Current Field Value
+                  //       </Radio>
+                  //     </span>
+                  //   ),
+                  // },
                 ]}
                 dataSource={[
                   {

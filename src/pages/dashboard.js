@@ -22,11 +22,13 @@ import {
   DatePicker,
   Tabs,
   Input,
+  Select,
 } from "antd"
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker
 const { TabPane } = Tabs
 const { Search } = Input
+const { Option } = Select
 
 const initialAssessments = [
   {
@@ -243,9 +245,17 @@ export default () => {
 
   return (
     <Layout>
-      <Row type="flex" justify="center" align="top">
-        <Col span={12}>
-          {/* <PageHeader title="MDS Assessment Tasks" />
+      <Tabs>
+        <TabPane tab="MDS Dashboard" key="0">
+          <Select defaultValue="1" style={{ width: 240, margin: 20 }}>
+              <Option value="1">Facility 1</Option>
+              <Option value="2">Facility 2</Option>
+              <Option value="3">Facility 3</Option>
+            </Select>
+          <Row type="flex" justify="center" align="top">
+          
+            <Col span={12}>
+              {/* <PageHeader title="MDS Assessment Tasks" />
           <Tabs defaultActiveKey="1">
             <TabPane tab="Past Due" key="2">
               <pre>show past due assessments here</pre>
@@ -337,14 +347,25 @@ export default () => {
               <MdsCalendar assessments={initialAssessments} />
             </TabPane>
           </Tabs> */}
-          <ActiveAssessments />
-          <SearchQuery />
-        </Col>
-        <Col span={12}>
-          <IpaTable />
-          <SigChangTable />
-        </Col>
-      </Row>
+              <ActiveAssessments />
+              <SearchQuery />
+            </Col>
+            <Col span={12}>
+              <IpaTable />
+              <SigChangTable />
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tab="MDS Schedule" key="1">
+          This is in Sencha ...
+        </TabPane>
+        <TabPane tab="MDS Link Center" key="2">
+          This is in Sencha ...
+        </TabPane>
+        <TabPane tab="MDS Search" key="3">
+          This is in Ant Design ...
+        </TabPane>
+      </Tabs>
     </Layout>
   )
 }

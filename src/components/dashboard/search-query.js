@@ -18,6 +18,8 @@ import {
   Select,
   message,
   Checkbox,
+  Statistic,
+  Radio,
 } from "antd"
 const { Option } = Select
 
@@ -43,19 +45,19 @@ const initialData = [
   {
     query: "Indwelling Catheter & No Supportive Diagnosis",
     assessments: 4,
-    residents: 4,
+    residents: 3,
     selected: false,
   },
   {
     query: "Indwelling Catheter & UTI",
-    assessments: 2,
-    residents: 1,
+    assessments: 8,
+    residents: 6,
     selected: true,
   },
 ]
 
 export default () => {
-  const [byResident, setByResident] = useState(false)
+  const [showBy, setShowBy] = useState("residents")
   const [addQuery, setAddQuery] = useState(false)
   const [data, setData] = useState(initialData)
 
@@ -73,10 +75,21 @@ export default () => {
 
   return (
     <Card
-      title={`MDS Search Queries By ${byResident ? "Resident" : "Assessment"}`}
+      title={`MDS Search Queries By ${
+        showBy === "residents" ? "Resident" : "Assessment"
+      }`}
       style={{ padding: 10 }}
       extra={
         <>
+          <Radio.Group
+            defaultValue={showBy}
+            buttonStyle="solid"
+            onChange={event => setShowBy(event.target.value)}
+          >
+            <Radio.Button value="residents">Show By Resident</Radio.Button>
+            <Radio.Button value="assessment">Show By Assessment</Radio.Button>
+          </Radio.Group>
+          ,
           <Modal
             title="Add MDS Search Query"
             visible={addQuery}
@@ -97,14 +110,32 @@ export default () => {
         </>
       }
       actions={[
-        <Button onClick={() => setByResident(!byResident)}>Toggle</Button>,
-        <Button type="dashed" icon="setting" onClick={() => setAddQuery(true)}>
+        <Button icon="setting" onClick={() => setAddQuery(true)}>
           Configure
         </Button>,
       ]}
       bordered={false}
     >
-      {data.map(({ query, assessments, residents, selected }) => {
+      <Row gutter={[16, 8]}>
+        {data.map(({ query, assessments, residents, selected }) => {
+          return (
+            <Col span={8}>
+              <Card
+                hoverable
+                size="small"
+                onClick={() => alert("Should go to the Search")}
+              >
+                <Statistic
+                  title={query}
+                  value={showBy === "residents" ? residents : assessments}
+                />
+              </Card>
+            </Col>
+          )
+        })}
+      </Row>
+
+      {/* {data.map(({ query, assessments, residents, selected }) => {
         const percentAssessments =
           (assessments / maxAssessments.assessments) * 100
         const percentResidents = (residents / maxResidents.residents) * 100
@@ -120,13 +151,17 @@ export default () => {
                     byResident ? () => `${residents}` : () => `${assessments}`
                   }
                   style={{ padding: 10 }}
-                  onClick={() => message.info('This would go to the related MDS Search Query')}
+                  onClick={() =>
+                    message.info(
+                      "This would go to the related MDS Search Query"
+                    )
+                  }
                 />
               </Col>
             </Row>
           )
         } else return null
-      })}
+      })} */}
     </Card>
   )
 }

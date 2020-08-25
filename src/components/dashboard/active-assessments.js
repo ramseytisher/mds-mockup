@@ -9,12 +9,17 @@ import {
   VictoryPie,
   VictoryTheme,
 } from "victory"
-import { Card, Progress, Button } from "antd"
+import { Card, Progress, Button, Select, Statistic, Row, Col } from "antd"
+import { CheckCircleOutlined } from "@ant-design/icons"
+const { Option } = Select
 
 const data = [
-  { type: "PPS", assessments: 6 },
-  { type: "OBRA", assessments: 2 },
-  { type: "Managed Care", assessments: 3 },
+  { type: "Past Due for Completion", assessments: 6 },
+  { type: "Past Due for Submission", assessments: 2 },
+  { type: "Set Target Date", assessments: 1 },
+  { type: "Assessments Inflight", assessments: 0 },
+  { type: "Assessments Needs Signed", assessments: 3 },
+  { type: "Assessments Need Sent", assessments: 2 },
 ]
 
 const Label = () => {}
@@ -27,7 +32,7 @@ export default () => {
 
   return (
     <Card
-      title="Active MDS Assessments"
+      title="MDS Assessments Requiring Action"
       bordered={false}
       style={{ padding: 10 }}
 
@@ -62,20 +67,33 @@ export default () => {
           />
         </>
       ) : (
-        <div style={{ padding: 30 }}>
+        <Row gutter={[16, 8]}>
           {data.map(({ assessments, type }) => {
             const percent = (assessments / max.assessments) * 100
             return (
-              <Progress
-                percent={percent}
-                strokeWidth={20}
-                steps={max.assessments}
-                format={() => `${assessments} - ${type}`}
-                style={{ padding: 10, width: "75%" }}
-              />
+              // <Progress
+              //   percent={percent}
+              //   strokeWidth={20}
+              //   steps={max.assessments}
+              //   format={() => `${assessments} - ${type}`}
+              //   style={{ padding: 10, width: "75%" }}
+              // />
+              <Col span={8}>
+                <Card
+                  hoverable
+                  size="small"
+                  onClick={() => alert("Should go to the Schedule")}
+                >
+                  <Statistic
+                    title={type}
+                    value={assessments}
+                    valueStyle={assessments === 0 ? { color: "#3f8600" } : null}
+                  />
+                </Card>
+              </Col>
             )
           })}
-        </div>
+        </Row>
       )}
     </Card>
   )
