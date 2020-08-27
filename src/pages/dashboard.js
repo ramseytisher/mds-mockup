@@ -245,15 +245,17 @@ export default () => {
 
   return (
     <Layout>
-      <Tabs>
+      <Tabs
+        tabBarExtraContent={
+          <Select defaultValue="1" style={{ width: 240 }}>
+            <Option value="1">Facility 1</Option>
+            <Option value="2">Facility 2</Option>
+            <Option value="3">Facility 3</Option>
+          </Select>
+        }
+      >
         <TabPane tab="MDS Dashboard" key="0">
-          <Select defaultValue="1" style={{ width: 240, margin: 20 }}>
-              <Option value="1">Facility 1</Option>
-              <Option value="2">Facility 2</Option>
-              <Option value="3">Facility 3</Option>
-            </Select>
           <Row type="flex" justify="center" align="top">
-          
             <Col span={12}>
               {/* <PageHeader title="MDS Assessment Tasks" />
           <Tabs defaultActiveKey="1">
