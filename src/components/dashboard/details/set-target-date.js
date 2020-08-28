@@ -8,6 +8,7 @@ import {
   Button,
   Tooltip,
   Typography,
+  Popconfirm,
   message,
 } from "antd"
 import { CheckCircleOutlined } from "@ant-design/icons"
@@ -76,7 +77,14 @@ export default () => {
           >
             Create
           </Button>
-          <Button type="link">Delete</Button>
+          <Popconfirm
+            title="No turning back now. Are you sure?"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={()=>message.warn('You deleted the ghost card!')}
+          >
+            <Button type="link">Delete</Button>
+          </Popconfirm>
         </>
       ),
     },
