@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Card, Statistic, Modal, Table, Button, Typography } from "antd"
+import { Card, Statistic, Modal, Table, Button, Typography, message } from "antd"
 import { CheckCircleOutlined } from "@ant-design/icons"
 
 const { Text } = Typography
@@ -61,9 +61,9 @@ export default () => {
       render: (text, record) => (
         <Button
           type="primary"
-          onClick={() => alert("Create Assessment Screen")}
+          onClick={() => message.info("Imagine you just got taken to the MDS Assessment!")}
         >
-          What Action Here?{" "}
+          Go To
         </Button>
       ),
     },
@@ -82,13 +82,6 @@ export default () => {
           size="small"
           columns={columns}
           dataSource={data}
-          onRow={(record, rowIndex) => {
-            return {
-              onClick: event => {
-                alert("Open this assessment!")
-              },
-            }
-          }}
         />
       </Modal>
       <Card hoverable size="small" onClick={() => setShowDetail(true)}>

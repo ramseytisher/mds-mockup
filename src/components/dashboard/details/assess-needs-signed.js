@@ -11,13 +11,13 @@ export default () => {
       id: 1,
       name: "Virgil Tisher",
       type: "NQ",
-      status: "Closed",
+      status: "Signature Ready",
     },
     {
       id: 2,
       name: "Bryce Dalton",
       type: "NQ",
-      status: "CAAReady",
+      status: "Signature Ready",
     },
   ]
   const columns = [
@@ -44,9 +44,16 @@ export default () => {
     {
       title: "Actions",
       render: (text, record) => (
-        <Button type="primary" onClick={() => alert("Sign MDS")}>
-          Sign MDS
-        </Button>
+        <>
+          <Button
+            type="primary"
+            onClick={() => alert("Go to the MDS Completion Signature")}
+          >
+            Sign
+          </Button>
+          {" "}
+          <Button>Go To</Button>
+        </>
       ),
     },
   ]
@@ -64,13 +71,6 @@ export default () => {
           size="small"
           columns={columns}
           dataSource={data}
-          onRow={(record, rowIndex) => {
-            return {
-              onClick: event => {
-                alert("Open this assessment!")
-              },
-            }
-          }}
         />
       </Modal>
       <Card hoverable size="small" onClick={() => setShowDetail(true)}>

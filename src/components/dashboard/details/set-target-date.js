@@ -1,7 +1,18 @@
 import React, { useState } from "react"
 
-import { Card, Statistic, Modal, Table, Button } from "antd"
+import {
+  Card,
+  Statistic,
+  Modal,
+  Table,
+  Button,
+  Tooltip,
+  Typography,
+  message,
+} from "antd"
 import { CheckCircleOutlined } from "@ant-design/icons"
+
+const { Title, Text } = Typography
 
 export default () => {
   const [showDetail, setShowDetail] = useState(false)
@@ -10,18 +21,21 @@ export default () => {
     {
       id: 1,
       name: "Virgil Tisher",
+      mrn: "3456",
       type: "NQ",
       targetWindow: "8/26/2020 - 8/30/2020",
     },
     {
       id: 2,
       name: "Bryce Dalton",
+      mrn: "7890",
       type: "NQ",
       targetWindow: "8/26/2020 - 8/30/2020",
     },
     {
       id: 3,
       name: "Steve Fraley",
+      mrn: "2112",
       type: "NQ",
       targetWindow: "8/26/2020 - 8/30/2020",
     },
@@ -51,16 +65,40 @@ export default () => {
     {
       title: "Actions",
       render: (text, record) => (
-        <Button type="primary" onClick={() => alert("Create Assessment Screen")}>
-          Create Assessment
-        </Button>
+        <>
+          <Button
+            type="primary"
+            onClick={() =>
+              message.info(
+                "Close your eyes and envision the Create Assessment Screen with information pre-populated"
+              )
+            }
+          >
+            Create
+          </Button>
+          <Button type="link">Delete</Button>
+        </>
       ),
     },
   ]
+
   return (
     <>
+      <Tooltip
+        mouseEnterDelay={2}
+        title="Click here to see all assessments that need created."
+      >
+        <Card hoverable size="small" onClick={() => setShowDetail(true)}>
+          <Statistic title={`Set Target Date`} value={data.length} />
+        </Card>
+      </Tooltip>
       <Modal
-        title="Set Target Date"
+        title={
+          <>
+            <Title level={4}>Set Target Date</Title>
+            <Text type="secondary">Assessments that need created.</Text>
+          </>
+        }
         visible={showDetail}
         onOk={() => setShowDetail(false)}
         onCancel={() => setShowDetail(false)}
@@ -71,18 +109,9 @@ export default () => {
           size="small"
           columns={columns}
           dataSource={data}
-          onRow={(record, rowIndex) => {
-            return {
-              onClick: event => {
-                alert("Open this assessment!")
-              },
-            }
-          }}
+          expandedRowRender={record => <Text>MRN: {record.mrn}</Text>}
         />
       </Modal>
-      <Card hoverable size="small" onClick={() => setShowDetail(true)}>
-        <Statistic title={`Set Target Date`} value={data.length} />
-      </Card>
     </>
   )
 }
