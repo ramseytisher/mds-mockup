@@ -81,7 +81,11 @@ export default () => {
             title="No turning back now. Are you sure?"
             okText="Yes"
             cancelText="No"
-            onConfirm={()=>message.warn('You deleted the ghost card!')}
+            onConfirm={() =>
+              message.warn(
+                "Well that was not the best choice, you deleted the ghost card. You are on your own now!"
+              )
+            }
           >
             <Button type="link">Delete</Button>
           </Popconfirm>

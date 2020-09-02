@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Card, Statistic, Modal, Table, Button } from "antd"
+import { Card, Statistic, Modal, Table, Button, message } from "antd"
 import { CheckCircleOutlined } from "@ant-design/icons"
 
 export default () => {
@@ -12,12 +12,15 @@ export default () => {
       name: "Virgil Tisher",
       type: "NQ",
       status: "Signature Ready",
+      target: "9/1/2020",
     },
     {
       id: 2,
       name: "Bryce Dalton",
       type: "NQ",
       status: "Signature Ready",
+      target: "9/3/2020",
+
     },
   ]
   const columns = [
@@ -37,6 +40,11 @@ export default () => {
       dataIndex: "type",
     },
     {
+      title: "Target Date",
+      key: "target",
+      dataIndex: "target",
+    },
+    {
       title: "Assessment Status",
       key: "status",
       dataIndex: "status",
@@ -47,12 +55,12 @@ export default () => {
         <>
           <Button
             type="primary"
-            onClick={() => alert("Go to the MDS Completion Signature")}
+            onClick={() => message.info("Imagine you were just transported to the MDS Completion Signature Screen for this assessment.")}
           >
-            Sign
+            Sign Assessment
           </Button>
           {" "}
-          <Button>Go To</Button>
+          <Button onClick={() => message.info("Open this MDS assessment")}>Go To Assessment</Button>
         </>
       ),
     },

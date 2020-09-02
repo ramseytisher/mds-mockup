@@ -63,7 +63,7 @@ export default () => {
           type="primary"
           onClick={() => message.info("Imagine you just got taken to the MDS Assessment!")}
         >
-          Go To
+          Go To Assessment
         </Button>
       ),
     },
