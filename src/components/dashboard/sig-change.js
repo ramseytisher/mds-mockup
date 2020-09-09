@@ -77,7 +77,7 @@ export default () => {
 
   const detailColumns = [
     {
-      title: "Suggested Date",
+      title: "Review Date",
       key: "found",
       dataIndex: "found",
     },
@@ -128,7 +128,7 @@ export default () => {
 
   return (
     <>
-      <PageHeader title="Suggested Significant Change Assessment" />
+      <PageHeader title="Significant Change Assessment Review" />
       {/* <Slider
         toolTipVisible
         value={slider}
@@ -148,7 +148,7 @@ export default () => {
         }}
       />
       <Modal
-        title={`Suggested Signficant Change Details For: ${detail}`}
+        title={`Review Significant Change Details For: ${detail}`}
         width="90vw"
         visible={detail !== null}
         onOk={() => setDetail(null)}

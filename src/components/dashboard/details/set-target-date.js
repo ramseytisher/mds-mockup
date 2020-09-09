@@ -49,11 +49,6 @@ export default () => {
       dataIndex: "name",
     },
     {
-      title: "MDS ID",
-      key: "id",
-      dataIndex: "id",
-    },
-    {
       title: "Assessment Type",
       key: "type",
       dataIndex: "type",

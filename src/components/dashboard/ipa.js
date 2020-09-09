@@ -72,7 +72,7 @@ export default () => {
 
   const detailColumns = [
     {
-      title: "Suggested Date",
+      title: "Review Date",
       key: "found",
       dataIndex: "found",
     },
@@ -123,7 +123,7 @@ export default () => {
 
   return (
     <>
-      <PageHeader title="Suggested Interim Payment Assessments" />
+      <PageHeader title="Interim Payment Assessment Review" />
       {/* <Slider
         toolTipVisible
         value={slider}
@@ -143,7 +143,7 @@ export default () => {
         }}
       />
       <Modal
-        title={`Suggested IPA Details For: ${detail}`}
+        title={`Review IPA Details For: ${detail}`}
         width="90vw"
         visible={detail !== null}
         onOk={() => setDetail(null)}
