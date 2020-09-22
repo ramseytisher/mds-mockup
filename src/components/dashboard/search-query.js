@@ -1,13 +1,6 @@
 import React, { useState } from "react"
 import _ from "lodash"
 
-// import {
-//   VictoryChart,
-//   VictoryBar,
-//   VictoryGroup,
-//   VictoryLegend,
-//   VictoryTheme,
-// } from "victory"
 import {
   Card,
   Progress,
@@ -77,7 +70,7 @@ export default () => {
     <Card
       title={`MDS Search Queries By ${
         showBy === "residents" ? "Resident" : "Assessment"
-      }`}
+      } - Last 7 Days`}
       style={{ padding: 10 }}
       extra={
         <>
@@ -96,16 +89,28 @@ export default () => {
             onOk={() => setAddQuery(false)}
             onCancel={() => setAddQuery(false)}
           >
-            <>
-              {data.map(item => (
-                <Checkbox
-                  checked={item.selected}
-                  onChange={event => handleChange(event, item)}
-                >
-                  {item.query}
-                </Checkbox>
-              ))}
-            </>
+            <Card>
+              <Card title="Select Queries To Display">
+                {data.map(item => (
+                  <Checkbox
+                    checked={item.selected}
+                    onChange={event => handleChange(event, item)}
+                  >
+                    {item.query}
+                  </Checkbox>
+                ))}
+              </Card>
+              <Card title="Select Default Date Range">
+                <Select defaultValue={7} style={{ width: "100%" }} >
+                  <Option value={7}>Last 7 Days</Option>
+                  <Option value={30}>Last 30 Days</Option>
+                  <Option value={60}>Last 60 Days</Option>
+                  <Option value={90}>Last 90 Days</Option>
+                  <Option value={180}>Last 180 Days</Option>
+                  <Option value={"Custom"}>Manually Enter #</Option>
+                </Select>
+              </Card>
+            </Card>
           </Modal>
         </>
       }

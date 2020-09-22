@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Card, Statistic, Modal, Table } from "antd"
+import { Card, Statistic, Modal, Table, Tag } from "antd"
 import { CheckCircleOutlined } from "@ant-design/icons"
 
 export default () => {
@@ -65,6 +65,7 @@ export default () => {
         <Statistic
           title={`Assessments Need Sent`}
           value={data.length}
+          suffix={<Tag color="red">2 Past Due</Tag>}
         />
       </Card>
     </>

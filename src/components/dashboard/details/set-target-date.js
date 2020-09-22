@@ -9,6 +9,7 @@ import {
   Tooltip,
   Typography,
   Popconfirm,
+  Tag,
   message,
 } from "antd"
 import { CheckCircleOutlined } from "@ant-design/icons"
@@ -96,7 +97,7 @@ export default () => {
         title="Click here to see all assessments that need created."
       >
         <Card hoverable size="small" onClick={() => setShowDetail(true)}>
-          <Statistic title={`Set Target Date`} value={data.length} />
+          <Statistic title={`Set Target Date`} value={data.length} suffix={<Tag color="red">1 Past Due</Tag>} />
         </Card>
       </Tooltip>
       <Modal
