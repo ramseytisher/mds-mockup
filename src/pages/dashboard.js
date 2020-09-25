@@ -7,6 +7,7 @@ import DashboardItem from "../components/dashboard/dashboard-item"
 import MdsCalendar from "../components/dashboard/mds-calendar"
 import ActiveAssessments from "../components/dashboard/active-assessments"
 import SearchQuery from "../components/dashboard/search-query"
+import MdsSearch from "../components/mds-search"
 
 import {
   Button,
@@ -231,6 +232,7 @@ const columns = [
 export default () => {
   const [assessmentFilter, setAssessmentFilter] = useState(0)
   const [assessments, setAssessments] = useState(initialAssessments)
+  const [selectedTab, setSelectedTab] = useState(null)
 
   useEffect(() => {
     if (assessmentFilter != 0) {
@@ -246,12 +248,15 @@ export default () => {
   return (
     <Layout>
       <Tabs
+        onChange={key => setSelectedTab(key)}
         tabBarExtraContent={
-          <Select defaultValue="1" style={{ width: 240 }}>
-            <Option value="1">Facility 1</Option>
-            <Option value="2">Facility 2</Option>
-            <Option value="3">Facility 3</Option>
-          </Select>
+          selectedTab !== 3 ? (
+            <Select defaultValue="1" style={{ width: 240 }}>
+              <Option value="1">Facility 1</Option>
+              <Option value="2">Facility 2</Option>
+              <Option value="3">Facility 3</Option>
+            </Select>
+          ) : null
         }
       >
         <TabPane tab="MDS Dashboard" key="0">
@@ -365,7 +370,7 @@ export default () => {
           This is in Sencha ...
         </TabPane>
         <TabPane tab="MDS Search" key="3">
-          This is in Ant Design ...
+          <MdsSearch />
         </TabPane>
       </Tabs>
     </Layout>

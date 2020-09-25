@@ -115,6 +115,12 @@ export default () => {
       ),
     },
     {
+      title: "Working Copies Open",
+      render: (text, record) => (
+        <p>1</p>
+      )
+    },
+    {
       title: "Actions",
       render: (text, record) => (
         <>
